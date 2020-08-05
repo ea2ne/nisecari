@@ -92,14 +92,14 @@ Things you may want to cover:
 |size_id|references|foreign_key: true|
 |brand_id|references|foreign_key: true|
 ### Association
-- has_many :item-images, dependent: :destroy
+- has_many :item_images, dependent: :destroy
 - belongs_to :category
 - belongs_to :size
 - belongs_to :brand
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: ""User
 
-## item-imagesテーブル
+## item_imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item-id|references|null: false, foreign_key: true|
