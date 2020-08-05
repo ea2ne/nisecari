@@ -22,7 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-<<<<<<< HEAD
 
 ## usersテーブル
 |Column|Type|Options|
@@ -65,7 +64,7 @@ Things you may want to cover:
 |city|string|null: false|
 |house_number|string|null: false|
 |phone_number|integer|null: false|
-|user_id|references|foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 - Gem jp_prefectureを使用して都道府県コードを取得
@@ -92,23 +91,15 @@ Things you may want to cover:
 |category_id|references|foreign_key: true|
 |size_id|references|foreign_key: true|
 |brand_id|references|foreign_key: true|
-|item_condition_id|references|foreign_key: true|
-|postage_payer_id|references|foreign_key: true|
-|postage_type_id|references|foreign_key: true|
-|preparation_day_id|references|foreign_key: true|
 ### Association
-- has_many :itemimgs, dependent: :destroy
+- has_many :item-images, dependent: :destroy
 - belongs_to :category
 - belongs_to :size
 - belongs_to :brand
-- belongs_to_active_hash :item_condition
-- belongs_to_active_hash :postage_pay
-- belongs_to_active_hash :postage_type
-- belongs_to_active_hash :preparation_day
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: ""User
 
-## itemimgsテーブル
+## item-imagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |item-id|references|null: false, foreign_key: true|
@@ -135,28 +126,7 @@ Things you may want to cover:
 ## brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|name|string|
-### Association
-- has_many :items
-
-## item_conditions(active_hash)テーブル
-|Column|Type|Options|
-|------|----|-------|
-|item_condition|string|null: false|
-### Association
-- has_many :items
-
-## postage_payers(active_hash)テーブル
-|Column|Type|Options|
-|------|----|-------|
-|postage_payer|string|null: false|
-### Association
-- has_many :items
-
-## postage_types(active_hash)テーブル
-|Column|Type|Options|
-|------|----|-------|
-|postage_type|string|null: false|
+|name|string|null: false|
 ### Association
 - has_many :items
 
@@ -166,5 +136,3 @@ Things you may want to cover:
 |preparation_day|string|null: false|
 ### Association
 - has_many :items
-=======
->>>>>>> parent of 53c1cac... create-READ.ME
