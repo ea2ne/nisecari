@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-end
 
 before_action :basic_auth, if: :production?
 
@@ -13,4 +12,6 @@ def basic_auth
     username == Rails.application.credentials[:basic_auth][:user] &&
     password == Rails.application.credentials[:basic_auth][:pass]
   end
+end
+
 end
