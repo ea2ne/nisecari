@@ -89,12 +89,10 @@ Things you may want to cover:
 |trading_status|enum|null: false|
 |deal_closed_date|timestamp|
 |category_id|references|foreign_key: true|
-|size_id|references|foreign_key: true|
 |brand_id|references|foreign_key: true|
 ### Association
 - has_many :item_images, dependent: :destroy
 - belongs_to :category
-- belongs_to :size
 - belongs_to :brand
 - belongs_to :seller, class_name: "User"
 - belongs_to :buyer, class_name: ""User
@@ -116,23 +114,9 @@ Things you may want to cover:
 - has_many :items
 - has_ancestry
 
-## sizesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|size|string|null: false|
-### Association
-- has_many :items
-
 ## brandsテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-### Association
-- has_many :items
-
-## preparation_days
-|Column|Type|Options|
-|------|----|-------|
-|preparation_day|string|null: false|
 ### Association
 - has_many :items
