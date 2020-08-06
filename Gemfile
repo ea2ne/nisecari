@@ -64,6 +64,11 @@ group :production do
   gem 'unicorn'
 end
 
+
+gem 'devise'
+gem 'dotenv-rails'
+gem 'sqlite3', '~> 1.3.6'
+
 gem 'haml-rails'
 gem 'pry-rails'
 gem 'ancestry'
@@ -71,3 +76,4 @@ gem 'payjp'
 gem 'jp_prefecture'
 gem 'jquery-rails'
 gem 'active_hash'
+
