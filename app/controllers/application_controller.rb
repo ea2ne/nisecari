@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     authenticate_or_request_with_http_basic do |username, password|
       username == Rails.application.credentials[:basic_auth][:user] &&
       password == Rails.application.credentials[:basic_auth][:pass]
+    end
   end
 
   def configure_permitted_parameters
