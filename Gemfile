@@ -63,3 +63,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :production do
   gem 'unicorn'
 end
+
+gem 'haml-rails'
+gem 'pry-rails'
+gem 'ancestry'
+gem 'payjp'
+gem 'jp_prefecture'
+gem 'jquery-rails'
+gem 'active_hash'
