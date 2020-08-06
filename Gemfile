@@ -66,3 +66,4 @@ end
 
 gem 'devise'
 gem 'dotenv-rails'
+gem 'sqlite3', '~> 1.3.6'
