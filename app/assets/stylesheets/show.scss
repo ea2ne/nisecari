@@ -1,0 +1,42 @@
+.header {
+  height: 100px;
+  width: 100%;
+  display: block;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,1.16);
+  line-height: inherit;
+  font-size: inherit;
+  box-sizing: inherit;
+}
+
+.header-inner {
+  width: 700px;
+  margin: 0 auto;
+  padding: 8px 0 0;
+}
+
+.header-top {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+//     <div class="header-logo">
+//     <div class="header-seach">
+
+//   <div class="header-bottom">
+//     <div class="header-left">
+//       <div class="category">
+//  class="brand">
+
+//       class="header-right">
+//       <div class="news">
+//       <div class="todo">
+//       <div class="mypage">
+
+
+.contents {
+  height: 100px;
+  width: 100px;
+  background-color: lightblue;
+}
