@@ -2,7 +2,8 @@
   .centerfield
     .header
       .logo
-        %image{:src => "/assets/logo.png"}
+        = link_to root_path do
+          %image{:src => "/assets/logo.png"}
         .registtitle
           %p 新規会員登録
     .loginregist__form
@@ -34,6 +35,9 @@
             = f.password_field :password_confirmation, autocomplete: "new-password"
         .actions
           = f.submit "次へ", class: 'ButtonNext'
+        .login
+          %p アカウントをお持ちの方
+          = render "devise/shared/links"
 .footer
   .logo
     %image{:src => "/assets/logo-white.png"}
