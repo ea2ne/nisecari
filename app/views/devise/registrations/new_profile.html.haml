@@ -1,0 +1,64 @@
+.loginregist
+  .centerfield
+    .header
+      .logo
+        = link_to root_path do
+          %image{:src => "/assets/logo.png"}
+        .registtitle
+          %p 本人確認情報
+    .loginregist__form
+      = form_for @profile do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .formtitle
+          お名前(フルネーム) ※必須
+        .profilefield
+          .formbox
+            .formfield__label--short
+              = f.label :family_name, '名字'
+            .formfield__input--short
+              = f.text_field :family_name, autofocus: true, autocomplete: "family_name"
+          .formbox
+            .formfield__label--short
+              = f.label :first_name, '名前'
+            .formfield__input--short
+              = f.text_field :first_name, autofocus: true, autocomplete: "first_name"
+        .formtitle
+          お名前(ふりがな) ※必須
+        .profilefield
+          .formbox
+            .formfield__label--short
+              = f.label :family_name_kana, '姓(ふりがな)'
+            .formfield__input--short
+              = f.text_field :family_name_kana, autocomplete: "family_name_kana"
+          .formbox
+            .formfield__label--short
+              = f.label :first_name_kana, '名(ふりがな)'
+            .formfield__input--short
+              = f.text_field :first_name_kana, autocomplete: "first_name_kana"
+        .formtitle
+          生年月日 ※必須
+        .profilefield
+          .formbox
+            .formfield__label--short
+              = f.label :birth_year, '年：'
+            .formfield__input--short
+              = f.text_field :birth_year, autocomplete: "birth_year"
+          .formbox
+            .formfield__label--short
+              = f.label :birth_month, '月：'
+            .formfield__input--short
+              = f.text_field :birth_month, autocomplete: "birth_month"
+          .formbox
+            .formfield__label--short
+              = f.label :birth_day, '日：'
+            .formfield__input--short
+              = f.text_field :birth_day, autocomplete: "birth_day"
+        .actions
+          = f.submit "次へ", class: 'ButtonNext'
+        .login
+          %p アカウントをお持ちの方
+          = render "devise/shared/links"
+.footer
+  .logo
+    %image{:src => "/assets/logo-white.png"}
+  ©︎ nisekari from team e
