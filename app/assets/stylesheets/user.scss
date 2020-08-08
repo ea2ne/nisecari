@@ -60,7 +60,6 @@
         margin-bottom: 20px;
 
         .formfield__input--normal {
-
           input {
             padding: 0 0 0 5px;
             width: 350px;
@@ -76,6 +75,10 @@
             text-decoration: none;
           }
         }
+      }
+
+      .remember {
+        margin-top: 20px;
       }
 
       .loginregist__profilefield {
