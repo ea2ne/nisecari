@@ -1,0 +1,71 @@
+.loginregist
+  .centerfield
+    .loginregist__header
+      .loginregist__logo
+        = link_to root_path do
+          %image{:src => "/assets/logo.png"}
+        .registtitle
+          %p 送付先住所登録
+    .loginregist__form
+      = form_for @profile do |f|
+        = render "devise/shared/error_messages", resource: resource
+        .formtitle
+          送付先氏名(フルネーム) ※必須
+        .loginregist__profilefield
+          .formbox
+            .formfield__label--short
+              = f.label :family_name, '名字'
+            .formfield__input--short
+              = f.text_field :family_name, autofocus: true, autocomplete: "family_name"
+          .formbox
+            .formfield__label--short
+              = f.label :first_name, '名前'
+            .formfield__input--short
+              = f.text_field :first_name, autofocus: true, autocomplete: "first_name"
+        .formtitle
+          送付先氏名(ふりがな) ※必須
+        .loginregist__profilefield
+          .formbox
+            .formfield__label--short
+              = f.label :family_name_kana, '姓(ふりがな)'
+            .formfield__input--short
+              = f.text_field :family_name_kana, autocomplete: "family_name_kana"
+          .formbox
+            .formfield__label--short
+              = f.label :first_name_kana, '名(ふりがな)'
+            .formfield__input--short
+              = f.text_field :first_name_kana, autocomplete: "first_name_kana"
+        .loginregist__field
+          .formfield__label--normal
+            = f.label :post_code, '郵便番号 ※必須'
+          .formfield__input--normal
+            = f.text_field :post_code, autofocus: true, autocomplete: "post_code"
+        .loginregist__field
+          .formfield__label--normal
+            = f.label :prefecture_code, '都道府県 ※必須'
+          .formfield__input--normal
+            = f.text_field :prefecture_code, autofocus: true, autocomplete: "prefecture_code"
+        .loginregist__field
+          .formfield__label--normal
+            = f.label :city, '市区町村 ※必須'
+          .formfield__input--normal
+            = f.text_field :city, autofocus: true, autocomplete: "city"
+        .loginregist__field
+          .formfield__label--normal
+            = f.label :house_number, '番地 ※必須'
+          .formfield__input--normal
+            = f.text_field :house_number, autofocus: true, autocomplete: "house_number"
+        .loginregist__field
+          .formfield__label--normal
+            = f.label :phone_number, '電話番号'
+          .formfield__input--normal
+            = f.text_field :phone_number, autofocus: true, autocomplete: "phone_number"
+        .loginregist__form__actions
+          = f.submit "登録", class: 'ButtonNext'
+        .loginregist__form__login
+          %p アカウントをお持ちの方
+          = render "devise/shared/links"
+.loginregist__footer
+  .loginregist__logo
+    %image{:src => "/assets/logo-white.png"}
+  ©︎ nisekari from team e
