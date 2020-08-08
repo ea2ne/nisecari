@@ -3,13 +3,12 @@
   background-color: #d4d9d6;
 
   .centerfield {
-    width: 500px;
+    width: 600px;
     margin-left: auto;
     margin-right: auto;
 
     .loginregist__header {
-      height: 150px;
-      width: 500px;
+      height: 200px;
       background-color: white;
       margin: 0 auto;
       padding-top: 100px;
@@ -22,21 +21,33 @@
           height: 50px;
           width: 180px;
         }
-        .registtitle {
-          font-weight: bold;
-          font-size: 18px;
-          margin: 0 auto;
-          margin-top: 30px;
-          width: 110px;
-          border-bottom: solid 2px lightgray;
+      }
+      .registtitle {
+        font-weight: bold;
+        font-size: 18px;
+        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 180px;
+        border-bottom: solid 2px lightgray;
+        text-align: center;
+      }
+
+      .totop {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 12px;
+        line-height: 30px;
+        a {
+        text-decoration: none;
+        color: #3CCACE;
         }
       }
     }
 
     .loginregist__form {
       background-color: white;
-      height: 750px;
-      width: 500px;
+      height: 1050px;
       margin: 0 auto;
 
       form {
@@ -119,6 +130,7 @@
         text-decoration: none;
         color: #3CCACE;
         }
+
       }
     }
   }
