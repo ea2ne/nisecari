@@ -61,7 +61,7 @@
           .formfield__input--normal
             = f.text_field :phone_number, autofocus: true, autocomplete: "phone_number"
         .loginregist__form__actions
-          = f.submit "登録", class: 'ButtonNext', method: :post
+          = f.submit "登録", class: 'ButtonNext'
         .loginregist__form__login
           %p アカウントをお持ちの方
           = render "devise/shared/links"
