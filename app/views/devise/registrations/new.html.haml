@@ -34,7 +34,7 @@
           .formfield__input--normal
             = f.password_field :password_confirmation, autocomplete: "new-password"
         .loginregist__form__actions
-          = f.submit "次へ", class: 'ButtonNext'
+          = f.submit "次へ", class: 'ButtonNext', url: "profile_path"
         .loginregist__form__login
           %p アカウントをお持ちの方
           = render "devise/shared/links"
