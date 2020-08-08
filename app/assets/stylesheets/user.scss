@@ -7,14 +7,14 @@
     margin-left: auto;
     margin-right: auto;
 
-    .header {
+    .loginregist__header {
       height: 150px;
       width: 500px;
       background-color: white;
       margin: 0 auto;
       padding-top: 100px;
 
-      .logo {
+      .loginregist__logo {
         height: 50px;
         width: 180px;
         margin: 0 auto;
@@ -45,7 +45,7 @@
         margin-right: auto;
       }
 
-      .field {
+      .loginregist__form__field {
         margin-bottom: 20px;
 
         .formfield__input--normal {
@@ -67,7 +67,7 @@
         }
       }
 
-      .profilefield {
+      .loginregist__profilefield {
         display: flex;
         justify-content: start;
         margin-bottom: 20px;
@@ -97,7 +97,7 @@
         margin-bottom: 10px;
       }
 
-      .actions {
+      .loginregist__form__actions {
         margin-top: 50px;
         width: 250px;
         .ButtonNext {
@@ -110,7 +110,7 @@
         }
       }
 
-      .login {
+      .loginregist__form__login {
         margin-top: 40px;
         text-align: center;
         font-size: 12px;
@@ -124,7 +124,7 @@
   }
 }
 
-.footer {
+.loginregist__footer {
   width: 100vw;
   height: 100px;
   background-color: #d4d9d6;
