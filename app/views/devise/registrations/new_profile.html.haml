@@ -7,8 +7,8 @@
         .registtitle
           %p 本人確認情報
     .loginregist__form
-      = form_for @profile do |f|
-        = render "devise/shared/error_messages", resource: resource
+      = form_for(@profile, url: profiles_path, method: :post) do |f|
+        = render "devise/shared/error_messages", resource: @profile
         .formtitle
           お名前(フルネーム) ※必須
         .loginregist__profilefield
@@ -37,28 +37,20 @@
               = f.text_field :first_name_kana, autocomplete: "first_name_kana"
         .formtitle
           生年月日 ※必須
-        .loginregist__profilefield
-          .loginregist__formbox
-            .formfield__label--short
-              = f.label :birth_year, '年：'
-            .formfield__input--short
-              = f.text_field :birth_year, autocomplete: "birth_year"
-          .loginregist__formbox
-            .formfield__label--short
-              = f.label :birth_month, '月：'
-            .formfield__input--short
-              = f.text_field :birth_month, autocomplete: "birth_month"
-          .loginregist__formbox
-            .formfield__label--short
-              = f.label :birth_day, '日：'
-            .formfield__input--short
-              = f.text_field :birth_day, autocomplete: "birth_day"
+        .loginregist__form__field
+          .formfield__input--normal
+            = f.text_field :birth_day, autofocus: true, autocomplete: "birth_day"
+        .loginregist__form__field
+          .formfield__label--normal
+            = f.label :introduction, '自己紹介文 ※必須'
+          .formfield__input--normal
+            = f.text_field :introduction, autocomplete: "introduction"
         .loginregist__form__actions
           = f.submit "次へ", class: 'ButtonNext'
         .loginregist__form__login
           %p アカウントをお持ちの方
           = render "devise/shared/links"
-.loginregist__loginregist__footer
+.loginregist__footer
   .loginregist__logo
     %image{:src => "/assets/logo-white.png"}
   ©︎ nisekari from team e
