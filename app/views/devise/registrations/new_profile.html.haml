@@ -1,7 +1,7 @@
 .loginregist
   .centerfield
-    .header
-      .logo
+    .loginregist__header
+      .loginregist__logo
         = link_to root_path do
           %image{:src => "/assets/logo.png"}
         .registtitle
@@ -11,7 +11,7 @@
         = render "devise/shared/error_messages", resource: resource
         .formtitle
           お名前(フルネーム) ※必須
-        .profilefield
+        .loginregist__profilefield
           .formbox
             .formfield__label--short
               = f.label :family_name, '名字'
@@ -24,7 +24,7 @@
               = f.text_field :first_name, autofocus: true, autocomplete: "first_name"
         .formtitle
           お名前(ふりがな) ※必須
-        .profilefield
+        .loginregist__profilefield
           .formbox
             .formfield__label--short
               = f.label :family_name_kana, '姓(ふりがな)'
@@ -37,28 +37,28 @@
               = f.text_field :first_name_kana, autocomplete: "first_name_kana"
         .formtitle
           生年月日 ※必須
-        .profilefield
-          .formbox
+        .loginregist__profilefield
+          .loginregist__formbox
             .formfield__label--short
               = f.label :birth_year, '年：'
             .formfield__input--short
               = f.text_field :birth_year, autocomplete: "birth_year"
-          .formbox
+          .loginregist__formbox
             .formfield__label--short
               = f.label :birth_month, '月：'
             .formfield__input--short
               = f.text_field :birth_month, autocomplete: "birth_month"
-          .formbox
+          .loginregist__formbox
             .formfield__label--short
               = f.label :birth_day, '日：'
             .formfield__input--short
               = f.text_field :birth_day, autocomplete: "birth_day"
-        .actions
+        .loginregist__form__actions
           = f.submit "次へ", class: 'ButtonNext'
-        .login
+        .loginregist__form__login
           %p アカウントをお持ちの方
           = render "devise/shared/links"
-.footer
-  .logo
+.loginregist__loginregist__footer
+  .loginregist__logo
     %image{:src => "/assets/logo-white.png"}
   ©︎ nisekari from team e
