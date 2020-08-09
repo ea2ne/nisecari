@@ -68,7 +68,6 @@ end
 gem 'devise'
 gem 'dotenv-rails'
 gem 'sqlite3', '~> 1.3.6'
-
 gem 'haml-rails'
 gem 'pry-rails'
 gem 'ancestry'
