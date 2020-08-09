@@ -6,4 +6,5 @@ class User < ApplicationRecord
   validates :nickname, presence: true
   has_one :profile, dependent: :destroy
   has_one :sending_destination, dependent: :destroy
+  devise :validatable, password_length: 7..128
 end
