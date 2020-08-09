@@ -64,6 +64,7 @@ group :production do
   gem 'unicorn'
 end
 
+
 gem 'devise'
 gem 'dotenv-rails'
 gem 'sqlite3', '~> 1.3.6'
