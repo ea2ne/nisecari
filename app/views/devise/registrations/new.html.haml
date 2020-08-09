@@ -18,13 +18,13 @@
           .formfield__label--normal
             = f.label :email, 'email ※必須'
           .formfield__input--normal
-            = f.email_field :email, autofocus: true, autocomplete: "email"
+            = f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"例:xxx@xxx.com"
         .loginregist__form__field
           .formfield__label--normal
             = f.label :password, 'パスワード ※必須'
             - if @minimum_password_length
               %em
-                (#{@minimum_password_length} characters minimum)
+                (7文字以上)
           .formfield__input--normal
             = f.password_field :password, autocomplete: "new-password"
         .loginregist__form__field
