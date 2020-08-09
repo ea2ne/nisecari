@@ -1,0 +1,98 @@
+.loginregist {
+  width: 100vw;
+  background-color: #d4d9d6;
+
+  .centerfield {
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .header {
+      height: 150px;
+      width: 500px;
+      background-color: white;
+      margin: 0 auto;
+      padding-top: 100px;
+
+      .logo {
+        height: 50px;
+        width: 180px;
+        margin: 0 auto;
+        img {
+          height: 50px;
+          width: 180px;
+        }
+        .registtitle {
+          font-weight: bold;
+          font-size: 18px;
+          margin: 0 auto;
+          margin-top: 30px;
+          width: 110px;
+          border-bottom: solid 2px lightgray;
+        }
+      }
+    }
+
+    .loginregist__form {
+      background-color: white;
+      height: 600px;
+      width: 500px;
+      margin: 0 auto;
+
+      form {
+        width: 250px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .formfield {
+        margin-bottom: 20px;
+
+        .formfield__input--normal {
+
+          input {
+            padding: 0 0 0 5px;
+            width: 250px;
+            height: 35px;
+          }
+        }
+
+        .formfield__label--normal {
+          font-size: 15px;
+          margin-bottom: 10px;
+          i {
+            font-size: 12px;
+            text-decoration: none;
+          }
+        }
+      }
+
+      .actions {
+        margin-top: 50px;
+        width: 250px;
+        .ButtonNext {
+          padding: 10px 20px;
+          width: 250px;
+          border: none;
+          border-radius: 0.3em;
+          background-color: #3CCACE;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.footer {
+  width: 100vw;
+  height: 100px;
+  background-color: #d4d9d6;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 30px;
+  img {
+    height: 30px;
+    width: 100px;
+    margin: 0 auto;
+  }
+}
