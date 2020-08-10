@@ -109,6 +109,10 @@
       .listsRight{
         margin-left: auto;
         display: flex;
+        a {
+          text-decoration: none;
+          color: black;
+        }
         .listsRight-login{
           color: #333333;
           line-height: 38px;
