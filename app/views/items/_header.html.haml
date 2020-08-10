@@ -1,0 +1,56 @@
+%header.header
+  .header-bar
+    .main-header
+      %h1.icon
+        %a{href: "/"}
+          %img{src: "/assets/logo.png"}/
+      .search-box
+        %form{"accept-charset": "UTF-8", action: "#", method: "get"}
+          %input{name: "utf8", type: "hidden", value: ""}/
+          %input#searchInput.search-box-fotm{name: "key", placeholder: "キーワードから探す"}/
+          %button{type: "submit"}
+            .searchicon
+              %img{src: "assets/icon-search.png"}/
+      %ul.resultlists
+    
+    .list-bar
+      %ul.listsLeft
+        %li.listleft-item-first
+          = link_to "カテゴリ", "#", class: "category"
+          .listleft-item-first-tree
+            %ul.categoryTree
+              %li.category-item
+                %a#1{href: "#"} レディース
+              %li.category-item
+                %a#2{href: "#"} メンズ
+              %li.category-item
+                %a#3{href: "#"} ベビー・キッズ
+              %li.category-item
+                %a#4{href: "#"} インテリア・住まい・小物
+              %li.category-item
+                %a#5{href: "#"} 本・音楽・ゲーム
+              %li.category-item
+                %a#6{href: "#"} おもちゃ・ホビー・グッズ
+              %li.category-item
+                %a#7{href: "#"} コスメ・香水・美容
+              %li.category-item
+                %a#8{href: "#"} 家電・スマホ・カメラ
+              %li.category-item
+                %a#9{href: "#"} スポーツ・レジャー
+              %li.category-item
+                %a#10{href: "#"} ハンドメイド
+              %li.category-item
+                %a#11{href: "#"} チケット
+              %li.category-item
+                %a#12{href: "#"} 自転車・オートバイ
+              %li.category-item
+                %a#13{href: "#"} その他
+          
+        %li.listleft-item-second
+          = link_to "ブランド", "#", class: "brand"
+      .listsRight
+        %ul.link-lists
+          %li.listsRight-login
+            = link_to "ログイン", '#', class: "login"
+          %li.listsRight-new
+            = link_to "新規会員登録",'#', class: "new"
