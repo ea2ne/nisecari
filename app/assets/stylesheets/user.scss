@@ -12,7 +12,7 @@
     margin-right: auto;
 
     .loginregist__header {
-      height: 250px;
+      height: 280px;
       background-color: white;
       margin: 0 auto;
       padding-top: 100px;
@@ -38,6 +38,7 @@
       }
 
       .totop {
+        height: 200px;
         margin-top: 20px;
         text-align: center;
         font-size: 12px;
@@ -51,7 +52,6 @@
 
     .loginregist__form {
       background-color: white;
-      height: 1050px;
       margin: 0 auto;
 
       form {
@@ -129,6 +129,7 @@
       }
 
       .loginregist__form__login {
+        height: 200px;
         margin-top: 40px;
         text-align: center;
         font-size: 12px;
@@ -144,7 +145,7 @@
 }
 
 .createuser {
-  height: calc(100vh - 430px);
+  height: calc(100vh - 380px);
   background-color: #d4d9d6;
 }
 
