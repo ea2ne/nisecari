@@ -11,10 +11,8 @@
           %br/
           フリマアプリです
         .content-btn
-          %a.appleBtn{href: "#"}
-            %img{src: "/assets/apple.png"}/
-          %a.googleBtn{href: "#"}
-            %img{src: "/assets/google.png"}/          
+          = image_tag(image_path('apple.png'), class: 'appleBtn')
+          = image_tag(image_path('google.png'), class:'googleBtn')     
       
       .picture
     %section.top-introduction
@@ -24,7 +22,7 @@
         %li.list
           .list-picture
             %span.number 1
-            %img{src: "/assets/picture1.jpg"}/
+            = image_tag(image_path('main/picture1.jpg'), class: 'img')
           %h3.list-text
             %span 3分
             ですぐに出品
@@ -33,7 +31,7 @@
         %li.list
           .list-picture
             %span.number 2
-            %img{src: "/assets/picture2.jpg"}/
+            = image_tag(image_path('main/picture2.jpg'), class: 'img')
           %h3.list-text
             %span シンプル
             で使いやすい
@@ -42,7 +40,7 @@
         %li.list-last
           .list-picture
             %span.number 3
-            %img{src: "/assets/picture3.jpg"}/
+            = image_tag(image_path('main/picture3.jpg'), class: 'img')
           %h3.list-text
             手数料
             %span 業界最安
@@ -59,10 +57,8 @@
           %br/
           ほしかったあの商品に出会えるかもしれません。
         .button
-          %a.appleButton{href: "#"}
-            %img{src: "/assets/apple.png"}/
-          %a.googleButton{href: "#"}
-            %img{src: "assets/google.png"}/
+          = image_tag(image_path('apple.png'), class: 'appleButton')
+          = image_tag(image_path('google.png'), class:'googleButton') 
     
     %section.features
       %h2.head
@@ -70,19 +66,19 @@
       .items
         %section.item
           %figure.item-img
-            %img{src: "/assets/icon-01.png"}/
+            = image_tag(image_path('main/icon-01.png'), class: 'img')
           %h3.item-subtitle 簡単に売り買いできる
           %p.item-detail
             スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
         %section.item
           %figure.item-img
-            %img{src: "/assets/icon-02.png"}/
+            = image_tag(image_path('main/icon-02.png'), class: 'img')
           %h3.item-subtitle 売上金は即日振込みに対応
           %p.item-detail
             午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします！
         %section.item
           %figure.item-img
-            %img{src: "/assets/icon-03.png"}/
+            = image_tag(image_path('main/icon-03.png'), class: 'img')
           %h3.item-subtitle 様々な支払いに対応
           %p.item-detail
             お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
@@ -91,13 +87,12 @@
       %h2.head ピックアップカテゴリー
       .productBox
         .productHead
-          %a{class: "href=\"#\""}
-            %h3.title 新規投稿商品
+          = link_to "新規投稿商品", "#", class: "title"
         .productLists
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -108,9 +103,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -121,9 +116,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -134,9 +129,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -147,9 +142,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -160,9 +155,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -177,13 +172,12 @@
       %h2.head ピックアップブランド
       .productBox
         .productHead
-          %a{href: "#"}
-            %h3.title 新規投稿商品
+          = link_to "アーカイバ", "#", class: "title"
         .productLists
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -194,9 +188,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -207,9 +201,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -220,9 +214,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -233,9 +227,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details
@@ -246,9 +240,9 @@
                       1
                   %p （税込）
           .productList
-            %a{href: "#"}
+            = link_to "#", class: "a" do
               %figure.product-img
-                %img{src: "/assets/corn.png"}/
+                = image_tag(image_path("corn.png"), class: 'img')
               .productList-body
                 %h3.name テスト
                 .details

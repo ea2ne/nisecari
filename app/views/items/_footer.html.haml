@@ -3,10 +3,8 @@
     %h2.inner-title だれでもかんたん、人生を変えるフリマアプリ
     %p.inner-text 今すぐ無料ダウンロード！
     .inner-icon
-      %a{href: "#"}
-        %img.linkIcon-appleBtn{src: "/assets/apple.png"}/
-      %a{href: "#"}
-        %img.linkIcon-googleBtn{src: "/assets/google.png"}/
+      = image_tag(image_path('apple.png'), class: 'linkIcon-appleBtn')
+      = image_tag(image_path('google.png'), class: 'linkIcon-googleBtn')
 
 .footer
   %ul.contents
@@ -14,34 +12,33 @@
       %h2.content-head FURIMAについて
       %ul
         %li
-          %a{href: "#"} 会社概要（運営会社）
+          = link_to "会社概要（運営会社）", "#", class: "a"
         %li
-          %a{href: "#"} プライバシーポリシー
+          = link_to "プライバシーポリシー", "#", class: "a"
         %li
-          %a{href: "#"} FURIMA利用規約
+          = link_to "FURIMA利用規約", "#", class: "a"
         %li
-          %a{href: "#"} ポイントに関する規約
+          = link_to "ポイントに関する規約", "#", class: "a"
     %li.content
       %h2.content-head FURIMAを見る
       %ul
         %li
-          %a{href: "#"} カテゴリー一覧
+          = link_to "カテゴリー一覧", "#", class: "a"
         %li
-          %a{href: "#"} ブランド一覧
+          = link_to "ブランド一覧", "#", class: "a"
     %li.content
       %h2.content-head ヘルプガイド
       %ul
         %li
-          %a{href: "#"} FURIMAガイド
+          = link_to "FURIMAガイド", "#", class: "a"
         %li
-          %a{href: "#"} FURIMAロゴ利用ガイドライン
+          = link_to "FURIMAロゴ利用ガイドライン", "#", class: "a"
         %li
-          %a{href: "#"} お知らせ
+          = link_to "お知らせ", "#", class: "a"
   .footer-logo
-    %a{href: "/"}
-      %img{src: "/assets/logo-white.png"}/
+    = link_to image_tag('footer/logo-white.png', class: "img"), 'image_path'
+
   %p ©︎ FURIMA
-%a{href: "#"}
   .sellbutton
     %span.sellbutton-text 出品する
-    %img.sellbutton-icon{src: "assets/icon_camera.png"}/
+    = image_tag(image_path('icon_camera.png'), class: 'sellbutton-icon')
