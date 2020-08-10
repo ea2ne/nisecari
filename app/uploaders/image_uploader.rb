@@ -13,7 +13,10 @@ class ImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+<<<<<<< Updated upstream
   strage :fog
+=======
+>>>>>>> Stashed changes
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url(*args)
   #   # For Rails 3.1+ asset pipeline compatibility:
@@ -45,6 +48,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+<<<<<<< Updated upstream
 end
 
 if Rails.env.development? || Rails.env.test?
@@ -52,3 +56,12 @@ if Rails.env.development? || Rails.env.test?
 else
   storage :fog
 end
+=======
+
+  if Rails.env.development? || Rails.env.test?
+    storage :file
+  else
+    storage :fog
+  end
+end
+>>>>>>> Stashed changes

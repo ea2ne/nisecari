@@ -64,6 +64,22 @@ group :production do
   gem 'unicorn'
 end
 
+<<<<<<< Updated upstream
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog-aws'
+=======
+
+gem 'devise'
+gem 'dotenv-rails'
+gem 'haml-rails'
+gem 'pry-rails'
+gem 'ancestry'
+gem 'payjp'
+gem 'jp_prefecture'
+gem 'jquery-rails'
+gem 'active_hash'
+gem 'jp_prefecture'
+gem 'carrierwave'
+gem 'mini_magick'
+>>>>>>> Stashed changes
