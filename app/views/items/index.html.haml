@@ -1,8 +1,256 @@
-%h1 Items#index
-%p Find me in app/views/items/index.html.erb
+%body
+  = render "header"
+  .main
+    %section.main-top
+      .content
+        %h2.content-subtitle
+          %br/
+          人生を変えるフリマアプリ
+        %p.content-text
+          FURIMAはだれでもかんたんに出品・購入できる
+          %br/
+          フリマアプリです
+        .content-btn
+          = image_tag(image_path('apple.png'), class: 'appleBtn')
+          = image_tag(image_path('google.png'), class:'googleBtn')     
+      
+      .picture
+    %section.top-introduction
+      %h2.subtitle
+        FURIMAが選ばれる3つの理由
+      %ul.lists
+        %li.list
+          .list-picture
+            %span.number 1
+            = image_tag(image_path('main/picture1.jpg'), class: 'img')
+          %h3.list-text
+            %span 3分
+            ですぐに出品
+          %p.list-description
+            スマホで入力するだけで簡単に出品できる！
+        %li.list
+          .list-picture
+            %span.number 2
+            = image_tag(image_path('main/picture2.jpg'), class: 'img')
+          %h3.list-text
+            %span シンプル
+            で使いやすい
+          %p.list-description
+            めんどくさい入力は必要なく、検索も購入もスムーズ！
+        %li.list-last
+          .list-picture
+            %span.number 3
+            = image_tag(image_path('main/picture3.jpg'), class: 'img')
+          %h3.list-text
+            手数料
+            %span 業界最安
+          %p.list-description
+            最大3%でお得に出品＆購入！
 
-- if user_signed_in?
-  = link_to "ログアウト", destroy_user_session_path, method: :delete
-- else
-  = link_to "新規登録", new_user_registration_path
-  = link_to "ログイン", new_user_session_path
+    %section.middle
+      .middle-inner
+        %h2.top-subtitle 会員数日本一位
+        %p.text
+          FURIMAは、フリマアプリで最も人気。
+          %br/
+          出品・購入回数も業界最多です！
+          %br/
+          ほしかったあの商品に出会えるかもしれません。
+        .button
+          = image_tag(image_path('apple.png'), class: 'appleButton')
+          = image_tag(image_path('google.png'), class:'googleButton') 
+    
+    %section.features
+      %h2.head
+        FURIMAの特徴
+      .items
+        %section.item
+          %figure.item-img
+            = image_tag(image_path('main/icon-01.png'), class: 'img')
+          %h3.item-subtitle 簡単に売り買いできる
+          %p.item-detail
+            スマホひとつで、いつでもどこでも簡単に出品・購入が可能！
+        %section.item
+          %figure.item-img
+            = image_tag(image_path('main/icon-02.png'), class: 'img')
+          %h3.item-subtitle 売上金は即日振込みに対応
+          %p.item-detail
+            午前9時までに振込を依頼いただければ、翌日に指定の口座に入金いたします！
+        %section.item
+          %figure.item-img
+            = image_tag(image_path('main/icon-03.png'), class: 'img')
+          %h3.item-subtitle 様々な支払いに対応
+          %p.item-detail
+            お支払いは、クレジットカードだけでなく、ポイントや売上金など多彩な方法があります。
+      
+    %section.pickupContainer
+      %h2.head ピックアップカテゴリー
+      .productBox
+        .productHead
+          = link_to "新規投稿商品", "#", class: "title"
+        .productLists
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+    
+    %section.pickupContainer
+      %h2.head ピックアップブランド
+      .productBox
+        .productHead
+          = link_to "アーカイバ", "#", class: "title"
+        .productLists
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+          .productList
+            = link_to "#", class: "a" do
+              %figure.product-img
+                = image_tag(image_path("corn.png"), class: 'img')
+              .productList-body
+                %h3.name テスト
+                .details
+                  %ul
+                    %li 10000円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+
+    = render "footer"    

@@ -1,0 +1,55 @@
+%header.header
+  .header-bar
+    .main-header
+      %h1.icon
+        = link_to image_tag('header/logo.png', class: "img"), 'image_path' 
+      .search-box
+        %form{"accept-charset": "UTF-8", action: "#", method: "get"}
+          %input{name: "utf8", type: "hidden", value: ""}/
+          %input#searchInput.search-box-fotm{name: "key", placeholder: "キーワードから探す"}/
+          %button{type: "submit"}
+            .searchicon
+              = image_tag(image_path('header/icon-search.png'), class: 'img')
+      %ul.resultlists
+    
+    .list-bar
+      %ul.listsLeft
+        %li.listleft-item-first
+          = link_to "カテゴリ", "#", class: "category"
+          .listleft-item-first-tree
+            %ul.categoryTree
+              %li.category-item
+                = link_to "レディース", "#", class: "item" 
+              %li.category-item
+                = link_to "メンズ", "#", class: "item" 
+              %li.category-item
+                = link_to "ベビー・キッズ", "#", class: "item" 
+              %li.category-item
+                = link_to "インテリア・住まい・小物", "#", class: "item" 
+              %li.category-item
+                = link_to "本・音楽・ゲーム", "#", class: "item"
+              %li.category-item
+                = link_to "おもちゃ・ホビー・グッズ", "#", class: "item"
+              %li.category-item
+                = link_to "コスメ・香水・美容", "#", class: "item"
+              %li.category-item
+                = link_to "家電＿スマホ・カメラ", "#", class: "item"
+              %li.category-item
+                = link_to "スポーツ・レジャー", "#", class: "item"
+              %li.category-item
+                = link_to "ハンドメイド", "#", class: "item"
+              %li.category-item
+                = link_to "チケット", "#", class: "item"
+              %li.category-item
+                = link_to "自転車・オートバイ", "#", class: "item"
+              %li.category-item
+                = link_to "その他", "#", class: "item"
+          
+        %li.listleft-item-second
+          = link_to "ブランド", "#", class: "brand"
+      .listsRight
+        %ul.link-lists
+          %li.listsRight-login
+            = link_to "ログイン", '#', class: "login"
+          %li.listsRight-new
+            = link_to "新規会員登録",'#', class: "new"
