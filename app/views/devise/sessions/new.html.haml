@@ -1,17 +1,33 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.loginregist
+  .centerfield
+    .loginregist__header
+      .loginregist__logo
+        = link_to root_path do
+          %img{:src => "/assets/logo.png"}
+        .registtitle
+          %p ログイン
+    .loginregist__form
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .loginregist__form__field
+          .formfield__label--normal
+            = f.label :email, "email"
+          .formfield__input--normal
+            = f.email_field :email, autofocus: true, autocomplete: "email"
+        .loginregist__form__field
+          .formfield__label--normal
+            = f.label :password, "パスワード"
+          .formfield__input--normal
+            = f.password_field :password, autocomplete: "current-password"
+          .remember
+            - if devise_mapping.rememberable?
+              = f.check_box :remember_me
+              = f.label :remember_me
+        .loginregist__form__actions
+          = f.submit "ログイン", class: 'ButtonNext'
+        .loginregist__form__login
+          %p アカウントをお持ちでない方
+          = render "devise/shared/links"
+.loginregist__footer
+  .loginregist__logo
+    %image{:src => "/assets/logo-white.png"}
+  ©︎ nisekari from team e
