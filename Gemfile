@@ -38,6 +38,10 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-rails-console'
+  gem 'rspec-rails', '~> 4.0.0.beta2'
+  gem 'rails-controller-testing'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -47,6 +51,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
 end
 
 group :test do
@@ -54,7 +59,6 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -67,8 +71,6 @@ end
 
 gem 'devise'
 gem 'dotenv-rails'
-gem 'sqlite3', '~> 1.3.6'
-
 gem 'haml-rails'
 gem 'pry-rails'
 gem 'ancestry'
@@ -76,4 +78,5 @@ gem 'payjp'
 gem 'jp_prefecture'
 gem 'jquery-rails'
 gem 'active_hash'
+gem 'jp_prefecture'
 
