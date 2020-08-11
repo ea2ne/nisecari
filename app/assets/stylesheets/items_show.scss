@@ -1,0 +1,225 @@
+*{
+  box-sizing: border-box;
+}
+
+.itemfield {
+  width: 100vw;
+  padding: 40px;
+  background-color: #f8f8f8;
+
+  
+  .imgtable {
+    width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 20px;
+    padding: 30px;
+    background-color: white;
+
+    
+    .itemname {
+      width: 400px;
+      height: 40px;
+      text-align: center;
+      font-weight: bold;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .mainimg {
+      width: 600px;
+      height: 350px;
+      margin: 0 auto;
+      img {
+        width: 600px;
+        height: 350px;
+      }
+    }
+
+    .mainsub {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      
+      .subpict {
+        width: 140px;
+        height: 90px;
+        margin-left: 10px;
+        img {
+          width: 140px;
+          height: 90px;
+        }
+      }
+    }
+
+    .price {
+      margin-top: 30px;
+      font-weight: bold;
+      font-size: 40px;
+      text-align: center;
+    }
+    .pricecomment {
+      margin-bottom: 30px;
+      font-size: 15px;
+      text-align: center;
+    }
+    .itemnamesub {
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+    .itemtable {
+      table{
+        width: 100%;
+        font-size: 14px;
+      }
+  
+      table th{
+        width: 20%;
+        border:solid 1px #aaaaaa;
+        padding : 8px;
+        background-color: #eee;
+      }
+      
+      table td{
+        padding: 8px;
+        width: 80%;
+        border:solid 1px #aaaaaa;
+      }
+  
+    }
+    .itembutton {
+      height: 50px;
+
+      .buttonbox {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        &__favorite {
+          border: 1px solid yellow;
+          border-radius: 40px;
+          padding: 6px 10px;
+          color: #3CCACE;
+          &:before {
+            content: "\f005";
+            font-family: FontAwesome;
+            margin-right: 5px;
+          }
+        }
+
+        &__report {
+          border: 1px solid black;
+          border-radius: 0.3em;
+          padding: 6px 10px;
+          font-size: 14px;
+          &:before {
+            content: "\f024";
+            font-family: FontAwesome;
+            margin-right: .5em;
+          }
+        }
+      }
+    }
+  }
+  .itemform {
+    margin: 0 auto;
+    width: 700px;
+    padding: 20px 0;
+    background-color: white;
+
+    .commentbox {
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 10px;
+      .comment {
+        width: 100%;
+        height: 130px;
+      }
+    }
+    .formcomment {
+      width: 90%;
+      margin: 0 auto;
+      padding: 8px;
+      background-color: #f8f8f8;
+      font-size: 14px;
+    }
+    .buttonbox {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+
+      .commentbutton {
+        width: 60%;
+        border-radius: 40px;
+        font-size: 18px;
+        line-height: 48px;
+        border: 1px solid #3CCACE;
+        background-color: #3CCACE;
+        color: white;
+        &:before {
+          content: "\f075";
+          font-family: FontAwesome;
+          margin-right: .5em;
+        }
+      }
+    }
+  }
+  .moreitem {
+    margin: 0 auto;
+    width: 700px;
+    .beforenext {
+      display: flex;
+      justify-content: space-between;
+      width: 700px;
+      .itembefore {
+        color: #3CCACE;
+        margin: 10px 0;
+      }
+      .itemnext {
+        color: #3CCACE;
+        margin: 10px 0;
+      }
+    }
+    .morecategory {
+      font-size: 20px;
+      margin: 20px 0;
+      color: #3CCACE;
+      font-weight: bold;
+    }
+    .simileritem {
+      width: 200px;
+      height: 230px;
+      margin-top: 30px;
+      .similerpict {
+        width: 200px;
+        height: 130px;
+        background-color: #3CCACE;
+        img {
+          width: 200px;
+          height: 130px;
+        }
+      }
+      .similerbox {
+        background-color: white;
+        padding: 10px;
+        .similername {
+          font-size: 14px;
+          margin-top: 8px;
+        }
+        .similertext {
+          font-size: 14px;
+          font-weight: bold;
+          ul{
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+        p {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}
+
