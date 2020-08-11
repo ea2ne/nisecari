@@ -1,45 +1,59 @@
 .header
   .header-inner
     .header-top
-      %h1
-        %a{:href => "#"}
-          %img{:alt => "nisecari", :src => "app/assets/images/material/logo/logo.png"}
-          .header-logo
-          %form.header-form{:action => "#"}
-            %input.input-default{:name => "keyword", :placceholder => "何をお探しですか？", :type => "search", :value => ""}
-              %i.icon-search
-              .header-search
-                \%= form_for&gt;
-          .header-bottom
-            .header-left
-              .category
-              .brand
-            .header-right
-              .news
-              .todo
-              .mypage
-      .contents
-        %h1.item-name
-        .item-show
-          .item-pic-box
-          .item-pics
-          .main-pic
-          .sub--pics
-        .item-info
-          .orner
-            \&#x51FA;&#x54C1;&#x8005;
-          .category
-            \&#x30AB;&#x30C6;&#x30B4;&#x30EA;&#x30FC;
-          .bland
-            \&#x30D6;&#x30E9;&#x30F3;&#x30C9;
-          .state
-            \&#x72B6;&#x614B;
-          .shipping
-            \&#x9001;&#x6599;
-          .send-type
-            \&#x767A;&#x9001;&#x65B9;&#x6CD5;
-          .send-area
-            \&#x914D;&#x9001;&#x5143;&#x306E;&#x5730;&#x57DF;
-          .send-day
-            \&#x767A;&#x9001;&#x65E5;&#x306E;&#x76EE;&#x5B89;
-      %div
+      = linlk_to image_tag("app/assets/images/material/logo/logo.png", alt: "nisecari"), root_path
+    = form_for @item do |f|
+      = render 'layouts/error_messages', model: f.object
+      .name_field#1
+        .form_label
+          .label_name
+            出品画像
+          .label_required
+            【必須】
+            
+        #image-box-1{class:"#{@images.last.id}"}
+          - @images.each do |img|
+            .item-image
+
+
+      -#   %a{:href => "#"}
+      -#     %img{:alt => "nisecari", :src => "app/assets/images/material/logo/logo.png"}
+      -#     .header-logo
+      -#     %form.header-form{:action => "#"}
+      -#       %input.input-default{:name => "keyword", :placceholder => "何をお探しですか？", :type => "search", :value => ""}
+      -#         %i.icon-search
+      -#         .header-search
+      -#           \%= form_for&gt;
+      -#     .header-bottom
+      -#       .header-left
+      -#         .category
+      -#         .brand
+      -#       .header-right
+      -#         .news
+      -#         .todo
+      -#         .mypage
+      -# .contents
+      -#   %h1.item-name
+      -#   .item-show
+      -#     .item-pic-box
+      -#     .item-pics
+      -#     .main-pic
+      -#     .sub--pics
+      -#   .item-info
+      -#     .orner
+      -#       \&#x51FA;&#x54C1;&#x8005;
+      -#     .category
+      -#       \&#x30AB;&#x30C6;&#x30B4;&#x30EA;&#x30FC;
+      -#     .bland
+      -#       \&#x30D6;&#x30E9;&#x30F3;&#x30C9;
+      -#     .state
+      -#       \&#x72B6;&#x614B;
+      -#     .shipping
+      -#       \&#x9001;&#x6599;
+      -#     .send-type
+      -#       \&#x767A;&#x9001;&#x65B9;&#x6CD5;
+      -#     .send-area
+      -#       \&#x914D;&#x9001;&#x5143;&#x306E;&#x5730;&#x57DF;
+      -#     .send-day
+      -#       \&#x767A;&#x9001;&#x65E5;&#x306E;&#x76EE;&#x5B89;
+      -# %div
