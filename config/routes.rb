@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'items#show'
+  root 'items#edit'
   resources :items do
     resources :comments, only: [:create, :destroy]
     resources :favorites, only: [:create, :destroy]
