@@ -53,16 +53,16 @@
         %ul.buttonbox
           %li.buttonbox__favorite お気に入り 0
           %li.buttonbox__report 不適切な商品の通報
-    %form{:action => "example.cgi", :method => "post", :class => "itemform"}
+    %form{action: "example.cgi", method: "post", class: "itemform"}
       %p.commentbox
-        %textarea{:cols => "15", :rows => "5", :class => "comment"}
+        %textarea{cols: "15", rows: "5", class: "comment"}
           :preserve
       %p.formcomment
         相手のことを考え丁寧なコメントを心がけましょう。
         %br
         不快な言葉遣いなどは利用制限や退会処分となることがあります。
       %p.buttonbox
-        %button{:type => "submit", :class => "commentbutton"}
+        %button{type: "submit", class: "commentbutton"}
           コメントする
     .moreitem
       .beforenext
