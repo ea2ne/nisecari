@@ -1,2 +1,89 @@
-= render "header"
-= render "footer"
+%body
+  = render "header"
+  .itemfield
+    .imgtable
+      .itemname
+        パスタ
+      .mainimg
+        = image_tag(image_path('main/pasta.png'))
+      .mainsub
+        .subpict
+          = image_tag(image_path('main/bazil.png'))
+        .subpict
+          = image_tag(image_path('main/bazil.png'))
+      .price
+        ¥1000
+      .pricecomment
+        (税込)送料込み
+      .itemnamesub
+        パスタ
+      .itemtable
+        %table
+          %tr
+            %th 出品者
+            %td hoge
+          %tr
+            %th カテゴリー
+            %td 
+              %p
+                ベビー・キッズ
+              %p
+                ベビー服(男女兼用)
+              %p
+                アウター
+          %tr
+            %th ブランド
+            %td
+          %tr
+            %th 商品のサイズ
+            %td
+          %tr
+            %th 商品の状態
+            %td 未使用に近い
+          %tr
+            %th 配送料の負担
+            %td 送料込み(出品者負担)
+          %tr
+            %th 発送元の地域
+            %td 岩手県
+          %tr
+            %th 発送日の目安
+            %td 4-7日で発送
+      .itembutton
+        %ul.buttonbox
+          %li.buttonbox__favorite お気に入り 0
+          %li.buttonbox__report 不適切な商品の通報
+    %form{:action => "example.cgi", :method => "post", :class => "itemform"}
+      %p.commentbox
+        %textarea{:cols => "15", :rows => "5", :class => "comment"}
+          :preserve
+      %p.formcomment
+        相手のことを考え丁寧なコメントを心がけましょう。
+        %br
+        不快な言葉遣いなどは利用制限や退会処分となることがあります。
+      %p.buttonbox
+        %button{:type => "submit", :class => "commentbutton"}
+          コメントする
+    .moreitem
+      .beforenext
+        .itembefore
+          < 前の商品
+        .itemnext
+          後ろの商品 >
+      .morecategory
+        ベビーキッズをもっと見る
+      .simileritem
+        .similerpict
+          = image_tag(image_path('main/bazil.png'))
+        .similerbox
+          .similername
+            バジル
+          .similertext
+            %ul
+              %li 1000円
+              %li
+                %i.fa.fa-star.likeIcon
+                1
+          %p (税込)
+  .main
+    = render "footer"
