@@ -68,7 +68,9 @@ group :production do
   gem 'unicorn'
 end
 
-
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog-aws'
 gem 'devise'
 gem 'dotenv-rails'
 gem 'haml-rails'
