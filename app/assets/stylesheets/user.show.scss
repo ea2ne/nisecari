@@ -1,0 +1,80 @@
+.Wrapper {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background-color: rgb(218, 212, 212);
+  .Page-contents {
+    width: 900px;
+    margin: 0 auto;
+    background-color: rgb(165, 163, 163);
+    overflow: scroll;
+    .User-info {
+      height: 200px;
+      width: 100%;
+      padding: 20px;
+      background-image: url(user-bg.jpg);
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .Avatar {
+        height: 90px;
+        width: 90px;
+        background-image: url(https://static.mercdn.net/thumb/members/690723653.jpg?1596666757);
+        background-size: cover;
+        border: 1px solid  rgb(158, 158, 158);
+        border-radius: 50%;
+      }
+    }
+    .Deal {
+      width: 100%;
+      padding-top: 30px;
+      .Deal-heading {
+        height: 40px;
+        padding: 10px;
+        background-color: rgb(255, 255, 255);
+        line-height: 20px;
+        border-bottom: 1px solid red;
+      }
+      .Deal-now {
+        height: 300px;
+        width: 100%;
+        border-bottom: 1px solid red;
+        background-color: rgb(255, 255, 255);
+      }
+      .Deal-old {
+        height: 300px;
+        width: 100%;
+        border-bottom: 1px solid red;
+        background-color: rgb(255, 255, 255);
+      }
+    }
+    .Mypage-menu{
+      width: 100%;
+      margin-top: 30px;
+      .Menu-list {
+      height: 40px;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 3px;
+      line-height: 20px;
+      background-color: white;
+      }  
+    }
+    .Setting {
+      margin-top: 15px;
+      .Setting, p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .Setting-list {
+      height: 40px;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 3px;
+      line-height: 20px;
+      background-color: white;
+      }
+    }
+  }
+}
