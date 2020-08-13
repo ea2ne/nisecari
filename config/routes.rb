@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     post 'sending_destination', to: 'users/registrations#create_sending_destination'
   end
 
-  root 'items#index'
+  root 'items#new'
   resources :items do
     get 'buy'
     get 'pay'
