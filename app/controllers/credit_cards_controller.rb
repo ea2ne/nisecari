@@ -1,6 +1,6 @@
 class CreditCardsController < ApplicationController
   require "payjp"
-
+  before_action :set_card, only: [:show, :destroy]
   def new
     card = CreditCard.where(user_id: current_user.id)
     redirect_to credit_card_path(current_user) if card.exists?
@@ -25,7 +25,6 @@ class CreditCardsController < ApplicationController
   end
 
   def show
-    @card = CreditCard.find_by(user_id: current_user.id)
     if @card.blank?
       redirect_to new_credit_card_path
     else
@@ -53,7 +52,6 @@ class CreditCardsController < ApplicationController
   end
 
   def destroy
-    @card = CreditCard.find_by(user_id: current_user.id)
     if @card.blank?
       redirect_to new_credit_card_path
     else
@@ -61,11 +59,12 @@ class CreditCardsController < ApplicationController
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       @card.delete
-      if @card.destroy
-      else
+      unless @card.destroy
         redirect_to credit_card_path(current_user.id), alert: "削除できませんでした。"
       end
     end
   end
-
+  def set_card
+    @card = CreditCard.find_by(user_id: current_user.id)
+  end
 end
