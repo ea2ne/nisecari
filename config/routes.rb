@@ -8,6 +8,6 @@ Rails.application.routes.draw do
     get 'sending_destination', to: 'users/registrations#new_sending_destination'
     post 'sending_destination', to: 'users/registrations#create_sending_destination'
   end
-  root 'items#index'
-  resources :items
+  root 'items#new'
+  resources :items, except: :show
 end
