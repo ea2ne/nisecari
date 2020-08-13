@@ -8,8 +8,10 @@ Rails.application.routes.draw do
     get 'sending_destination', to: 'users/registrations#new_sending_destination'
     post 'sending_destination', to: 'users/registrations#create_sending_destination'
   end
+  get '/items/buy', to: 'items#buy'
+  get '/items/pay', to: 'items#pay'
   root 'items#index'
   resources :items
   resources :users, only: :show
-  resources :credit_cards, only: [:new, :create]
+  resources :credit_cards, only: [:new, :create, :show, :destroy]
 end

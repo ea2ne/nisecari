@@ -5,12 +5,12 @@
       .itemname
         パスタ
       .mainimg
-        = image_tag(image_path('main/pasta.png'))
+        -# = image_tag(image_path('main/pasta.png'))
       .mainsub
         .subpict
-          = image_tag(image_path('main/bazil.png'))
+          -# = image_tag(image_path('main/bazil.png'))
         .subpict
-          = image_tag(image_path('main/bazil.png'))
+          -# = image_tag(image_path('main/bazil.png'))
       .price
         ¥1000
       .pricecomment
@@ -53,6 +53,8 @@
         %ul.buttonbox
           %li.buttonbox__favorite お気に入り 0
           %li.buttonbox__report 不適切な商品の通報
+      = link_to items_buy_path, class: "payment-btn" do
+        購入画面に進む
     %form{action: "example.cgi", method: "post", class: "itemform"}
       %p.commentbox
         %textarea{cols: "15", rows: "5", class: "comment"}
@@ -74,7 +76,7 @@
         ベビーキッズをもっと見る
       .simileritem
         .similerpict
-          = image_tag(image_path('main/bazil.png'))
+          -# = image_tag(image_path('main/bazil.png'))
         .similerbox
           .similername
             バジル

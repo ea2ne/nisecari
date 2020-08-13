@@ -1,0 +1,32 @@
+= render "header"
+.buy
+  .buy-flame
+    .buy-title
+      購入内容の確認
+    .buy-info
+      = image_tag "cards/tarou.png", class: "buy-image"
+      .buy-status
+        .status-name
+          商品名：サンプル
+        .status-price
+          価格：1234円
+    .buy-result
+      .result-title
+        支払い金額 
+      .result-price
+        1234円
+    .credit-menu
+      .menu-title
+        クレジットカード情報
+      .credit-info
+        .credit-image
+          = image_tag "cards/jcb.png", size: "80x60"
+        .credit-date
+          ***** ***** ***** 4242
+          %br
+          有効期限 1/21
+    .credit-btn
+      = link_to items_pay_path, class: "select-btn" do
+        登録クレジットカードで購入する
+.main
+  = render "footer"
