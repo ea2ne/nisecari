@@ -1,0 +1,26 @@
+.show
+  .show-frame
+    .frame-title
+      登録クレジットカード情報
+    .card-list
+      .cardlist-title
+        クレジットカード一覧
+      .cardlist-frame
+        .card-info
+          .info-brand
+            = image_tag "cards/#{@card_src}", class: "brand-img", alt: @card_brand
+          .info-numbers
+            .number
+              = "**** **** **** " + @customer_card.last4
+            .expiration-date
+              .date-title
+                有効期限
+              .date-info
+                = @exp_month + " / " + @exp_year
+        .destroy-function
+          .function-link
+            = link_to credit_card_path, method: :delete, class: "link-btn" do 
+              削除する
+      .payment-details
+        = link_to "支払い方法について >", "", class: "payment-details__btn"
+  
