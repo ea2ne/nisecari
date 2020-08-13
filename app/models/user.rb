@@ -8,5 +8,6 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 7 }, format: { with: /(?=.*\d+.*)(?=.*[a-zA-Z]+.*)./ }
   has_one :profile, dependent: :destroy
   has_one :sending_destination, dependent: :destroy
+  has_one :credit_card, dependent: :destroy
   devise :validatable, password_length: 7..128
 end

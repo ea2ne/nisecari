@@ -1,0 +1,9 @@
+.pay
+  .pay-flame
+    .pay-title
+      購入完了しました
+    .two-links
+      = link_to user_path(current_user), class: "pagelink" do
+        マイページへ
+      = link_to root_path, class: "pagelink" do
+        トップページへ

@@ -24,4 +24,14 @@ class ItemsController < ApplicationController
     
   end
 
+  end
+  
+  def show
+  end
+
+  def buy
+  end
+
+  def pay
+  end
 end

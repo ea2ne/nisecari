@@ -2,7 +2,7 @@
   .header-bar
     .main-header
       %h1.icon
-        = link_to image_tag('header/logo.png', class: "img"), 'image_path' 
+        = link_to image_tag(image_path('header/logo.png'), class: "img"), root_path 
       .search-box
         %form{"accept-charset": "UTF-8", action: "#", method: "get"}
           %input{name: "utf8", type: "hidden", value: ""}/
@@ -52,6 +52,8 @@
           - if user_signed_in?
             %li.listsRight-login
               = link_to "ログアウト", destroy_user_session_path, method: :delete
+            %li.listsRight-new
+              = link_to "マイページ", user_path(current_user)
           - else
             %li.listsRight-login
               = link_to "ログイン", new_user_session_path
