@@ -44,7 +44,7 @@
           .formfield__label--normal
             = f.label :prefecture_code, '都道府県 ※必須'
           .formfield__input--normal
-            = f.text_field :prefecture_code, autofocus: true, autocomplete: "prefecture_code", placeholder:"例：東京都"
+            = f.collection_select :prefecture_code, Prefecture.all, :id, :name,{include_blank: "---"}
         .loginregist__form__field
           .formfield__label--normal
             = f.label :city, '市区町村 ※必須'
