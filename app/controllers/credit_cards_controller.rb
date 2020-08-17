@@ -26,7 +26,7 @@ class CreditCardsController < ApplicationController
 
   def show
     if @card.blank?
-      redirect_to new_credit_card_path
+      redirect_to new_credit_card_path, alert: "カードを登録してください"
     else
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -53,17 +53,20 @@ class CreditCardsController < ApplicationController
 
   def destroy
     if @card.blank?
-      redirect_to new_credit_card_path
+      redirect_to new_credit_card_path, alert: "カードを登録してください"
     else
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       @card.delete
-      unless @card.destroy
+      if @card.destroy
+        redirect_to user_path(current_user), notice: "カード情報を削除しました"
+      else
         redirect_to credit_card_path(current_user.id), alert: "削除できませんでした。"
       end
     end
   end
+  
   def set_card
     @card = CreditCard.find_by(user_id: current_user.id)
   end
