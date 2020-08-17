@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', function(){
         exp_month: $("#payment_card_month").val(),
         exp_year: $("#payment_card_year").val()
     };
-    console.log(card);
+  
     Payjp.createToken(card, function(status, response) { 
       if (status === 200) { 
         $("#payment_card_no").removeAttr("name");

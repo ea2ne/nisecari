@@ -1,4 +1,5 @@
 = render "items/header"
+= render "layouts/notifications"
 .Wrapper
   .Page-contents  
     .User-info
@@ -31,7 +32,7 @@
         = link_to '#' do
           いいね！一覧
       .Menu-list
-        = link_to '#' do
+        = link_to new_item_path do
           出品する
       .Menu-list
         = link_to '#' do
@@ -74,6 +75,9 @@
       .Setting-list
         = link_to new_credit_card_path do
           クレジットカード登録
+      .Setting-list
+        = link_to credit_card_path(current_user) do
+          クレジットカード詳細
       .Setting-list
         = link_to '#' do
           メール/パスワード

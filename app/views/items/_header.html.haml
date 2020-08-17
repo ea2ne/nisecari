@@ -52,7 +52,7 @@
           - if user_signed_in?
             %li.listsRight-login
               = link_to "ログアウト", destroy_user_session_path, method: :delete
-            %li.listsRight-mypage
+            %li.listsRight-new
               = link_to "マイページ", user_path(current_user)
           - else
             %li.listsRight-login
