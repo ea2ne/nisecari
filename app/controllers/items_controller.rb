@@ -10,15 +10,7 @@ class ItemsController < ApplicationController
     @item.item_images.new
   end
 
-  def create
-    
-  end
-
   def edit
-    
-  end
-
-  def update
     
   end
 
@@ -26,8 +18,6 @@ class ItemsController < ApplicationController
     
   end
 
-  end
-  
   def create
     @item = Item.new(item_params)
     if @item.save!
@@ -89,6 +79,9 @@ class ItemsController < ApplicationController
   def buy
   end
 
+  def pay
+  end
+end
 
   # def pay
   #   if @item.buyer_id.present?
