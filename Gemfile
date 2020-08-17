@@ -81,4 +81,5 @@ gem 'jp_prefecture'
 gem 'jquery-rails'
 gem 'active_hash'
 gem 'jp_prefecture'
-
+gem 'seed-fu'
+gem 'ancestry'
