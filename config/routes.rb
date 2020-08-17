@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'sending_destination', to: 'users/registrations#new_sending_destination'
     post 'sending_destination', to: 'users/registrations#create_sending_destination'
   end
+
   root 'items#index'
   resources :items do
     get 'buy'

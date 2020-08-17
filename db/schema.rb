@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2020_08_13_031649) do
+
+  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "brand_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 ActiveRecord::Schema.define(version: 2020_08_10_124342) do
+
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -32,10 +40,15 @@ ActiveRecord::Schema.define(version: 2020_08_10_124342) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
-    t.string "trading_status", null: false
-    t.timestamp "deal_closed_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "seller_id", null: false
+    t.string "buyer_id"
+    t.integer "item_condition_id", null: false
+    t.integer "postage_payer_id", null: false
+    t.integer "preparation_day_id", null: false
+    t.integer "prefecture_id", null: false
+    t.text "item_introduction", null: false
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
