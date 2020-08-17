@@ -40,6 +40,14 @@ class ItemsController < ApplicationController
   end
 
 
+  def destroy
+    item = Item.find(params[:id])
+      if item.user_id == current_user.id
+        item.destroy
+      end
+  end
+
+
   # def buy
   #   @images = @item.item_images.all
   #   if user_signed_in?
