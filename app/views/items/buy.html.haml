@@ -15,18 +15,26 @@
         支払い金額 
       .result-price
         1234円
-    .credit-menu
-      .menu-title
-        クレジットカード情報
-      .credit-info
-        .credit-image
-          = image_tag "cards/jcb.png", size: "80x60"
-        .credit-date
-          ***** ***** ***** 4242
-          %br
-          有効期限 1/21
-    .credit-btn
-      = link_to item_pay_path, class: "select-btn" do
-        登録クレジットカードで購入する
+    - if @user.credit_card.present?
+      .credit-menu
+        .menu-title
+          クレジットカード情報
+        .credit-info
+          .credit-image
+            = image_tag "cards/#{@card_src}", size: "80x60"
+          .credit-date
+            = "***** ***** *****" + @customer_card.last4
+          .expiration-date
+            .expiration-title
+              有効期限 
+            .expiration-info
+              = @exp_month + "/" + @exp_year
+      .credit-btn
+        = link_to item_pay_path(item_id: @item.id), method: :post class: "select-btn" do
+          登録クレジットカードで購入する
+    - else
+      .nocredit-btn
+        = form_tag(action: :pay, method: :post) do
+            %script.payjp-button{src: "https://checkout.pay.jp", type: "text/javascript" ,"data-text": "購入する" ,"data-key": "pk_test_563a06f9327b476340f0aa79",}
 .main
   = render "footer"
