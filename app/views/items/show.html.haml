@@ -15,6 +15,9 @@
         ¥1000
       .pricecomment
         (税込)送料込み
+      -# - if @item.buy_id.present?
+      -#   .soldout
+      -#     soldout
       .itemnamesub
         パスタ
       .itemtable
