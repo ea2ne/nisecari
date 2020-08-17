@@ -10,4 +10,7 @@ class User < ApplicationRecord
   has_one :sending_destination, dependent: :destroy
   has_one :credit_card, dependent: :destroy
   devise :validatable, password_length: 7..128
+  has_many :buyed_items, foreign_key: "buyer_id", class_name: "Item"
+  has_many :selling_items, -> { where("buyer_id is NULL")}, foreign_key: "seller_id", class_name: "Item"
+  has_many :sold_items, -> { where("buyer_id is not NULL")}, foreign_key: "seller_id", class_name: "Item"
 end
