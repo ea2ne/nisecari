@@ -2,9 +2,15 @@
   color: white;
   text-align: center;
   .notice {
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
     background-color: turquoise;
   }
   .alert {
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
     background-color: orange;
   }
 }
