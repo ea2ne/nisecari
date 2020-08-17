@@ -8,15 +8,7 @@ class ItemsController < ApplicationController
     @item.item_images.new
   end
 
-  def create
-    
-  end
-
   def edit
-    
-  end
-
-  def update
     
   end
 
@@ -24,8 +16,6 @@ class ItemsController < ApplicationController
     
   end
 
-  end
-  
   def create
     @item = Item.new(item_params)
     if @item.save!
