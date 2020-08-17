@@ -1,6 +1,7 @@
 class Item < ApplicationRecord
   has_many :item_images
-
+  belongs_to :seller, class_name: "User"
+  belongs_to :buyer,  class_name: "User", optional: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :item_condition
