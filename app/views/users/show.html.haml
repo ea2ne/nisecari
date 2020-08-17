@@ -75,6 +75,9 @@
         = link_to new_credit_card_path do
           クレジットカード登録
       .Setting-list
+        = link_to credit_card_path(current_user) do
+          クレジットカード詳細
+      .Setting-list
         = link_to '#' do
           メール/パスワード
       .Setting-list

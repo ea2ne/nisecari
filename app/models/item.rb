@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   validates :item_introduction, length: {maximum: 1000}, presence: true
   validates :name, length: {maximum: 40}, presence: true
   validates :item_condition, :postage_payer, :prefecture, :preparation_day, presence: true
+  accepts_nested_attributes_for :item_images, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :item_condition
