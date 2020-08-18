@@ -72,11 +72,27 @@
         }
 
         .formfield__label--normal {
+          display: flex;
+          justify-content: start;
           font-size: 15px;
           margin-bottom: 10px;
           i {
             font-size: 12px;
             text-decoration: none;
+          }
+          
+          .important {
+            box-sizing: border-box;
+            font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic,
+              メイリオ, Meiryo, sans-serif;
+            background-color: #ea352d;
+            margin: 0 0 0 8px;
+            padding: 2px 4px;
+            border-radius: 2px;
+            color: #fff;
+            font-size: 12px;
+            vertical-align: top;
+            font-weight: 600px;
           }
         }
       }
@@ -109,10 +125,25 @@
       }
 
       .formtitle {
+        display: flex;
+        justify-content: start;
         margin-bottom: 10px;
         text-decoration: none;
         font-size: 15px;
         margin-bottom: 10px;
+        .important {
+          box-sizing: border-box;
+          font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic,
+            メイリオ, Meiryo, sans-serif;
+          background-color: #ea352d;
+          margin: 0 0 0 8px;
+          padding: 2px 4px;
+          border-radius: 2px;
+          color: #fff;
+          font-size: 12px;
+          vertical-align: top;
+          font-weight: 600px;
+        }
       }
 
       .loginregist__form__actions {
