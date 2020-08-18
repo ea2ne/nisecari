@@ -39,6 +39,14 @@
     = link_to image_tag('footer/logo-white.png', class: "img"), 'image_path'
 
   %p ©︎ FURIMA
-  .sellbutton
-    %span.sellbutton-text 出品する
-    = image_tag(image_path('icon_camera.png'), class: 'sellbutton-icon')
+  .newitem
+    - if user_signed_in?
+      = link_to new_item_path do
+        .sellbutton
+          %span.sellbutton-text 出品する
+          = image_tag(image_path('icon_camera.png'), class: 'sellbutton-icon')
+    - else
+      = link_to new_user_session_path do
+        .sellbutton
+          %span.sellbutton-text 出品する
+          = image_tag(image_path('icon_camera.png'), class: 'sellbutton-icon')
