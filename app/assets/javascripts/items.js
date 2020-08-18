@@ -10,21 +10,33 @@ $(function () {
     return html;
   }
 
+  const buildImg = (index, url)=> {
+    const html = `<img data-index="${index}" src="${url}" width="100px" height="100px">`;
+    return html;
+  }
+
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
   lastIndex = $('.js-file_group:last').data('index');
   fileIndex.splice(0, lastIndex);
   $('.hidden-destroy').hide();
 
   $('#new_item').on('change', '.js-file', function(e) {
-    // const dataIndex = $(this).data("index");
-    $('.new_item').append(buildFileField(fileIndex[0]));
-    // $('#sell__main__content__file__box').append(dataIndex + 1);
-    fileIndex.shift();
-    console.log("test2")
+    const targetIndex = $(this).parent().data('index');
+    const file = e.target.files[0];
+    const blobUrl = window.URL.createObjectURL(file);
+    if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
+      img.setAttribute('url', blobUrl);
+    } else {
+      // const dataIndex = $(this).data("index");
+      $('#previews').append(buildImg(targetIndex, blobUrl));
+      $('.new_item').append(buildFileField(fileIndex[0]));
+      // $('#sell__main__content__file__box').append(dataIndex + 1);
+      fileIndex.shift();
+      console.log("test2")
 
-    fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
-    console.log("test3")
-
+      fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
+      console.log("test3")
+    }
   });
 
   // $('.new_item').on('click', function() {
@@ -40,5 +52,6 @@ $(function () {
     $(this).parent().remove();
     if ($('.js-file').length == 0) $('js').append(buildFileField(fileIndex[0]));
     console.log("test5")
+      $(`img[data-index="${targetIndex}"]`).remove();
   });
 });
