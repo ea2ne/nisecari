@@ -52,8 +52,7 @@ class ItemsController < ApplicationController
   def buy
     @images = @item.item_images.all
     if user_signed_in?
-      @user = current_user
-      if @user.credit_card.present?
+      if current_user.credit_card.present?
         Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
         @card = CreditCard.find_by(user_id: current_user.id)
         customer = Payjp::Customer.retrieve(@card.customer_id)
