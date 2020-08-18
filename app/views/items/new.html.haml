@@ -211,9 +211,12 @@
     %br/
     .contents1
     - @item.item_images.each do |image|
+      -# = link_to '編集', edit_item_path(item)
+
+
       -# =image_tag image.src.url
 
 
-          -# = form_for @item do |f|
-          -#   = f.fields_for :item_images, id:"sell__main__content__file__box" do |i|
-          -#     = i.file_field :src, class: "js-file", data:{index: i.index}
+      -# = form_for @item do |f|
+      -#   = f.fields_for :item_images, id:"sell__main__content__file__box" do |i|
+      -#     = i.file_field :src, class: "js-file", data:{index: i.index}

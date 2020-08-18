@@ -11,6 +11,9 @@ $(function () {
   }
 
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  lastIndex = $('.js-file_group:last').data('index');
+  fileIndex.splice(0, lastIndex);
+  $('.hidden-destroy').hide();
 
   $('#new_item').on('change', '.js-file', function(e) {
     // const dataIndex = $(this).data("index");
@@ -31,6 +34,9 @@ $(function () {
 
   $('.js').on('click', '.js-remove', function() {
     console.log("test4")
+    const targetIndex = $(this).parent().data('index')
+    const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
+    if (hiddenCheck) hiddenCheck.prop('checked', true);
     $(this).parent().remove();
     if ($('.js-file').length == 0) $('js').append(buildFileField(fileIndex[0]));
     console.log("test5")
