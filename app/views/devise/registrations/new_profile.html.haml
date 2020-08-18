@@ -10,7 +10,9 @@
       = form_for(@profile, url: profiles_path, method: :post) do |f|
         = render "devise/shared/error_messages", resource: @profile
         .formtitle
-          お名前(フルネーム) ※必須
+          お名前(フルネーム)
+          %span.important
+            必須
         .loginregist__profilefield
           .formbox
             .formfield__label--short
@@ -23,7 +25,9 @@
             .formfield__input--short
               = f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:"例：太郎"
         .formtitle
-          お名前(ふりがな) ※必須
+          お名前(ふりがな)
+          %span.important
+            必須
         .loginregist__profilefield
           .formbox
             .formfield__label--short
@@ -36,13 +40,17 @@
             .formfield__input--short
               = f.text_field :first_name_kana, autocomplete: "first_name_kana", placeholder:"例：たろう"
         .formtitle
-          生年月日 ※必須
+          生年月日
+          %span.important
+            必須
         .loginregist__form__field
           .formfield__input--normal
             = f.text_field :birth_day, autofocus: true, autocomplete: "birth_day", placeholder:"例：1990/11/11"
         .loginregist__form__field
           .formfield__label--normal
-            = f.label :introduction, '自己紹介文 ※必須'
+            = f.label :introduction, '自己紹介文'
+            %span.important
+              必須
           .formfield__input--normal
             = f.text_field :introduction, autocomplete: "introduction"
         .loginregist__form__actions
