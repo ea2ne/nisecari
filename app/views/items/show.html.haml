@@ -55,15 +55,13 @@
             %td 4-7日で発送
       .itembutton
         %ul.buttonbox
-
-          - if user_signed_in? && current_user.id == @item.seller_id
+          - if user_signed_in? && current_user.id == @items.seller_id
             %li.buttonbox__favorite お気に入り 0
             %li.buttonbox__delete
-              = link_to "商品を削除", "/items/#{item.id}", method: :delete
+              = link_to "商品を削除", "/items/#{@items.id}", method: :delete
             %li.buttonbox__report 不適切な商品の通報
           - else
             %li.buttonbox__favorite お気に入り 0
-            %li.buttonbox__no_delete 商品を削除
             %li.buttonbox__report 不適切な商品の通報
 
       = link_to buy_item_path, class: "payment-btn" do

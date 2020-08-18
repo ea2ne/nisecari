@@ -3,7 +3,7 @@
     .loginregist__header
       .loginregist__logo
         = link_to root_path do
-          = image_tag "/assets/logo.png"
+          = image_tag "material/logo/logo.png"
       .registtitle
         %p 新規会員登録
     .loginregist__form
@@ -11,26 +11,31 @@
         = render "devise/shared/error_messages", resource: resource
         .loginregist__form__field
           .formfield__label--normal
-            = f.label :nickname, 'ニックネーム ※必須'
+            = f.label :nickname,'ニックネーム'
+            %span.important
+              必須
           .formfield__input--normal
             = f.text_field :nickname, autofocus: true, autocomplete: "nickname"
         .loginregist__form__field
           .formfield__label--normal
-            = f.label :email, 'email ※必須'
+            = f.label :email, 'email'
+            %span.important
+              必須
           .formfield__input--normal
             = f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"例:xxx@xxx.com"
         .loginregist__form__field
           .formfield__label--normal
-            = f.label :password, 'パスワード(英字＋数字) ※必須'
+            = f.label :password, 'パスワード(英字＋数字)'
             - if @minimum_password_length
               %em
                 (7文字以上)
+            %span.important
+              必須
           .formfield__input--normal
             = f.password_field :password, autocomplete: "new-password"
         .loginregist__form__field
           .formfield__label--normal
-            = f.label :password_confirmation, 'パスワード'
-            %i (再入力)
+            = f.label :password_confirmation, 'パスワード(再入力)'
           .formfield__input--normal
             = f.password_field :password_confirmation, autocomplete: "new-password"
         .loginregist__form__actions
@@ -40,5 +45,5 @@
           = render "devise/shared/links"
 .loginregist__footer
   .loginregist__logo
-    = image_tag "/assets/logo-white.png"
+    = image_tag "material/logo/logo-white.png"
   ©︎ nisekari from team e
