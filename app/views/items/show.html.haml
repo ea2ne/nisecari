@@ -1,5 +1,6 @@
 %body
   = render "header"
+  = render "layouts/notifications"
   .itemfield
     .imgtable
       .itemname
@@ -15,9 +16,9 @@
         ¥1000
       .pricecomment
         (税込)送料込み
-      -# - if @item.buy_id.present?
-      -#   .soldout
-      -#     soldout
+      - if @item.buyer_id.present?
+        .soldout
+          soldout
       .itemnamesub
         パスタ
       .itemtable
@@ -63,7 +64,7 @@
             %li.buttonbox__favorite お気に入り 0
             %li.buttonbox__report 不適切な商品の通報
 
-      = link_to "#", class: "payment-btn" do
+      = link_to buy_item_path, class: "payment-btn" do
         購入画面に進む
 
     %form{action: "example.cgi", method: "post", class: "itemform"}
