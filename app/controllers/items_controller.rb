@@ -33,15 +33,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.find(params[:id])
-    @seller = @items.seller.nickname
-    @condition = @items.item_condition.condition
-    @postage_payer = @items.postage_payer.payer
-    @item_prefecture = @items.prefecture.name
-    @preparation_day = @items.preparation_day.day
-    @category = @items.category
-    @same_category = Category.find(@items.category_id)
-    @all_items = Item.find(@items.category_id)
+    @item = Item.find(params[:id])
+    @seller = @item.seller.nickname
+    @condition = @item.item_condition.condition
+    @postage_payer = @item.postage_payer.payer
+    @item_prefecture = @item.prefecture.name
+    @preparation_day = @item.preparation_day.day
+    @category = @item.category
+    @same_category = Category.find(@item.category_id)
   end
 
 
