@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   root 'items#new'
+  resources :items, excect: :show
   resources :items do
     get 'buy'
     get 'pay'

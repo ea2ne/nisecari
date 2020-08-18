@@ -204,3 +204,16 @@
       =image_tag "material/logo/logo-white.png", class: "sell__footer__logo__img"
       %small
         ©&nbsp;Furima,&nbsp;Inc.
+
+  .js
+    = render partial: 'form'
+    -# = link_to '出品', new_item_path
+    %br/
+    .contents1
+      -# = render partial:_form @items
+    .contents2
+      -# %p= @item.name
+      -# %p
+      -#   = @item.price
+    - @item.item_images.each do |image|
+      -# =image_tag image.src.url

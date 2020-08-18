@@ -1,0 +1,41 @@
+= form_for @item do |f|
+  商品名
+  = f.text_field :name
+  %br/
+  価　格
+  = f.number_field :price
+  %br/
+  ステータス（仮）
+  = f.text_field :trading_status
+  %br/
+  #imabe-box
+  = f.fields_for :item_images do |i|
+    = i.file_field :url
+    %br/
+  = f.submit
+
+
+
+
+  -# = form_for @item do |f|
+  -# 商品名#{f.text_field :name}
+  -# %br/
+  -# 価格#{f.number_field :price}
+  -# %br/
+  -# #image-box
+  -#   #previews
+  -#     - if @item.persisted?
+  -#       - @item.images.each_with_index do |image, i|
+  -#         = image_tag image.src.url, data: { index: i }, width: "100", height: '100'
+  -#   = f.fields_for :images do |image|
+  -#     .js-file_group{"data-index" => "#{image.index}"}
+  -#       = image.file_field :src, class: 'js-file'
+  -#       %br/
+  -#       %span.js-remove 削除
+  -#     - if @image.persisted?
+  -#       = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+  -#   - if @image.persisted?
+  -#     .js-file_group{"data-index" => "#{@image.images.count}"}
+  -#       = file_field_tag :src, name: "product[images_attributes][#{@image.images.count}][src]", class: 'js-file'
+  -#       .js-remove 削除
+  -# = f.submit
