@@ -3,23 +3,23 @@
   .itemfield
     .imgtable
       .itemname
-        = @items.name
+        = @item.name
       .mainimg
-        - @items.item_images.first(1).each do |img|
+        - @item.item_images.first(1).each do |img|
           = image_tag "#{img.url}", size:"400x350"
       .mainsub
-        - @items.item_images.first(10).each do |img|
+        - @item.item_images.first(10).each do |img|
           = image_tag "#{img.url}", size:"140x100", class:"subpict"
       .price
         ¥
-        = @items.price
+        = @item.price
       .pricecomment
         (税込)送料込み
-      - if @items.buyer_id.present?
+      - if @item.buyer_id.present?
         .soldout
           soldout
       .itemnamesub
-        = @items.item_introduction
+        = @item.item_introduction
       .itemtable
         %table
           %tr
@@ -54,17 +54,17 @@
               = @preparation_day
       .itembutton
         %ul.buttonbox
-          - if user_signed_in? && current_user.id == @items.seller_id
+          - if user_signed_in? && current_user.id == @item.seller_id
             %li.buttonbox__favorite お気に入り 0
             %li.buttonbox__delete
-              = link_to "商品を削除", "/items/#{@items.id}", method: :delete
+              = link_to "商品を削除", "/items/#{@item.id}", method: :delete
             %li.buttonbox__edit
-              = link_to "商品を編集", '#'
+              = link_to "商品を編集", "#"
             %li.buttonbox__report 不適切な商品の通報
           - else
             %li.buttonbox__favorite お気に入り 0
             %li.buttonbox__report 不適切な商品の通報
-      - if user_signed_in? && current_user.id == @items.seller_id
+      - if user_signed_in? && current_user.id == @item.seller_id
       - else
         = link_to "#", class: "payment-btn" do
           購入画面に進む
@@ -92,19 +92,19 @@
         = @category.name
         をもっと見る
       .simileritem
-        - @same_category.items.each do
+        - @same_category.items.each do |item|
           = link_to "#" do
             .similer_pict_box
               .similerpict
-                - @all_items.item_images.first(1).each do |img|
-                  = image_tag "#{img.url}"
+                - item.item_images.first(1).each do |img|
+                  = image_tag "#{img.url}", size:"400x350"
               .similerbox
                 .similername
-                  = @all_items.name
+                  = item.name
                 .similertext
                   %ul
                     %li 
-                      = @all_items.price
+                      = item.price
                       円
                     %li
                       %i.fa.fa-star.likeIcon
