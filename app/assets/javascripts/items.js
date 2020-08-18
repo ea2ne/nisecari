@@ -28,7 +28,7 @@ $(function () {
       img.setAttribute('url', blobUrl);
     } else {
       // const dataIndex = $(this).data("index");
-      $('#previews').append(buildImg(targetIndex, blobUrl));
+      $('.new_item').append(buildImg(targetIndex, blobUrl));
       $('.new_item').append(buildFileField(fileIndex[0]));
       // $('#sell__main__content__file__box').append(dataIndex + 1);
       fileIndex.shift();
