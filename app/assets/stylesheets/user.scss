@@ -178,6 +178,12 @@
 .createuser {
   height: calc(100vh - 380px);
   background-color: #d4d9d6;
+  .createuserchild {
+    height: calc(100vh - 380px);
+    width: 600px;
+    background-color: white;
+    margin: 0 auto;
+  }
 }
 
 .loginregist__footer {
