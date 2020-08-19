@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   require "payjp"
-  before_action :set_item, only: [:buy, :pay]
+  before_action :set_item, only: [:buy, :pay, :show]
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
   end
@@ -44,7 +44,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
     @seller = @item.seller.nickname
     @condition = @item.item_condition.condition
     @postage_payer = @item.postage_payer.payer
