@@ -50,8 +50,9 @@ class ItemsController < ApplicationController
     @postage_payer = @item.postage_payer.payer
     @item_prefecture = @item.prefecture.name
     @preparation_day = @item.preparation_day.day
-    @category = @item.category
-    @same_category = Category.find(@item.category_id)
+    @grandchild = Category.find(@item.category_id)
+    @child = @grandchild.parent
+    @parent = @child.parent
   end
 
 
@@ -122,7 +123,7 @@ class ItemsController < ApplicationController
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id).merge(seller_id: current_user.id)
   end
 
   
