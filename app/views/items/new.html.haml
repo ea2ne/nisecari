@@ -5,11 +5,12 @@
   .sell__main
     .sell__main__content
     = form_for @item, url: items_path do |f|
-
       .sell__main__content__file
         出品画像
         %span.form-require
           必須
+        -# -if @item.errors.include?(:item_image)
+        -#   %p{style: "color: red;"}= @item.errors.full_messages_for(:item_image).first
         %p.sell__main__content__file__text
           最大10枚までアップロードできます 
         .sell__main__content__file__box
@@ -22,13 +23,16 @@
           商品名
           %span.form-require
             必須
+          -if @item.errors.include?(:name)
+            %p{style: "color: red;"}= @item.errors.full_messages_for(:name).first
           =f.text_field :name, class:"sell__main__content__form__input", placeholder: "40文字まで"
         %label
           商品の説明
           %span.form-require
             必須
+        -if @item.errors.include?(:item_introduction)
+          %p{style: "color: red;"}= @item.errors.full_messages_for(:item_introduction).first
         =f.text_field :item_introduction, class:"sell__main__content__form__input", placeholder: "商品の説明（必須　1000文字以内）（色、素材、重さ、定価、注意点など）　例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
-        %textarea{class: "sell__main__content__form__input", placeholder: "商品の説明（必須　1000文字以内）（色、素材、重さ、定価、注意点など）　例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"}
       .sell__main__content__form
         .sell__main__content__form__info
           商品の詳細
@@ -38,6 +42,8 @@
               カテゴリ
               %span.form-require
                 必須
+              -# -if @item.errors.include?(:category)
+              -#   %p{style: "color: red;"}= @item.errors.full_messages_for(:category).first
             .sell__main__content__form__box__group__select
               %select.sell__main__content__form__box__group__select__category
                 %option ---
@@ -54,16 +60,18 @@
                 %option{value: 11} チケット
                 %option{value: 12} 自動車・オートバイ
                 %option{value: 13} その他
-            = f.fields_for :brand do |brand|
-              = brand.label "ブランド"
-              %span.form-require
+            %label 
+              ブランド
+              %span.form-require-gray
                 任意<br>
-              %input.sell__main__content__form__input{placeholder: "例）シャネル"}
+              = f.text_field :brand_name, placeholder: "例）シャネル", value: "", class: "sell__main__content__form__input"
             %label
               商品の状態
               %span.form-require
                 必須
             .sell__main__content__form__box__group__select
+              -if @item.errors.include?(:item_condition)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:item_condition).first
               = f.collection_select :item_condition_id, ItemCondition.all, :id, :condition, prompt: '---', class: "sell__main__content__form__box__group__select__category"
       .sell__main__content__form
         .sell__main__content__form__info
@@ -77,18 +85,24 @@
               %span.form-require
                 必須
             .sell__main__content__form__box__group__select
+              -if @item.errors.include?(:postage_payer)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:postage_payer).first
               = f.collection_select :postage_payer_id, PostagePayer.all, :id, :payer, prompt: '---', class: "sell__main__content__form__box__group__select__category"
             %label
               発送元の地域
               %span.form-require
                 必須
             .sell__main__content__form__box__group__select
+              -if @item.errors.include?(:prefecture)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:prefecture).first
               = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: '---', class: "sell__main__content__form__box__group__select__category"
             %label
               発送までの日数
               %span.form-require
                 必須
             .sell__main__content__form__box__group__select
+              -if @item.errors.include?(:preparation_day)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:preparation_day).first
               = f.collection_select :preparation_day_id, PreparationDay.all, :id, :day, prompt: '---', class: "sell__main__content__form__box__group__select__category"
       .sell__main__content__form
         .sell__main__content__form__info
@@ -102,23 +116,25 @@
                 販売価格
                 %span.form-require
                   必須
+                -if @item.errors.include?(:price)
+                  %p{style: "color: red;"}= @item.errors.full_messages_for(:price).first
               .sell__main__content__form__box__price__entire__right
                 ¥
-                =f.number_field :price, class:"sell__main__content__form__box__price__entire__right__input", placeholder: "0"
+                =f.number_field :price, class:"sell__main__content__form__box__price__entire__right__input", placeholder: "0", id: "price-result"
             %li.sell__main__content__form__box__price__fee
               .sell__main__content__form__box__price__fee__left
                 販売手数料（10%）
               .sell__main__content__form__box__price__fee__right
-                \ー
+                \￥
             %li.sell__main__content__form__box__price__profit
               .sell__main__content__form__box__price__profit__left
                 販売利益
               .sell__main__content__form__box__price__profit__right
-                \ー
+                \￥
         .sell__main__content__btn
           = f.submit '出品する', class: "sell__main__content__btn--red"
           %a
-            = link_to "もどる"
+            = link_to "もどる", root_path
         .sell__main__content__explan
           %p  
             禁止されている
