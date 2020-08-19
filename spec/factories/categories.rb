@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :category do
-    name       {"メンズ"}
+    name       {"トップス"}
+    ancestry   {1}
   end
 end

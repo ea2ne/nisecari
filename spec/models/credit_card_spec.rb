@@ -5,7 +5,7 @@ RSpec.describe CreditCard do
     it "is invalid without a customer_id" do
       card = build(:credit_card, customer_id: nil)
       card.valid?
-      expect(card.errors[:customer_id]).to include("can't be blank")
+      expect(card.errors[:customer_id]).to include("を入力してください")
     end
 
     it "is invalid with a duplicate customer_id" do

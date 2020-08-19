@@ -16,7 +16,7 @@
         = @item.price
       .pricecomment
         (税込)送料込み
-      - if @items.buyer_id.present?
+      - if @item.buyer_id.present?
         .soldout
           soldout
       .itemnamesub
