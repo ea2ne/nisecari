@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   require "payjp"
-  before_action :set_item, only: [:buy, :pay]
+  before_action :set_item, only: [:buy, :pay, :edit, :update]
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
   end
@@ -8,10 +8,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
-  end
-
-  def edit
-    
   end
 
   def create
@@ -22,8 +18,27 @@ class ItemsController < ApplicationController
       render "/items/new"
     end
   end
+  
+  def edit
+    @brand =  Brand.find(params[:id])
+    @item_condition = ItemCondition(params[:id])
+    @postage_payer = PostagePayer(params[:id])
+    @postage_type = PostageType(params[:id])
+    @preparation_day = PreparationDay(params[:id])
+    @item = Item.find(params[:id])
+  end
 
   def update
+    @brand =  Brand.find(params[:id])
+    @item_condition = ItemCondition(params[:id])
+    @postage_payer = PostagePayer(params[:id])
+    @postage_type = PostageType(params[:id])
+    @preparation_day = PreparationDay(params[:id])
+    @brand.update
+    @item_condition.update
+    @postage_payer.update
+    @postage_type.update
+    @preparation_day.update
     @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to root_path
