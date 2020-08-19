@@ -8,7 +8,17 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
+    @category_parent_array = Category.where(ancestry: nil)
+
   end
+  
+    def get_category_children
+      @category_children = Category.find("#{params[:parent_id]}").children
+    end
+
+    def get_category_grandchildren
+      @category_grandchildren = Category.find("#{params[:child_id]}").children
+    end
 
   def create
     @item = Item.new(item_params)
@@ -48,7 +58,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
+    @seller = @item.seller.nickname
+    @condition = @item.item_condition.condition
+    @postage_payer = @item.postage_payer.payer
+    @item_prefecture = @item.prefecture.name
+    @preparation_day = @item.preparation_day.day
+    @category = @item.category
+    @same_category = Category.find(@item.category_id)
   end
 
 
@@ -121,6 +138,7 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id).merge(seller_id: current_user.id)
   end
+
   
   def set_item
     @item = Item.find(params[:id])
