@@ -60,7 +60,8 @@
           font-size: 14px;
             }
         &__box {
-          display: block;
+          // display: block;
+          display: flex;
           width: 620px;
           margin: 16px auto 0;
           min-height: 162px;
@@ -77,6 +78,31 @@
           transition: box-shadow ease-out 0.3s,
             -webkit-box-shadow ease-out 0.3s;
           cursor: pointer;
+          position: relative;
+
+          .test{
+            margin: 0 auto;
+          }
+
+          .js {
+            display: flex;
+          }
+            .js-file {
+              height: 100%;
+              width: 100%;
+              cursor: pointer;
+              flex-grow: 1;
+              display: none;
+              // background-color: navajowhite;
+            }
+
+            .js-file_group {
+              // height: 100%;
+              // width: 100%;
+              // background-color: magenta;
+              position: absolute;
+            }
+
           &__inner {
             text-align: center;
             margin-top: 80px;

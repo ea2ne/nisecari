@@ -1,13 +1,13 @@
 = form_for @item do |f|
-  商品名
-  = f.text_field :name
-  %br/
-  価　格
-  = f.number_field :price
-  %br/
-  ステータス（仮）
-  = f.text_field :trading_status
-  %br/
+  -# 商品名
+  -# = f.text_field :name
+  -# %br/
+  -# 価　格
+  -# = f.number_field :price
+  -# %br/
+  -# ステータス（仮）
+  -# = f.text_field :trading_status
+  -# %br/
   #image-box
     #previews
       - if @item.persisted?

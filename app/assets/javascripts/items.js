@@ -3,8 +3,8 @@ $(function () {
   const buildFileField = (index)=> {
     const html = `<div data-index="${index}" class="js-file_group">
                     <input class="js-file" type="file"
-                    name="product[item_images_attributes][${index}][src]"
-                    id="product_item_images_attributes_${index}_src"><br>
+                    name="item[item_images_attributes][${index}][src]"
+                    id="item_images_attributes_${index}_src"><br>
                     <div class="js-remove">削除</div>
                   </div>`;
     return html;
@@ -20,16 +20,25 @@ $(function () {
   fileIndex.splice(0, lastIndex);
   $('.hidden-destroy').hide();
 
-  $('#new_item').on('change', '.js-file', function(e) {
+  $(".test").on('click', function() {
+    const file_field = $(".js-file:last"); // 一番最後のfile_field（新規でアップロードする箇所）を取得
+    file_field.trigger("click"); // file_fieldをクリックさせる。
+
+  })
+
+  $('.js').on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('url', blobUrl);
     } else {
+      // メンターさんによるコード
       // const dataIndex = $(this).data("index");
-      $('.new_item').append(buildImg(targetIndex, blobUrl));
-      $('.new_item').append(buildFileField(fileIndex[0]));
+      $('.js').append(buildImg(targetIndex, blobUrl));
+      $('.js-file_group').append(buildFileField(fileIndex[0]));
+
+      // メンターさんによるコード
       // $('#sell__main__content__file__box').append(dataIndex + 1);
       fileIndex.shift();
       console.log("test2")
@@ -38,7 +47,7 @@ $(function () {
       console.log("test3")
     }
   });
-
+      // メンターさんによるコード
   // $('.new_item').on('click', function() {
   //   const fileField = $('.js-file:last');
   //   fileField.trigger("click");

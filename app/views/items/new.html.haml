@@ -11,10 +11,13 @@
         %p.sell__main__content__file__text
           最大10枚までアップロードできます 
         .sell__main__content__file__box
-          %input{type: "file", class: "sell__main__content__file__up"}
-            = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
-          %pre.sell__main__content__file__box__inner
-            ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
+          .js
+            = render partial: 'form'
+          .test
+            %input{type: "file", class: "sell__main__content__file__up"}
+              = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
+            %pre.sell__main__content__file__box__inner
+              ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
       .sell__main__content__form
         %label
           商品名
@@ -210,13 +213,14 @@
     -# = link_to '出品', new_item_path
     %br/
     .contents1
-    - @item.item_images.each do |image|
-      -# = link_to '編集', edit_item_path(item)
+   
 
 
+
+-# これは別
       -# =image_tag image.src.url
 
-
+-# 最初、 .sell__main__content__file__boxに入れてた記述
       -# = form_for @item do |f|
       -#   = f.fields_for :item_images, id:"sell__main__content__file__box" do |i|
       -#     = i.file_field :src, class: "js-file", data:{index: i.index}
