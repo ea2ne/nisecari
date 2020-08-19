@@ -8,8 +8,8 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
+    @item.build_brand
     @category_parent_array = Category.where(ancestry: nil)
-
   end
   
     def get_category_children
@@ -26,8 +26,10 @@ class ItemsController < ApplicationController
 
 
   def create
-    @item = Item.new(item_params)
-    if @item.save!
+    brand = Brand.new(brand_params)
+    brand.save
+    @item = Item.new(item_params.merge(brand_id: brand.id))
+    if @item.save
       redirect_to root_path
     else
       render "/items/new"
@@ -125,9 +127,13 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id).merge(seller_id: current_user.id)
   end
 
+  def brand_params
+    params.require(:item).permit(:brand_name)
+  end
   
   def set_item
     @item = Item.find(params[:id])
+
   end
 end
 

@@ -7,11 +7,10 @@ class Item < ApplicationRecord
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
-  has_many :brands
-  accepts_nested_attributes_for :brands
+  belongs_to :brand
   validates :item_introduction, length: {maximum: 1000}, presence: true
   validates :name, length: {maximum: 40}, presence: true
-  validates :item_condition, :postage_payer, :prefecture, :preparation_day, presence: true
+  validates :item_condition, :postage_payer, :prefecture, :preparation_day, :price, presence: true
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
