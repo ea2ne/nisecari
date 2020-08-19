@@ -31,6 +31,7 @@ class ItemsController < ApplicationController
   
   def edit
     @brand =  Brand.find(params[:id])
+    @catogory = Category.find(params[:id])
     @item_condition = ItemCondition(params[:id])
     @postage_payer = PostagePayer(params[:id])
     @postage_type = PostageType(params[:id])
@@ -40,11 +41,13 @@ class ItemsController < ApplicationController
 
   def update
     @brand =  Brand.find(params[:id])
-    @item_condition = ItemCondition(params[:id])
-    @postage_payer = PostagePayer(params[:id])
-    @postage_type = PostageType(params[:id])
-    @preparation_day = PreparationDay(params[:id])
+    @category = Category.find(params[:id])
+    @item_condition = ItemCondition.find(params[:id])
+    @postage_payer = PostagePayer.find(params[:id])
+    @postage_type = PostageType.find(params[:id])
+    @preparation_day = PreparationDay.find(params[:id])
     @brand.update
+    @category.update
     @item_condition.update
     @postage_payer.update
     @postage_type.update
@@ -136,7 +139,7 @@ class ItemsController < ApplicationController
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id).merge(seller_id: current_user.id)
   end
 
   
