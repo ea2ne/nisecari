@@ -1,5 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe CreditCard, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe CreditCard do
+  describe '#create' do
+    it "is invalid without a customer_id" do
+      card = build(:credit_card, customer_id: nil)
+      card.valid?
+      expect(card.errors[:customer_id]).to include("can't be blank")
+    end
+
+    it "is invalid with a duplicate customer_id" do
+      card = create(:credit_card)
+      another_card = build(:credit_card, customer_id: card.customer_id)
+      another_card.valid?
+      expect(another_card.errors[:customer_id]).to include("has already been taken")
+    end
+  end
 end
