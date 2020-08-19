@@ -11,7 +11,7 @@ $(function () {
   }
 
   const buildImg = (index, url)=> {
-    const html = `<img data-index="${index}" src="${url}" width="100px" height="100px">`;
+    const html = `<img data-index="${index}" src="${url}" width="120px" height="90px">`;
     return html;
   }
 
@@ -20,7 +20,7 @@ $(function () {
   fileIndex.splice(0, lastIndex);
   $('.hidden-destroy').hide();
 
-  $(".test").on('click', function() {
+  $(".pic-up").on('click', function() {
     const file_field = $(".js-file:last"); // 一番最後のfile_field（新規でアップロードする箇所）を取得
     file_field.trigger("click"); // file_fieldをクリックさせる。
 
