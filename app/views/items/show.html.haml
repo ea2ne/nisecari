@@ -1,5 +1,6 @@
 %body
   = render "header"
+  = render "layouts/notifications"
   .itemfield
     .imgtable
       .itemname
@@ -15,9 +16,9 @@
         ¥1000
       .pricecomment
         (税込)送料込み
-      -# - if @item.buy_id.present?
-      -#   .soldout
-      -#     soldout
+      - if @item.buyer_id.present?
+        .soldout
+          soldout
       .itemnamesub
         パスタ
       .itemtable
@@ -54,10 +55,18 @@
             %td 4-7日で発送
       .itembutton
         %ul.buttonbox
-          %li.buttonbox__favorite お気に入り 0
-          %li.buttonbox__report 不適切な商品の通報
-      = link_to "#", class: "payment-btn" do
+          - if user_signed_in? && current_user.id == @items.seller_id
+            %li.buttonbox__favorite お気に入り 0
+            %li.buttonbox__delete
+              = link_to "商品を削除", "/items/#{@items.id}", method: :delete
+            %li.buttonbox__report 不適切な商品の通報
+          - else
+            %li.buttonbox__favorite お気に入り 0
+            %li.buttonbox__report 不適切な商品の通報
+
+      = link_to buy_item_path, class: "payment-btn" do
         購入画面に進む
+
     %form{action: "example.cgi", method: "post", class: "itemform"}
       %p.commentbox
         %textarea{cols: "15", rows: "5", class: "comment"}
