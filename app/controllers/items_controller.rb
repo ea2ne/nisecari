@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
     end
 
   def create
+    binding.pry
     brand = Brand.new(brand_params)
     brand.save
     @item = Item.new(item_params.merge(brand_id: brand.id))
@@ -150,7 +151,6 @@ class ItemsController < ApplicationController
   
   def set_item
     @item = Item.find(params[:id])
-
   end
 end
 
