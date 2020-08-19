@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_031649) do
+ActiveRecord::Schema.define(version: 2020_08_17_030440) do
 
   create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "brand_name"
@@ -18,6 +18,11 @@ ActiveRecord::Schema.define(version: 2020_08_13_031649) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+  end
+  
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "customer_id", null: false
@@ -49,6 +54,8 @@ ActiveRecord::Schema.define(version: 2020_08_13_031649) do
     t.integer "prefecture_id", null: false
     t.text "item_introduction", null: false
     t.integer "brand_id", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_items_on_category_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -96,6 +103,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_031649) do
 
   add_foreign_key "credit_cards", "users"
   add_foreign_key "item_images", "items"
+  add_foreign_key "items", "categories"
   add_foreign_key "profiles", "users"
   add_foreign_key "sending_destinations", "users"
 end

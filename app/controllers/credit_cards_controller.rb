@@ -9,7 +9,7 @@ class CreditCardsController < ApplicationController
   def create
     Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
     if params["payjp_token"].blank?
-      redirect_to new_credit_card_path, alert: "クレジットカードを登録できませんでした"
+      redirect_to new_credit_card_path, alert: 'クレジットカードを登録できませんでした'
     else
       customer = Payjp::Customer.create(
         card: params["payjp_token"],
@@ -17,7 +17,7 @@ class CreditCardsController < ApplicationController
       )
       card = CreditCard.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if card.save
-        redirect_to user_path(current_user.id)
+        redirect_to user_path(current_user.id), notice: 'カードを登録しました'
       else
         redirect_to new_credit_card_path
       end
@@ -26,7 +26,7 @@ class CreditCardsController < ApplicationController
 
   def show
     if @card.blank?
-      redirect_to new_credit_card_path
+      redirect_to new_credit_card_path, alert: "カードを登録してください"
     else
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(@card.customer_id)
@@ -53,17 +53,20 @@ class CreditCardsController < ApplicationController
 
   def destroy
     if @card.blank?
-      redirect_to new_credit_card_path
+      redirect_to new_credit_card_path, alert: "カードを登録してください"
     else
       Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
       customer = Payjp::Customer.retrieve(@card.customer_id)
       customer.delete
       @card.delete
-      unless @card.destroy
+      if @card.destroy
+        redirect_to user_path(current_user), notice: "カード情報を削除しました"
+      else
         redirect_to credit_card_path(current_user.id), alert: "削除できませんでした。"
       end
     end
   end
+  
   def set_card
     @card = CreditCard.find_by(user_id: current_user.id)
   end

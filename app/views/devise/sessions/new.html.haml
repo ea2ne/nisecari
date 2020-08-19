@@ -3,7 +3,7 @@
     .loginregist__header
       .loginregist__logo
         = link_to root_path do
-          %img{:src => "/assets/logo.png"}
+          = image_tag "material/logo/logo.png"
         .registtitle
           %p ログイン
     .loginregist__form
@@ -29,5 +29,5 @@
           = render "devise/shared/links"
 .loginregist__footer
   .loginregist__logo
-    %image{:src => "/assets/logo-white.png"}
+    = image_tag "material/logo/logo-white.png"
   ©︎ nisekari from team e
