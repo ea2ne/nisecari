@@ -40,15 +40,13 @@
       display: flex;
       justify-content: center;
       margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
       
       .subpict {
         width: 140px;
         height: 90px;
         margin-left: 10px;
-        img {
-          width: 140px;
-          height: 90px;
-        }
       }
     }
 
@@ -128,6 +126,16 @@
           }
         }
 
+        &__edit {
+          border: 1px solid orange;
+          border-radius: 40px;
+          padding: 6px 10px;
+          background-color: white;
+          a {
+            color: orange;
+          }
+        }
+
         &__report {
           border: 1px solid black;
           border-radius: 0.3em;
@@ -155,6 +163,7 @@
       .comment {
         width: 100%;
         height: 130px;
+        padding: 10px;
       }
     }
     .formcomment {
@@ -203,13 +212,18 @@
       display: flex;
       justify-content: space-between;
       width: 700px;
+      margin-top: 10px;
       .itembefore {
-        color: #3CCACE;
-        margin: 10px 0;
+        a {
+          color: #3CCACE;
+          margin: 10px 0;
+        }
       }
       .itemnext {
-        color: #3CCACE;
-        margin: 10px 0;
+        a {
+          color: #3CCACE;
+          margin: 10px 0;
+        }
       }
     }
     .morecategory {
@@ -219,35 +233,41 @@
       font-weight: bold;
     }
     .simileritem {
+      display: flex;
+      justify-content: start;
       width: 200px;
       height: 230px;
       margin-top: 30px;
-      .similerpict {
-        width: 200px;
-        height: 130px;
-        background-color: #3CCACE;
-        img {
+      .similer_pict_box {
+        margin-right: 10px;
+
+        .similerpict {
           width: 200px;
           height: 130px;
-        }
-      }
-      .similerbox {
-        background-color: white;
-        padding: 10px;
-        .similername {
-          font-size: 14px;
-          margin-top: 8px;
-        }
-        .similertext {
-          font-size: 14px;
-          font-weight: bold;
-          ul{
-            display: flex;
-            justify-content: space-between;
+          background-color: #3CCACE;
+          img {
+            width: 200px;
+            height: 130px;
           }
         }
-        p {
-          font-size: 10px;
+        .similerbox {
+          background-color: white;
+          padding: 10px;
+          .similername {
+            font-size: 14px;
+            margin-top: 8px;
+          }
+          .similertext {
+            font-size: 14px;
+            font-weight: bold;
+            ul{
+              display: flex;
+              justify-content: space-between;
+            }
+          }
+          p {
+            font-size: 10px;
+          }
         }
       }
     }

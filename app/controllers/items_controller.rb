@@ -44,9 +44,14 @@ class ItemsController < ApplicationController
   end
 
   def show
-  end
-
-    @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
+    @seller = @item.seller.nickname
+    @condition = @item.item_condition.condition
+    @postage_payer = @item.postage_payer.payer
+    @item_prefecture = @item.prefecture.name
+    @preparation_day = @item.preparation_day.day
+    @category = @item.category
+    @same_category = Category.find(@item.category_id)
   end
 
 
