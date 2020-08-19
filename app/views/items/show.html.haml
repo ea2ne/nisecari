@@ -30,7 +30,14 @@
           %tr
             %th カテゴリー
             %td 
-              = @category.name
+              = link_to "#" do
+                = @parent.name
+              %br
+              = link_to "#" do
+                = @child.name
+              %br
+              = link_to "#" do
+                = @grandchild.name
           %tr
             %th ブランド
             %td
@@ -88,10 +95,10 @@
           = link_to "#" do
             後ろの商品 >
       .morecategory
-        = @category.name
+        = @grandchild.name
         をもっと見る
       .simileritem
-        - @same_category.items.each do |item|
+        - @grandchild.items.each do |item|
           = link_to "#" do
             .similer_pict_box
               .similerpict
