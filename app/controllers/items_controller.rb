@@ -49,7 +49,7 @@ class ItemsController < ApplicationController
     @postage_payer = @item.postage_payer.payer
     @item_prefecture = @item.prefecture.name
     @preparation_day = @item.preparation_day.day
-    @grandchild = Category.find(@item.category_id)
+    @grandchild = @item.category
     @child = @grandchild.parent
     @parent = @child.parent
   end
