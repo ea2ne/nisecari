@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :brand do
-    brand_name     {"Monster"}
+    brand_name {"あいうえお"}
   end
 end

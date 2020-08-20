@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.item_images.new
+    @item_image = @item.item_images.build
     @item.build_brand
     @category_parent_array = Category.where(ancestry: nil)
   end
@@ -23,15 +23,14 @@ class ItemsController < ApplicationController
     end
 
   def create
-    image = ItemImage.new(image_params)
-    image.save
     brand = Brand.new(brand_params)
     brand.save
-    @item = Item.new(item_params.merge(brand_id: brand.id))
-
+    @item = Item.new(item_params)
+    @item.brand_id = brand.id
     if @item.save
       redirect_to root_path
-    else
+    else 
+      @category_parent_array = Category.where(ancestry: nil)
       render "/items/new"
     end
   end
@@ -133,11 +132,7 @@ class ItemsController < ApplicationController
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id).merge(seller_id: current_user.id)
-  end
-
-  def image_params
-    params.require(:item).permit(:item_id,:url)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id,item_images_attributes: [:id, :item_id, :url]).merge(seller_id: current_user.id)
   end
 
   def brand_params
@@ -148,4 +143,3 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 end
-
