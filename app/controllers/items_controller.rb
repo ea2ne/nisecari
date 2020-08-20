@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
+  before_action :set_item, except: [:index, :new, :create]
+
   require "payjp"
-  before_action :set_item, only: [:buy, :pay]
+  before_action :set_item, only: [:buy, :pay, :show, :edit, :update]
   def index
     @items = Item.all
     # @items = Item.includes(:item_images).order('created_at DESC')
@@ -9,8 +11,8 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.item_images.new
+    @item.build_brand
     @category_parent_array = Category.where(ancestry: nil)
-
   end
   
     def get_category_children
@@ -21,31 +23,45 @@ class ItemsController < ApplicationController
       @category_grandchildren = Category.find("#{params[:child_id]}").children
     end
 
-  def edit
-    
-  end
-
-
   def create
-    @item = Item.new(item_params)
+    image = ItemImage.new(image_params)
+    image.save
+    brand = Brand.new(brand_params)
+    brand.save
+    @item = Item.new(item_params.merge(brand_id: brand.id))
+
     if @item.save
       redirect_to root_path
     else
       render "/items/new"
     end
   end
+  
+  def edit
+    @brand =  Brand.find(params[:id])
+    @category = Category.find(params[:id])
+    @category_parent_array = Category.where(ancestry: nil)
+    @item = Item.find(params[:id])
+  end
 
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to root_path, notice: "商品情報を更新しました"
     else
-      render "/items/new"
+      render "/items/edit", alert: "更新できませんでした"
     end
   end
 
   def show
-    @items = Item.find(params[:id])
+    @seller = @item.seller.nickname
+    @condition = @item.item_condition.condition
+    @postage_payer = @item.postage_payer.payer
+    @item_prefecture = @item.prefecture.name
+    @preparation_day = @item.preparation_day.day
+    @grandchild = @item.category
+    @child = @grandchild.parent
+    @parent = @child.parent
   end
 
   
@@ -121,6 +137,13 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id).merge(seller_id: current_user.id)
   end
 
+  def image_params
+    params.require(:item).permit(:item_id,:url)
+  end
+
+  def brand_params
+    params.require(:item).permit(:brand_name)
+  end
   
   def set_item
     @item = Item.find(params[:id])
