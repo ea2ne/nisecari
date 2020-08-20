@@ -89,84 +89,25 @@
         .productHead
           = link_to "新規投稿商品", "#", class: "title"
         .productLists
-          .productList
-            = link_to "#", class: "a" do
-              %figure.product-img
-                = image_tag(image_path("corn.png"), class: 'img')
-              .productList-body
-                %h3.name テスト
-                .details
-                  %ul
-                    %li 10000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                  %p （税込）
-          .productList
-            = link_to "#", class: "a" do
-              %figure.product-img
-                = image_tag(image_path("corn.png"), class: 'img')
-              .productList-body
-                %h3.name テスト
-                .details
-                  %ul
-                    %li 10000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                  %p （税込）
-          .productList
-            = link_to "#", class: "a" do
-              %figure.product-img
-                = image_tag(image_path("corn.png"), class: 'img')
-              .productList-body
-                %h3.name テスト
-                .details
-                  %ul
-                    %li 10000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                  %p （税込）
-          .productList
-            = link_to "#", class: "a" do
-              %figure.product-img
-                = image_tag(image_path("corn.png"), class: 'img')
-              .productList-body
-                %h3.name テスト
-                .details
-                  %ul
-                    %li 10000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                  %p （税込）
-          .productList
-            = link_to "#", class: "a" do
-              %figure.product-img
-                = image_tag(image_path("corn.png"), class: 'img')
-              .productList-body
-                %h3.name テスト
-                .details
-                  %ul
-                    %li 10000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                  %p （税込）
-          .productList
-            = link_to "#", class: "a" do
-              %figure.product-img
-                = image_tag(image_path("corn.png"), class: 'img')
-              .productList-body
-                %h3.name テスト
-                .details
-                  %ul
-                    %li 10000円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                  %p （税込）
+          - @items.each do |item|
+            .productList
+              = link_to item_path(item), class: "a" do
+                %figure.product-img
+                  - item.item_images.first(1).each do |img|
+                    = image_tag "#{img.url}", class: 'img'
+                  - if item.buyer_id.present?
+                    .itembox
+                      .itembox-sold
+                        soldout
+                .productList-body
+                  %h3 #{item.name}
+                  .details
+                    %ul
+                      %li #{item.price}円
+                      %li
+                        %i.fa.fa-star.likeIcon
+                        1
+                    %p （税込）
     
     %section.pickupContainer
       %h2.head ピックアップブランド

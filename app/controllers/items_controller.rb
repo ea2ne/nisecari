@@ -28,6 +28,7 @@ class ItemsController < ApplicationController
     brand = Brand.new(brand_params)
     brand.save
     @item = Item.new(item_params.merge(brand_id: brand.id))
+
     if @item.save
       redirect_to root_path
     else
@@ -61,6 +62,8 @@ class ItemsController < ApplicationController
     @child = @grandchild.parent
     @parent = @child.parent
   end
+
+  
 
 
   def destroy
