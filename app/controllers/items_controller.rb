@@ -62,6 +62,8 @@ class ItemsController < ApplicationController
     @parent = @child.parent
   end
 
+  
+
 
   def destroy
     @items = Item.find(params[:id])
