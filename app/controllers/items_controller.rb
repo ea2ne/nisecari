@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   require "payjp"
   before_action :set_item, only: [:buy, :pay, :show, :edit, :update]
   def index
-    # @items = Item.all
     @items = Item.includes(:item_images).order('created_at DESC')
   end
 
