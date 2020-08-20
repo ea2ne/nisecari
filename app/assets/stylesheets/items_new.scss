@@ -60,55 +60,26 @@
         box-sizing: border-box;
         font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic,
           メイリオ, Meiryo, sans-serif;
-
+        &__up {
+          display: none;
+          &__data {
+            position: relative;
+            top: 50px;
+            width: 30px;
+            height: 30px;
+          }
+        }
         &__text {
           margin: 8px 0 0;
           line-height: 1.5;
           font-weight: normal;
           font-size: 14px;
             }
-
-          .pic-up{
-            height: 80px;
-            background-color: #ccc;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin: 0 auto;
-            cursor: pointer;
-            display: block;
-          }
-          &__up {
-            display: none;
-            position: absolute;
-            &__data {
-              position: relative;
-              top: 10px;
-              left: 290px;
-              margin: 0 auto;
-              width: 40px;
-              height: 40px;
-            }
-          }
-
-          .sell__main__content__file__box__inner {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            line-height: 1.5;
-            -webkit-transform: translate(0, -50%);
-            transform: translate(0, -50%);
-            pointer-events: none;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-family: monospace, monospace;
-            }
-
         &__box {
-          // display: block;
-          display: flex;
-          width: 602px;
+          display: block;
+          width: 620px;
           margin: 16px auto 0;
-          height: 180px;
+          min-height: 162px;
           background: #f5f5f5;
           border: 1px dashed #ccc;
           font-size: 0;
@@ -121,25 +92,19 @@
           transition: box-shadow ease-out 0.3s;
           transition: box-shadow ease-out 0.3s,
             -webkit-box-shadow ease-out 0.3s;
-          position: relative;
-          flex-wrap: wrap;
-
-          .js {
-            display: flex;
-            flex-wrap: wrap;
-          }
-            .js-file {
-              height: 100%;
-              width: 100%;
-              cursor: pointer;
-              flex-grow: 1;
-              display: none;
+          cursor: pointer;
+          &__inner {
+            text-align: center;
+            margin-top: 80px;
+            font-size: 14px;
+            line-height: 1.5;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            pointer-events: none;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace, monospace;
             }
-
-            .js-file_group {
-              position: absolute;
-            }
-
           }
           &__input {
             width: 100%;
