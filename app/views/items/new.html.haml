@@ -207,20 +207,3 @@
       =image_tag "material/logo/logo-white.png", class: "sell__footer__logo__img"
       %small
         ©&nbsp;Furima,&nbsp;Inc.
-
-  .js
-    = render partial: 'form'
-    -# = link_to '出品', new_item_path
-    %br/
-    .contents1
-   
-
-
-
--# これは別
-      -# =image_tag image.src.url
-
--# 最初、 .sell__main__content__file__boxに入れてた記述
-      -# = form_for @item do |f|
-      -#   = f.fields_for :item_images, id:"sell__main__content__file__box" do |i|
-      -#     = i.file_field :src, class: "js-file", data:{index: i.index}

@@ -11,7 +11,7 @@ $(function () {
   }
 
   const buildImg = (index, url)=> {
-    const html = `<img data-index="${index}" src="${url}" width="120px" height="90px">`;
+    const html = `<img data-index="${index}" src="${url}" width="120px" height="90px" class="image-index">`;
     return html;
   }
 
@@ -26,7 +26,7 @@ $(function () {
 
   })
 
-  $('.js').on('change', '.js-file', function(e) {
+  $(document).on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
@@ -35,8 +35,17 @@ $(function () {
     } else {
       // メンターさんによるコード
       // const dataIndex = $(this).data("index");
-      $('.js').append(buildImg(targetIndex, blobUrl));
-      $('.js-file_group').append(buildFileField(fileIndex[0]));
+
+      if ($(".image-index").length < 2) {
+        $('#previews').append(buildImg(targetIndex, blobUrl));
+        $('.js-file_group').append(buildFileField(fileIndex[0]));
+      } else {
+        console.log("投稿できる画像は10枚までです。")
+        alert("投稿できる画像は10枚までです。消したい画像をクリックしてください。");
+
+        // return false;
+      }
+
 
       // メンターさんによるコード
       // $('#sell__main__content__file__box').append(dataIndex + 1);
@@ -53,7 +62,7 @@ $(function () {
   //   fileField.trigger("click");
   // });
 
-  $('.js').on('click', '.js-remove', function() {
+  $('.js').on('click', 'img', function() {
     console.log("test4")
     const targetIndex = $(this).parent().data('index')
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
