@@ -40,10 +40,7 @@ $(function () {
         $('#previews').append(buildImg(targetIndex, blobUrl));
         $('.js-file_group').append(buildFileField(fileIndex[0]));
       } else {
-        console.log("投稿できる画像は10枚までです。")
         alert("投稿できる画像は10枚までです。消したい画像をクリックしてください。");
-
-        // return false;
       }
 
 
@@ -64,11 +61,12 @@ $(function () {
 
   $('.js').on('click', 'img', function() {
     console.log("test4")
-    const targetIndex = $(this).parent().data('index')
+    const targetIndex = $(this).data('index')
+    console.log(targetIndex)
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     if (hiddenCheck) hiddenCheck.prop('checked', true);
-    $(this).parent().remove();
-    if ($('.js-file').length == 0) $('js').append(buildFileField(fileIndex[0]));
+    $(this).remove();
+    if ($('.image-index').length == 0) $('js').append(buildFileField(fileIndex[0]));
     console.log("test5")
       $(`img[data-index="${targetIndex}"]`).remove();
   });

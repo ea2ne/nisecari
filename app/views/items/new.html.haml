@@ -10,14 +10,14 @@
           必須
         %p.sell__main__content__file__text
           最大10枚までアップロードできます 
+        .pic-up
+          %input{type: "file", class: "sell__main__content__file__up"}
+            = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
+          %pre.sell__main__content__file__box__inner
+            写真を投稿
         .sell__main__content__file__box
           .js
             = render partial: 'form'
-          .pic-up
-            %input{type: "file", class: "sell__main__content__file__up"}
-              = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
-            %pre.sell__main__content__file__box__inner
-              ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
       .sell__main__content__form
         %label
           商品名
