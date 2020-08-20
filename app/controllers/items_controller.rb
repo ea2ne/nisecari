@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:buy, :pay]
   def index
     @items = Item.all
-    # @items = Item.includes(:item_images).order('created_at DESC')
+    @items = Item.includes(:item_images).order('created_at DESC')
   end
 
   def new
