@@ -22,6 +22,7 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/public/uploads/item_image
 
 /public/packs
 /public/packs-test
