@@ -1,12 +1,25 @@
 .sell {
   background-color: #f5f5f5;
   color: #333;
-  font-size: 11px;
+  font-size: 14px;
   .form-require {
     box-sizing: border-box;
     font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic,
       メイリオ, Meiryo, sans-serif;
     background-color: #ea352d;
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+    font-weight: 600px;
+  }
+  .form-require-gray {
+    box-sizing: border-box;
+    font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic,
+      メイリオ, Meiryo, sans-serif;
+    background-color: gray;
     margin: 0 0 0 8px;
     padding: 2px 4px;
     border-radius: 2px;
@@ -35,6 +48,9 @@
     margin: 0 auto;
     background-color: #fff;
     &__content {
+      &__explan {
+        font-size: 11px;
+      }
       &__file {
         font-size: 14px;
         font-weight: 600;

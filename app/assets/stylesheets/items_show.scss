@@ -40,15 +40,13 @@
       display: flex;
       justify-content: center;
       margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
       
       .subpict {
         width: 140px;
         height: 90px;
         margin-left: 10px;
-        img {
-          width: 140px;
-          height: 90px;
-        }
       }
     }
 
@@ -63,6 +61,15 @@
       font-size: 15px;
       text-align: center;
     }
+    .soldout {
+      width:100%;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      background-color: red;
+      color: white;
+      font-size: 30px;
+    }
     .itemnamesub {
       font-size: 15px;
       font-weight: bold;
@@ -76,20 +83,25 @@
   
       table th{
         width: 20%;
-        border:solid 1px #aaaaaa;
-        padding : 8px;
+        border:solid 1px lightgray;
+        padding : 12px;
         background-color: #eee;
+        text-align: center;
       }
       
       table td{
-        padding: 8px;
+        padding: 12px;
         width: 80%;
-        border:solid 1px #aaaaaa;
+        border:solid 1px lightgray;
+        a {
+          color: #3CCACE;
+        }
       }
   
     }
     .itembutton {
       height: 50px;
+      margin-bottom: 10px;
 
       .buttonbox {
         display: flex;
@@ -105,6 +117,26 @@
             content: "\f005";
             font-family: FontAwesome;
             margin-right: 5px;
+          }
+        }
+
+        &__delete {
+          border: 1px solid red;
+          border-radius: 40px;
+          padding: 6px 10px;
+          background-color: red;
+          a {
+            color: white;
+          }
+        }
+
+        &__edit {
+          border: 1px solid orange;
+          border-radius: 40px;
+          padding: 6px 10px;
+          background-color: white;
+          a {
+            color: orange;
           }
         }
 
@@ -135,6 +167,7 @@
       .comment {
         width: 100%;
         height: 130px;
+        padding: 10px;
       }
     }
     .formcomment {
@@ -183,13 +216,18 @@
       display: flex;
       justify-content: space-between;
       width: 700px;
+      margin-top: 10px;
       .itembefore {
-        color: #3CCACE;
-        margin: 10px 0;
+        a {
+          color: #3CCACE;
+          margin: 10px 0;
+        }
       }
       .itemnext {
-        color: #3CCACE;
-        margin: 10px 0;
+        a {
+          color: #3CCACE;
+          margin: 10px 0;
+        }
       }
     }
     .morecategory {
@@ -199,35 +237,41 @@
       font-weight: bold;
     }
     .simileritem {
+      display: flex;
+      justify-content: start;
       width: 200px;
       height: 230px;
       margin-top: 30px;
-      .similerpict {
-        width: 200px;
-        height: 130px;
-        background-color: #3CCACE;
-        img {
+      .similer_pict_box {
+        margin-right: 10px;
+
+        .similerpict {
           width: 200px;
           height: 130px;
-        }
-      }
-      .similerbox {
-        background-color: white;
-        padding: 10px;
-        .similername {
-          font-size: 14px;
-          margin-top: 8px;
-        }
-        .similertext {
-          font-size: 14px;
-          font-weight: bold;
-          ul{
-            display: flex;
-            justify-content: space-between;
+          background-color: #3CCACE;
+          img {
+            width: 200px;
+            height: 130px;
           }
         }
-        p {
-          font-size: 10px;
+        .similerbox {
+          background-color: white;
+          padding: 10px;
+          .similername {
+            font-size: 14px;
+            margin-top: 8px;
+          }
+          .similertext {
+            font-size: 14px;
+            font-weight: bold;
+            ul{
+              display: flex;
+              justify-content: space-between;
+            }
+          }
+          p {
+            font-size: 10px;
+          }
         }
       }
     }
