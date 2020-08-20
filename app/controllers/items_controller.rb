@@ -21,7 +21,6 @@ class ItemsController < ApplicationController
     end
 
   def create
-    binding.pry
     brand = Brand.new(brand_params)
     brand.save
     @item = Item.new(item_params.merge(brand_id: brand.id))
@@ -34,32 +33,17 @@ class ItemsController < ApplicationController
   
   def edit
     @brand =  Brand.find(params[:id])
-    @catogory = Category.find(params[:id])
-    @item_condition = ItemCondition(params[:id])
-    @postage_payer = PostagePayer(params[:id])
-    @postage_type = PostageType(params[:id])
-    @preparation_day = PreparationDay(params[:id])
+    @category = Category.find(params[:id])
+    @category_parent_array = Category.where(ancestry: nil)
     @item = Item.find(params[:id])
   end
 
   def update
-    @brand =  Brand.find(params[:id])
-    @category = Category.find(params[:id])
-    @item_condition = ItemCondition.find(params[:id])
-    @postage_payer = PostagePayer.find(params[:id])
-    @postage_type = PostageType.find(params[:id])
-    @preparation_day = PreparationDay.find(params[:id])
-    @brand.update
-    @category.update
-    @item_condition.update
-    @postage_payer.update
-    @postage_type.update
-    @preparation_day.update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to root_path, notice: "商品情報を更新しました"
     else
-      render "/items/new"
+      render "/items/edit", alert: "更新できませんでした"
     end
   end
 
