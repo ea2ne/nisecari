@@ -15,8 +15,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'items#new'
-  resources :items, excect: :show
+  root 'items#index'
   resources :items do
     member do
       get 'buy'
