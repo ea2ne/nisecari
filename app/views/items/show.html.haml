@@ -7,6 +7,10 @@
         パスタ
       .mainimg
         = image_tag(image_path('main/pasta.png'))
+        - if @items.buyer_id.present?
+          .showbox
+            .showbox-sold
+              soldout
       .mainsub
         .subpict
           = image_tag(image_path('main/bazil.png'))
@@ -16,9 +20,6 @@
         ¥1000
       .pricecomment
         (税込)送料込み
-      - if @item.buyer_id.present?
-        .soldout
-          soldout
       .itemnamesub
         パスタ
       .itemtable

@@ -34,6 +34,25 @@
         width: 600px;
         height: 350px;
       }
+      .showbox{
+        width: 0;
+        height: 0;
+        border-width: 120px 120px 0 0;
+        border-color: #ea352d transparent transparent transparent;
+        display: block;
+        position: absolute;
+        top: 230px;
+        z-index: 1;
+        border-style: solid;
+        .showbox-sold{
+          transform: rotate(-45deg);
+          font-size: 24px;
+          margin:-52px 2px;
+          color: #fff;
+          letter-spacing: 2px;
+          font-weight: 600;
+        }
+      }
     }
 
     .mainsub {
