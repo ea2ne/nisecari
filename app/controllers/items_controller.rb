@@ -18,14 +18,6 @@ class ItemsController < ApplicationController
       @category_children = Category.find("#{params[:parent_id]}").children
     end
 
-  def create
-    @item = Item.new(item_params)
-    if @item.save
-      redirect_to root_path      
-    else
-      render :new
-    end
-  end
     def get_category_grandchildren
       @category_grandchildren = Category.find("#{params[:child_id]}").children
     end
@@ -35,7 +27,6 @@ class ItemsController < ApplicationController
 
 
   def create
-  
     brand = Brand.new(brand_params)
     brand.save
     @item = Item.new(item_params.merge(brand_id: brand.id))
@@ -147,14 +138,4 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
   end
-
-  private
-  def item_params
-    params.require(:item).permit(:name, :price, :trading_status,  item_images_attributes: [:url, :_destroy, :id])
-  end
-
-  def set_item
-    @item = Item.find(params[:id])
-  end
 end
-
