@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :set_item, except: [:index, :new, :create]
 
   require "payjp"
-  before_action :set_item, only: [:buy, :pay, :show]
+  before_action :set_item, only: [:buy, :pay, :show, :edit, :update]
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
   end
@@ -22,11 +22,9 @@ class ItemsController < ApplicationController
       @category_grandchildren = Category.find("#{params[:child_id]}").children
     end
 
-  def edit
-  end
-
-
   def create
+    image = ItemImage.new(image_params)
+    image.save
     brand = Brand.new(brand_params)
     brand.save
     @item = Item.new(item_params.merge(brand_id: brand.id))
@@ -37,14 +35,20 @@ class ItemsController < ApplicationController
       render "/items/new"
     end
   end
+  
+  def edit
+    @brand =  Brand.find(params[:id])
+    @category = Category.find(params[:id])
+    @category_parent_array = Category.where(ancestry: nil)
+    @item = Item.find(params[:id])
+  end
 
   def update
-
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to root_path
+      redirect_to root_path, notice: "商品情報を更新しました"
     else
-      render "/items/new"
+      render "/items/edit", alert: "更新できませんでした"
     end
   end
 
@@ -130,12 +134,15 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id).merge(seller_id: current_user.id)
   end
 
+  def image_params
+    params.require(:item).permit(:item_id,:url)
+  end
+
   def brand_params
     params.require(:item).permit(:brand_name)
   end
   
   def set_item
     @item = Item.find(params[:id])
-
   end
 end

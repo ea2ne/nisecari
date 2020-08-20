@@ -15,13 +15,13 @@
         支払い金額 
       .result-price
         = "#{@item.price}" + "円"
-    - if @user.credit_card.present?
+    - if current_user.credit_card.present?
       .credit-menu
         .menu-title
           クレジットカード情報
         .credit-info
           .credit-image
-            = image_tag "cards/#{@card_src}", size: "80x60"
+            = image_tag "cards/#{@card_src}", size: "70x60"
           .credit-date
             = "***** ***** *****" + @customer_card.last4
           .expiration-date

@@ -47,10 +47,9 @@ $(function () {
       // メンターさんによるコード
       // $('#sell__main__content__file__box').append(dataIndex + 1);
       fileIndex.shift();
-      console.log("test2")
+      
 
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
-      console.log("test3")
     }
   });
       // メンターさんによるコード
