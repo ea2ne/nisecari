@@ -2,7 +2,7 @@ $(function () {
   const buildFileField = (index)=> {
     const html = `<div data-index="${index}" class="js-file_group">
                     <input class="js-file" type="file"
-                    name="item[item_images_attributes][${index}][src]"
+                    name="item[item_images_attributes][${index}][url]"
                     id="item_images_attributes_${index}_src"><br>
                     <div class="js-remove">削除</div>
                   </div>`;
@@ -48,7 +48,6 @@ $(function () {
       // $('#sell__main__content__file__box').append(dataIndex + 1);
       fileIndex.shift();
       
-
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     }
   });

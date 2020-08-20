@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:index, :new, :create]
+  before_action :set_item, except: [:index, :new, :create, :show]
 
   require "payjp"
   before_action :set_item, only: [:buy, :pay, :show, :edit, :update]
@@ -14,17 +14,15 @@ class ItemsController < ApplicationController
     @category_parent_array = Category.where(ancestry: nil)
   end
   
-    def get_category_children
-      @category_children = Category.find("#{params[:parent_id]}").children
-    end
+  def get_category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
+  end
 
-    def get_category_grandchildren
-      @category_grandchildren = Category.find("#{params[:child_id]}").children
-    end
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
 
   def create
-    image = ItemImage.new(image_params)
-    image.save
     brand = Brand.new(brand_params)
     brand.save
     @item = Item.new(item_params.merge(brand_id: brand.id))
@@ -36,10 +34,7 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    @brand =  Brand.find(params[:id])
-    @category = Category.find(params[:id])
     @category_parent_array = Category.where(ancestry: nil)
-    @item = Item.find(params[:id])
   end
 
   def update
