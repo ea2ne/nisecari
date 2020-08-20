@@ -83,15 +83,19 @@
   
       table th{
         width: 20%;
-        border:solid 1px #aaaaaa;
-        padding : 8px;
+        border:solid 1px lightgray;
+        padding : 12px;
         background-color: #eee;
+        text-align: center;
       }
       
       table td{
-        padding: 8px;
+        padding: 12px;
         width: 80%;
-        border:solid 1px #aaaaaa;
+        border:solid 1px lightgray;
+        a {
+          color: #3CCACE;
+        }
       }
   
     }
