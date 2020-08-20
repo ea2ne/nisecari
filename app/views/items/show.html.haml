@@ -7,11 +7,11 @@
         = @item.name
       .mainimg
         - @item.item_images.first(1).each do |img|
-            = image_tag "#{img.url}", size:"400x350"
-          - if @items.buyer_id.present?
-            .showbox
-              .showbox-sold
-                soldout
+          = image_tag "#{img.url}", size:"400x350"
+        - if @item.buyer_id.present?
+          .showbox
+            .showbox-sold
+              soldout
         
       .mainsub
         - @item.item_images.first(10).each do |img|
