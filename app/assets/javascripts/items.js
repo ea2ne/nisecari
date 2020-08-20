@@ -36,7 +36,8 @@ $(function () {
       // メンターさんによるコード
       // const dataIndex = $(this).data("index");
 
-      if ($(".image-index").length < 2) {
+      // 10枚の投稿制限
+      if ($(".image-index").length < 10) {
         $('#previews').append(buildImg(targetIndex, blobUrl));
         $('.js-file_group').append(buildFileField(fileIndex[0]));
       } else {
