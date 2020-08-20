@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
 
   has_many :item_images, dependent: :destroy
-  
   belongs_to :category
   belongs_to :user, optional:true
+
   
 
   belongs_to :seller, class_name: "User"
@@ -11,7 +11,8 @@ class Item < ApplicationRecord
   belongs_to :brand
   validates :item_introduction, length: {maximum: 1000}, presence: true
   validates :name, length: {maximum: 40}, presence: true
-  validates :item_condition, :postage_payer, :prefecture, :preparation_day, :price, presence: true
+  validates :price, presence: true
+  # validates :item_condition_id, :postage_payer, :prefecture, :preparation_day, numericality: { greater_than: 0 }
   accepts_nested_attributes_for :item_images, allow_destroy: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
