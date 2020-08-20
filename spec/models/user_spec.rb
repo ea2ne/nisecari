@@ -25,9 +25,9 @@ describe User do
     end
 
     it "is invalid without a password_confirmation although with a password" do
-      user = build(:user, password_confirmation: nil)
+      user = build(:user, password_confirmation: "")
       user.valid?
-      expect(user.errors[:password_confirmation]).to include("とパスワードの入力が一致しませ")
+      expect(user.errors[:password_confirmation]).to include("とPasswordの入力が一致しません")
     end
 
     it "is invalid with a duplicate email address" do
@@ -38,7 +38,7 @@ describe User do
     end
 
     it "is valid with a password that has more than 7 characters " do
-      user = build(:user, password: "0000000", password_confirmation: "0000000")
+      user = build(:user, password: "0000000k", password_confirmation: "0000000k")
       user.valid?
       expect(user).to be_valid
     end

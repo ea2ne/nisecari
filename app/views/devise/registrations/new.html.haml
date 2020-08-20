@@ -36,6 +36,8 @@
         .loginregist__form__field
           .formfield__label--normal
             = f.label :password_confirmation, 'パスワード(再入力)'
+            %span.important
+              必須
           .formfield__input--normal
             = f.password_field :password_confirmation, autocomplete: "new-password"
         .loginregist__form__actions
