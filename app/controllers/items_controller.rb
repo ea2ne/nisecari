@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, except: [:index, :new, :create]
+
   require "payjp"
   before_action :set_item, only: [:buy, :pay,:show, :edit, :update]
   def index
@@ -16,6 +18,14 @@ class ItemsController < ApplicationController
       @category_children = Category.find("#{params[:parent_id]}").children
     end
 
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to root_path      
+    else
+      render :new
+    end
+  end
     def get_category_grandchildren
       @category_grandchildren = Category.find("#{params[:child_id]}").children
     end
@@ -39,6 +49,7 @@ class ItemsController < ApplicationController
   end
 
   def update
+
     @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to root_path, notice: "商品情報を更新しました"
@@ -133,6 +144,15 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:brand_name)
   end
   
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  private
+  def item_params
+    params.require(:item).permit(:name, :price, :trading_status,  item_images_attributes: [:url, :_destroy, :id])
+  end
+
   def set_item
     @item = Item.find(params[:id])
   end

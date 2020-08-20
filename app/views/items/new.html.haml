@@ -13,11 +13,14 @@
         -#   %p{style: "color: red;"}= @item.errors.full_messages_for(:item_image).first
         %p.sell__main__content__file__text
           最大10枚までアップロードできます 
-        .sell__main__content__file__box
+        .pic-up
           %input{type: "file", class: "sell__main__content__file__up"}
             = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
           %pre.sell__main__content__file__box__inner
-            ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
+            写真を投稿
+        .sell__main__content__file__box
+          .js
+            = render partial: 'form'
       .sell__main__content__form
         %label
           商品名
