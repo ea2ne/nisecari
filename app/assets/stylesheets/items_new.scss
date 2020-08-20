@@ -1,12 +1,25 @@
 .sell {
   background-color: #f5f5f5;
   color: #333;
-  font-size: 11px;
+  font-size: 14px;
   .form-require {
     box-sizing: border-box;
     font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic,
       メイリオ, Meiryo, sans-serif;
     background-color: #ea352d;
+    margin: 0 0 0 8px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+    vertical-align: top;
+    font-weight: 600px;
+  }
+  .form-require-gray {
+    box-sizing: border-box;
+    font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic,
+      メイリオ, Meiryo, sans-serif;
+    background-color: gray;
     margin: 0 0 0 8px;
     padding: 2px 4px;
     border-radius: 2px;
@@ -35,6 +48,9 @@
     margin: 0 auto;
     background-color: #fff;
     &__content {
+      &__explan {
+        font-size: 11px;
+      }
       &__file {
         font-size: 14px;
         font-weight: 600;
@@ -44,25 +60,55 @@
         box-sizing: border-box;
         font-family: "Source Sans Pro", Helvetica, Arial, 游ゴシック体, YuGothic,
           メイリオ, Meiryo, sans-serif;
-        &__up {
-          &__data {
-            position: relative;
-            top: 50px;
-            width: 30px;
-            height: 30px;
-          }
-        }
+
         &__text {
           margin: 8px 0 0;
           line-height: 1.5;
           font-weight: normal;
           font-size: 14px;
             }
+
+          .pic-up{
+            height: 80px;
+            background-color: #ccc;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 0 auto;
+            cursor: pointer;
+            display: block;
+          }
+          &__up {
+            display: none;
+            position: absolute;
+            &__data {
+              position: relative;
+              top: 10px;
+              left: 290px;
+              margin: 0 auto;
+              width: 40px;
+              height: 40px;
+            }
+          }
+
+          .sell__main__content__file__box__inner {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            -webkit-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            pointer-events: none;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: monospace, monospace;
+            }
+
         &__box {
-          display: block;
-          width: 620px;
+          // display: block;
+          display: flex;
+          width: 602px;
           margin: 16px auto 0;
-          min-height: 162px;
+          height: 180px;
           background: #f5f5f5;
           border: 1px dashed #ccc;
           font-size: 0;
@@ -75,19 +121,25 @@
           transition: box-shadow ease-out 0.3s;
           transition: box-shadow ease-out 0.3s,
             -webkit-box-shadow ease-out 0.3s;
-          cursor: pointer;
-          &__inner {
-            text-align: center;
-            margin-top: 80px;
-            font-size: 14px;
-            line-height: 1.5;
-            -webkit-transform: translate(0, -50%);
-            transform: translate(0, -50%);
-            pointer-events: none;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-family: monospace, monospace;
+          position: relative;
+          flex-wrap: wrap;
+
+          .js {
+            display: flex;
+            flex-wrap: wrap;
+          }
+            .js-file {
+              height: 100%;
+              width: 100%;
+              cursor: pointer;
+              flex-grow: 1;
+              display: none;
             }
+
+            .js-file_group {
+              position: absolute;
+            }
+
           }
           &__input {
             width: 100%;

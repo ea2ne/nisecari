@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     get 'sending_destination', to: 'users/registrations#new_sending_destination'
     post 'sending_destination', to: 'users/registrations#create_sending_destination'
   end
-  resources :items ,only: [:index, :show, :new, :edit, :destroy] do
+  resources :items ,only: [:index, :show, :new, :edit, :update, :destroy] do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   root 'items#index'
+  resources :items, excect: :show
   resources :items do
     member do
       get 'buy'
