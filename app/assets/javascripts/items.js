@@ -1,5 +1,4 @@
 $(function () {
-  console.log("test1")
   const buildFileField = (index)=> {
     const html = `<div data-index="${index}" class="js-file_group">
                     <input class="js-file" type="file"
@@ -48,10 +47,9 @@ $(function () {
       // メンターさんによるコード
       // $('#sell__main__content__file__box').append(dataIndex + 1);
       fileIndex.shift();
-      console.log("test2")
+      
 
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
-      console.log("test3")
     }
   });
       // メンターさんによるコード

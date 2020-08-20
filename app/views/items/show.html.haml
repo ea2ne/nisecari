@@ -31,13 +31,13 @@
             %th カテゴリー
             %td 
               = link_to "#" do
-                = @parent.name
+                = @grandchild.name
               %br
               = link_to "#" do
                 = @child.name
               %br
               = link_to "#" do
-                = @grandchild.name
+                = @parent.name
           %tr
             %th ブランド
             %td
@@ -64,14 +64,13 @@
             %li.buttonbox__delete
               = link_to "商品を削除", "/items/#{@item.id}", method: :delete
             %li.buttonbox__edit
-              = link_to "商品を編集", "#"
+              = link_to "商品を編集", edit_item_path(@item) 
             %li.buttonbox__report 不適切な商品の通報
           - else
             %li.buttonbox__favorite お気に入り 0
             %li.buttonbox__report 不適切な商品の通報
 
-      - if user_signed_in? && current_user.id == @item.seller_id
-      - else
+      - if user_signed_in? && current_user.id != @item.seller_id
         = link_to buy_item_path, class: "payment-btn" do
           購入画面に進む
 
