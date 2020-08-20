@@ -26,12 +26,14 @@ class ItemsController < ApplicationController
 
 
   def create
+  
     brand = Brand.new(brand_params)
     brand.save
     @item = Item.new(item_params.merge(brand_id: brand.id))
     if @item.save
       redirect_to root_path
     else
+      @category_parent_array = Category.where(ancestry: nil)
       render "/items/new"
     end
   end
@@ -124,7 +126,7 @@ class ItemsController < ApplicationController
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id).merge(seller_id: current_user.id)
   end
 
   def brand_params

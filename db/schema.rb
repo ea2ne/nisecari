@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_08_17_030440) do
     t.string "name", null: false
     t.string "ancestry"
   end
-  
+
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "customer_id", null: false
