@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
@@ -86,3 +86,6 @@ gem 'ancestry'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails-i18n'
+gem "omniauth-rails_csrf_protection"
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
