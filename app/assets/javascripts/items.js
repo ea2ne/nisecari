@@ -59,14 +59,12 @@ $(function () {
   // });
 
   $('.js').on('click', 'img', function() {
-    console.log("test4")
     const targetIndex = $(this).data('index')
     console.log(targetIndex)
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     if (hiddenCheck) hiddenCheck.prop('checked', true);
     $(this).remove();
     if ($('.image-index').length == 0) $('js').append(buildFileField(fileIndex[0]));
-    console.log("test5")
       $(`img[data-index="${targetIndex}"]`).remove();
   });
 });
