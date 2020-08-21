@@ -3,7 +3,7 @@ $(function () {
     const html = `<div data-index="${index}" class="js-file_group">
                     <input class="js-file" type="file"
                     name="item[item_images_attributes][${index}][src]"
-                    id="item_images_attributes_${index}_src"><br>
+                    id="item_images_attributes_${index}_url"><br>
                     <div class="js-remove">削除</div>
                   </div>`;
     return html;
