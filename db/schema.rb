@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_033750) do
     t.integer "preparation_day_id", null: false
     t.integer "prefecture_id", null: false
     t.text "item_introduction", null: false
+    t.integer "brand_id", null: false
     t.bigint "category_id"
     t.index ["category_id"], name: "index_items_on_category_id"
   end

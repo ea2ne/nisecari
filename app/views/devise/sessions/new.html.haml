@@ -27,6 +27,8 @@
         .loginregist__form__login
           %p アカウントをお持ちでない方
           = render "devise/shared/links"
+          = link_to 'Facebookで登録', user_facebook_omniauth_authorize_path, method: :post
+          = link_to 'Googleで登録', user_google_oauth2_omniauth_authorize_path, method: :post
 .loginregist__footer
   .loginregist__logo
     = image_tag "material/logo/logo-white.png"
