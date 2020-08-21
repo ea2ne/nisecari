@@ -23,7 +23,7 @@ $(function () {
     const file_field = $(".js-file:last"); // 一番最後のfile_field（新規でアップロードする箇所）を取得
     file_field.trigger("click"); // file_fieldをクリックさせる。
 
-  })
+  });
 
   $(document).on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
@@ -32,9 +32,6 @@ $(function () {
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('url', blobUrl);
     } else {
-      // メンターさんによるコード
-      // const dataIndex = $(this).data("index");
-
       // 10枚の投稿制限
       if ($(".image-index").length < 10) {
         $('#previews').append(buildImg(targetIndex, blobUrl));
@@ -43,29 +40,18 @@ $(function () {
         alert("投稿できる画像は10枚までです。消したい画像をクリックしてください。");
       }
 
-
-      // メンターさんによるコード
-      // $('#sell__main__content__file__box').append(dataIndex + 1);
       fileIndex.shift();
       
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1)
     }
   });
-      // メンターさんによるコード
-  // $('.new_item').on('click', function() {
-  //   const fileField = $('.js-file:last');
-  //   fileField.trigger("click");
-  // });
 
   $('.js').on('click', 'img', function() {
-    console.log("test4")
     const targetIndex = $(this).data('index')
-    console.log(targetIndex)
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
     if (hiddenCheck) hiddenCheck.prop('checked', true);
     $(this).remove();
     if ($('.image-index').length == 0) $('js').append(buildFileField(fileIndex[0]));
-    console.log("test5")
       $(`img[data-index="${targetIndex}"]`).remove();
   });
 });
