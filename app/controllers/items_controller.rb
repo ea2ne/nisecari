@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:buy, :pay, :show, :edit, :update]
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
+    @items = Item.all.includes(:user)
   end
 
   def new
@@ -71,6 +72,10 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
+  def favorites
+    @item = current_user.favorite_items.includes(:user)
+  end
+
 
   def buy
     @images = @item.item_images.all
@@ -132,7 +137,7 @@ class ItemsController < ApplicationController
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id,item_images_attributes: [:id, :item_id, :url]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, :user_id, item_images_attributes: [:id, :item_id, :url]).merge(seller_id: current_user.id)
   end
 
   def brand_params
