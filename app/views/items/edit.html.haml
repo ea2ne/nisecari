@@ -5,20 +5,37 @@
       = image_tag "material/logo/logo.png", class: "sell__header__img"
   .sell__main
     .sell__main__content
-    = form_for @item, url: item_path, method: "patch" do |f|
+    = form_with model: @item, local: true do |f|
       .sell__main__content__file
         出品画像
         %span.form-require
           必須
-        -# -if @item.errors.include?(:item_image)
-        -#   %p{style: "color: red;"}= @item.errors.full_messages_for(:item_image).first
         %p.sell__main__content__file__text
           最大10枚までアップロードできます 
-        .sell__main__content__file__box
+        .pic-up
           %input{type: "file", class: "sell__main__content__file__up"}
             = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
           %pre.sell__main__content__file__box__inner
-            ドラッグアンドドロップ<br>またはクリックしてファイルをアップロード
+            写真を投稿
+        .sell__main__content__file__box
+          .js
+            #image-box
+              #previews
+                - if @item.persisted?
+                  - @item.item_images.each_with_index do |image, i|
+                    = image_tag image.url.url, data: { index: i }, width: "100", height: '100'
+              = f.fields_for :item_images do |image|
+                .js-file_group{"data-index" => "#{image.index}"}
+                  = image.file_field :url, class: 'js-file'
+                  %br/
+                  %span.js-remove 削除
+                - if @item.persisted?
+                  = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+              - if @item.persisted?
+                .js-file_group{"data-index" => "#{@item.item_images.count}"}
+                  = file_field_tag :url, name: "item[item_images_attributes][#{@item.item_images.count}][url]", class: 'js-file'
+                  .js-remove 削除
+            = f.submit
       .sell__main__content__form
         %label
           商品名
@@ -33,7 +50,7 @@
             必須
         -if @item.errors.include?(:item_introduction)
           %p{style: "color: red;"}= @item.errors.full_messages_for(:item_introduction).first
-        =f.text_field :item_introduction, class:"sell__main__content__form__input", placeholder: "商品の説明（必須　1000文字以内）（色、素材、重さ、定価、注意点など）　例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
+        = f.text_field :item_introduction, class:"sell__main__content__form__input", placeholder: "商品の説明（必須　1000文字以内）（色、素材、重さ、定価、注意点など）　例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
       .sell__main__content__form
         .sell__main__content__form__info
           商品の詳細
@@ -45,7 +62,11 @@
             .sell__main__content__form__box__group__form
               .category
                 .form_lab
-                  = f.collection_select :category_id, @category_parent_array, :id, :name,{ include_blank: "選択してください"}, {class: 'sell__main__content__form__box__group__select__category--select', id: 'category_id'}
+                  = f.collection_select :category_id, @category_parent_array, :id, :name,{ include_blank: "選択してください", selected:@item.category.parent.parent.id}, {class: 'serect_field', id: 'category_id'}
+                .category__child#children_wrapper
+                  = f.collection_select :category_id, @category_child_array, :id, :name,{selected:@item.category.parent.id},{class: 'serect_field', id: 'child__category'}
+                .category__child#grandchildren_wrapper
+                  = f.collection_select :category_id, @category_grandchild_array, :id, :name,{selected:@item.category.id},{class: 'serect_field', id: 'grandchild__category'}
             %label 
               ブランド
               %span.form-require-gray

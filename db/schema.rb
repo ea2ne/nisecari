@@ -47,7 +47,6 @@ ActiveRecord::Schema.define(version: 2020_08_21_021057) do
     t.string "url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "src"
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
 

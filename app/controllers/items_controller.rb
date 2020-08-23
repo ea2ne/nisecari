@@ -1,8 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, except: [:index, :new, :create]
-
   require "payjp"
-  before_action :set_item, only: [:buy, :pay, :show, :edit, :update]
+  before_action :set_item, only: [:buy, :pay, :show, :edit, :update, :destroy]
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
     @items = Item.all.includes(:user)
@@ -15,13 +13,13 @@ class ItemsController < ApplicationController
     @category_parent_array = Category.where(ancestry: nil)
   end
   
-    def get_category_children
-      @category_children = Category.find("#{params[:parent_id]}").children
-    end
+  def get_category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
+  end
 
-    def get_category_grandchildren
-      @category_grandchildren = Category.find("#{params[:child_id]}").children
-    end
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
 
   def create
     brand = Brand.new(brand_params)
@@ -37,16 +35,16 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    @brand =  Brand.find(params[:id])
-    @category = Category.find(params[:id])
+    @item.build_brand
     @category_parent_array = Category.where(ancestry: nil)
-    @item = Item.find(params[:id])
+    @category_child_array = @item.category.parent.siblings
+    @category_grandchild_array = @item.category.siblings
   end
 
   def update
-    @item = Item.find(params[:id])
+    @category_parent_array = Category.where(ancestry: nil)
     if @item.update(item_params)
-      redirect_to root_path, notice: "商品情報を更新しました"
+      redirect_to root_path
     else
       render "/items/edit", alert: "更新できませんでした"
     end
@@ -64,11 +62,8 @@ class ItemsController < ApplicationController
   end
 
   
-
-
   def destroy
-    @items = Item.find(params[:id])
-    @items.destroy
+    @item.destroy
     redirect_to root_path
   end
 
@@ -147,4 +142,5 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
 end
