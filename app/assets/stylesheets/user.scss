@@ -147,15 +147,54 @@
       }
 
       .loginregist__form__actions {
-        margin-top: 50px;
         width: 250px;
         .ButtonNext {
           padding: 10px 20px;
+          height: 45px;
           width: 350px;
           border: none;
           border-radius: 0.3em;
           background-color: #3CCACE;
           color: white;
+          margin-top: 20px;
+          font-size: 12px;
+        }
+        .ButtonFacebook {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 10px 20px;
+          height: 45px;
+          width: 350px;
+          border: none;
+          border-radius: 0.3em;
+          background-color: #385185;
+          margin-top: 20px;
+          text-align: center;
+          color: white;
+          font-size: 12px;
+          .login-icon {
+            font-size: 18px;
+            margin-right: 10px;
+          }
+        }
+        .ButtonGoogle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 10px 20px;
+          height: 45px;
+          width: 350px;
+          border: 1px solid black;
+          border-radius: 0.3em;
+          background-color: white;
+          margin-top: 20px;
+          text-align: center;
+          font-size: 12px;
+          .login-icon {
+            font-size: 18px;
+            margin-right: 10px;
+          }
         }
       }
 

@@ -48,11 +48,23 @@
                 = f.password_field :password_confirmation, autocomplete: "new-password"
             .loginregist__form__actions
               = f.submit "次へ", class: 'ButtonNext', url: "profile_path"
+            .loginregist__form__actions
+              = link_to user_facebook_omniauth_authorize_path, method: :post do
+                %button.ButtonFacebook
+                  %p.login-icon
+                    = icon('fab', 'facebook-square')
+                  %p.login-where
+                    Facebookで登録
+            .loginregist__form__actions
+              = link_to user_google_oauth2_omniauth_authorize_path, method: :post do
+                %button.ButtonGoogle
+                  %p.login-icon
+                    = icon('fab', 'google')
+                  %p.login-where
+                    Googleで登録
         .loginregist__form__login
           %p アカウントをお持ちの方
           = render "devise/shared/links"
-          = link_to 'Facebookで登録', user_facebook_omniauth_authorize_path, method: :post
-          = link_to 'Googleで登録', user_google_oauth2_omniauth_authorize_path, method: :post
 .loginregist__footer
   .loginregist__logo
     = image_tag "material/logo/logo-white.png"
