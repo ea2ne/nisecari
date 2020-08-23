@@ -99,7 +99,8 @@ class ItemsController < ApplicationController
       @exp_month = @customer_card.exp_month.to_s
       @exp_year = @customer_card.exp_year.to_s.slice(2,3)
     else
-      redirect_to user_session_path, alert: "ログインしてください"
+      redirect_to item_path(@item.id), alert: "クレジットカードを登録してください"
+      return false
     end
   end
   
