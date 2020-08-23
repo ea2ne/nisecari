@@ -141,6 +141,7 @@ class ItemsController < ApplicationController
   def set_item_buy
     if current_user.id == @item.seller_id
       redirect_to item_path(@item.id), alert: "出品した商品は購入できません"
+      return false
     end
     if @item.buyer_id.present?
       redirect_to item_path(@item.id), alert: "この商品は売り切れています"
