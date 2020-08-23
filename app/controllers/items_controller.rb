@@ -34,10 +34,14 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    @item.build_brand
-    @category_parent_array = Category.where(ancestry: nil)
-    @category_child_array = @item.category.parent.siblings
-    @category_grandchild_array = @item.category.siblings
+    if user_signed_in? && current_user.id == @item.seller_id
+      @item.build_brand
+      @category_parent_array = Category.where(ancestry: nil)
+      @category_child_array = @item.category.parent.siblings
+      @category_grandchild_array = @item.category.siblings
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -62,8 +66,11 @@ class ItemsController < ApplicationController
 
   
   def destroy
-    @item.destroy
-    redirect_to root_path
+    if user_signed_in? && current_user.id == @item.seller_id
+      @item.destroy
+    else
+      redirect_to root_path
+    end
   end
 
 
