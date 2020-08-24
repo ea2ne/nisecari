@@ -12,12 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_08_21_021057) do
 
-  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "brand_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "ancestry"
@@ -63,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_08_21_021057) do
     t.integer "preparation_day_id", null: false
     t.integer "prefecture_id", null: false
     t.text "item_introduction", null: false
-    t.integer "brand_id"
+    t.string "brand"
     t.bigint "category_id"
     t.bigint "user_id"
     t.index ["category_id"], name: "index_items_on_category_id"

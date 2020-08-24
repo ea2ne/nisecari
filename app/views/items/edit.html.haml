@@ -71,7 +71,7 @@
               ブランド
               %span.form-require-gray
                 任意<br>
-              = f.text_field :brand_name, placeholder: "例）シャネル", value: "", class: "sell__main__content__form__input"
+              = f.text_field :brand, placeholder: "例）シャネル", value: "", class: "sell__main__content__form__input"
             %label
               商品の状態
               %span.form-require
@@ -161,4 +161,4 @@
               加盟店規約
             に同意したことになります。
 .main
-  = render "footer"
+  = render 'footer'

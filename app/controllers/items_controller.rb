@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   require "payjp"
   before_action :set_item, only: [:buy, :pay, :show, :edit, :update, :destroy]
+  before_action :set_item_buy, only: [:buy, :pay]
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
     @items = Item.all.includes(:user)
@@ -9,7 +10,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item_image = @item.item_images.build
-    @item.build_brand
     @category_parent_array = Category.where(ancestry: nil)
   end
   
@@ -22,10 +22,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    brand = Brand.new(brand_params)
-    brand.save
     @item = Item.new(item_params)
-    @item.brand_id = brand.id
     if @item.save
       redirect_to root_path
     else 
@@ -35,10 +32,13 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    @item.build_brand
-    @category_parent_array = Category.where(ancestry: nil)
-    @category_child_array = @item.category.parent.siblings
-    @category_grandchild_array = @item.category.siblings
+    if user_signed_in? && current_user.id == @item.seller_id
+      @category_parent_array = Category.where(ancestry: nil)
+      @category_child_array = @item.category.parent.siblings
+      @category_grandchild_array = @item.category.siblings
+    else
+      redirect_to root_path
+    end
   end
 
   def update
@@ -66,8 +66,11 @@ class ItemsController < ApplicationController
 
   
   def destroy
-    @item.destroy
-    redirect_to root_path
+    if user_signed_in? && current_user.id == @item.seller_id
+      @item.destroy
+    else
+      redirect_to root_path
+    end
   end
 
   def favorites
@@ -76,74 +79,74 @@ class ItemsController < ApplicationController
 
 
   def buy
-    @images = @item.item_images.all
-    if user_signed_in?
-      if current_user.credit_card.present?
-        Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
-        @card = CreditCard.find_by(user_id: current_user.id)
-        customer = Payjp::Customer.retrieve(@card.customer_id)
-        @customer_card = customer.cards.retrieve(@card.card_id)
-        @card_brand = @customer_card.brand
-        case @card_brand
-        when "Visa"
-         @card_src = "visa.png"
-        when "JCB"
-         @card_src = "jcb.png"
-        when "MasterCard"
-         @card_src = "master.png"
-        when "American Express"
-         @card_src = "amex.png"
-        when "Diners Club"
-         @card_src = "diners.png"
-        when "Discover"
-         @card_src = "discover.png"
-        end
-        @exp_month = @customer_card.exp_month.to_s
-        @exp_year = @customer_card.exp_year.to_s.slice(2,3)
+    if user_signed_in? && current_user.credit_card.present?
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+      @card = CreditCard.find_by(user_id: current_user.id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @customer_card = customer.cards.retrieve(@card.card_id)
+      @card_brand = @customer_card.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "visa.png"
+      when "JCB"
+        @card_src = "jcb.png"
+      when "MasterCard"
+        @card_src = "master.png"
+      when "American Express"
+        @card_src = "amex.png"
+      when "Diners Club"
+        @card_src = "diners.png"
+      when "Discover"
+        @card_src = "discover.png"
       end
+      @exp_month = @customer_card.exp_month.to_s
+      @exp_year = @customer_card.exp_year.to_s.slice(2,3)
     else
-      redirect_to user_session_path, alert: "ログインしてください"
+      redirect_to item_path(@item.id), alert: "クレジットカードを登録してください"
+      return false
     end
   end
   
   
   def pay
-    if @item.buyer_id.present?
-      redirect_to item_path(@item.id), aleart: "売り切れています"
-    else
-      @item.with_lock do
-        if current_user.credit_card.present?
-          @card = CreditCard.find_by(user_id: current_user.id)
-          Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
-          charge = Payjp::Charge.create(
-            amount: @item.price,
-            customer: Payjp::Customer.retrieve(@card.customer_id),
-            currency: 'jpy'
-          )
-        else
-          Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
-          Payjp::Charge.create(
-            amount: @item.price,
-            card: params['payjp-token'],
-            currency: 'jpy'
-          )
-        end
-       @item.update(buyer_id: current_user.id)
+    @item.with_lock do
+      if current_user.credit_card.present?
+        @card = CreditCard.find_by(user_id: current_user.id)
+        Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+        charge = Payjp::Charge.create(
+          amount: @item.price,
+          customer: Payjp::Customer.retrieve(@card.customer_id),
+          currency: 'jpy'
+        )
+      else
+        Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+        Payjp::Charge.create(
+          amount: @item.price,
+          card: params['payjp-token'],
+          currency: 'jpy'
+        )
       end
+      @item.update(buyer_id: current_user.id)
     end
   end
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, :user_id, brand_attributes: [:id, :brand_name],item_images_attributes: [:id, :item_id, :url, :_destroy]).merge(seller_id: current_user.id)
-  end
-
-  def brand_params
-    params.require(:item).permit(:brand_name)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :brand, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, item_images_attributes: [:id, :url, :_destroy]).merge(seller_id: current_user.id)
   end
   
   def set_item
     @item = Item.find(params[:id])
   end
-
+  def set_item_buy
+    if current_user.id == @item.seller_id
+      redirect_to item_path(@item.id), alert: "出品した商品は購入できません"
+      return false
+    end
+    if @item.buyer_id.present?
+      redirect_to item_path(@item.id), alert: "この商品は売り切れています"
+      return false
+    end
+  end
+  
 end
