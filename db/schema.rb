@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_08_21_021057) do
     t.string "url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "src"
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
 
@@ -62,7 +63,7 @@ ActiveRecord::Schema.define(version: 2020_08_21_021057) do
     t.integer "preparation_day_id", null: false
     t.integer "prefecture_id", null: false
     t.text "item_introduction", null: false
-    t.integer "brand_id", null: false
+    t.integer "brand_id"
     t.bigint "category_id"
     t.bigint "user_id"
     t.index ["category_id"], name: "index_items_on_category_id"

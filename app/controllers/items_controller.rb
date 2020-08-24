@@ -43,8 +43,11 @@ class ItemsController < ApplicationController
 
   def update
     @category_parent_array = Category.where(ancestry: nil)
-    if @item.update(item_params)
-      redirect_to root_path
+    @category_child_array = @item.category.parent.siblings
+    @category_grandchild_array = @item.category.siblings
+    if user_signed_in? && current_user.id == @item.seller_id
+        @item.update(item_params)
+        redirect_to root_path
     else
       render "/items/edit", alert: "更新できませんでした"
     end
@@ -132,7 +135,7 @@ class ItemsController < ApplicationController
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, :user_id, item_images_attributes: [:id, :item_id, :url]).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, :user_id, brand_attributes: [:id, :brand_name],item_images_attributes: [:id, :item_id, :url, :_destroy]).merge(seller_id: current_user.id)
   end
 
   def brand_params

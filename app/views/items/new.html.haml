@@ -1,6 +1,6 @@
 .sell
   .sell__header
-    = link_to "" do
+    = link_to root_path do
       = image_tag "material/logo/logo.png", class: "sell__header__img"
   .sell__main
     .sell__main__content
@@ -68,7 +68,11 @@
               ブランド
               %span.form-require-gray
                 任意<br>
-              = f.text_field :brand_name, placeholder: "例）シャネル", value: "", class: "sell__main__content__form__input"
+              = f.fields_for :brand, @item.build_brand do |brand|
+                = brand.label "ブランド"
+                %span.form-require-gray
+                任意<br>
+                = brand.text_field :brand_name, placeholder: "例）シャネル", value: "", class: "sell__main__content__form__input"
             %label
               商品の状態
               %span.form-require
