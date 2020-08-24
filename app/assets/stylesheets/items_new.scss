@@ -127,7 +127,6 @@
           .js {
             display: flex;
             flex-wrap: wrap;
-          }
             .js-file {
               height: 100%;
               width: 100%;
@@ -135,6 +134,12 @@
               flex-grow: 1;
               display: none;
             }
+  
+            .hidden-destroy {
+              display: none;
+            }
+          }
+          
 
             .js-file_group {
               position: absolute;
