@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item_image = @item.item_images.build
-    # @item.build_brand
+    @item.build_brand
     @category_parent_array = Category.where(ancestry: nil)
   end
   
