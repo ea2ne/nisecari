@@ -6,8 +6,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
-    # @q = Item.ransack(params[:q])
-    # @items = @q.result(distinct: true)
   end
 
   def new
