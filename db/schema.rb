@@ -10,13 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_033750) do
-
-  create_table "brands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "brand_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
+ActiveRecord::Schema.define(version: 2020_08_17_030440) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -37,7 +31,6 @@ ActiveRecord::Schema.define(version: 2020_08_20_033750) do
     t.string "url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "src"
     t.index ["item_id"], name: "index_item_images_on_item_id"
   end
 
@@ -53,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_033750) do
     t.integer "preparation_day_id", null: false
     t.integer "prefecture_id", null: false
     t.text "item_introduction", null: false
-    t.integer "brand_id", null: false
+    t.string "brand"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_items_on_category_id"
   end
@@ -88,15 +81,6 @@ ActiveRecord::Schema.define(version: 2020_08_20_033750) do
     t.index ["user_id"], name: "index_sending_destinations_on_user_id"
   end
 
-  create_table "sns_credentials", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "provider"
-    t.string "uid"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_sns_credentials_on_user_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -115,5 +99,4 @@ ActiveRecord::Schema.define(version: 2020_08_20_033750) do
   add_foreign_key "items", "categories"
   add_foreign_key "profiles", "users"
   add_foreign_key "sending_destinations", "users"
-  add_foreign_key "sns_credentials", "users"
 end
