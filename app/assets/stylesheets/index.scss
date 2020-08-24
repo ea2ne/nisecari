@@ -442,7 +442,33 @@
               overflow: hidden;
               margin: 0;
               z-index: auto;
+              img{
+                height: 150px;
+                width: 220px;
+              }
+              .itembox{
+                width: 0;
+                height: 0;
+                border-width: 120px 120px 0 0;
+                border-color: #ea352d transparent transparent transparent;
+                display: block;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                border-style: solid;
+                .itembox-sold{
+                  transform: rotate(-45deg);
+                  font-size: 24px;
+                  margin:-52px 2px;
+                  color: #fff;
+                  letter-spacing: 2px;
+                  font-weight: 600;
+                }
+              }
             }
+            
+            
             .productList-body{
               background-color: white;
               color: #333;

@@ -1,47 +1,56 @@
 class ItemsController < ApplicationController
   require "payjp"
-  before_action :set_item, only: [:buy, :pay, :show]
+  before_action :set_item, only: [:buy, :pay, :show, :edit, :update, :destroy]
+  before_action :set_item_buy, only: [:buy, :pay]
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
   end
 
   def new
     @item = Item.new
-    @item.item_images.new
+    @item_image = @item.item_images.build
     @item.build_brand
     @category_parent_array = Category.where(ancestry: nil)
   end
   
-    def get_category_children
-      @category_children = Category.find("#{params[:parent_id]}").children
-    end
-
-    def get_category_grandchildren
-      @category_grandchildren = Category.find("#{params[:child_id]}").children
-    end
-
-  def edit
-    
+  def get_category_children
+    @category_children = Category.find("#{params[:parent_id]}").children
   end
 
+  def get_category_grandchildren
+    @category_grandchildren = Category.find("#{params[:child_id]}").children
+  end
 
   def create
     brand = Brand.new(brand_params)
     brand.save
-    @item = Item.new(item_params.merge(brand_id: brand.id))
+    @item = Item.new(item_params)
+    @item.brand_id = brand.id
     if @item.save
       redirect_to root_path
-    else
+    else 
+      @category_parent_array = Category.where(ancestry: nil)
       render "/items/new"
+    end
+  end
+  
+  def edit
+    if user_signed_in? && current_user.id == @item.seller_id
+      @item.build_brand
+      @category_parent_array = Category.where(ancestry: nil)
+      @category_child_array = @item.category.parent.siblings
+      @category_grandchild_array = @item.category.siblings
+    else
+      redirect_to root_path
     end
   end
 
   def update
-    @item = Item.find(params[:id])
+    @category_parent_array = Category.where(ancestry: nil)
     if @item.update(item_params)
       redirect_to root_path
     else
-      render "/items/new"
+      render "/items/edit", alert: "更新できませんでした"
     end
   end
 
@@ -56,75 +65,71 @@ class ItemsController < ApplicationController
     @parent = @child.parent
   end
 
-
+  
   def destroy
-    @items = Item.find(params[:id])
-    @items.destroy
-    redirect_to root_path
+    if user_signed_in? && current_user.id == @item.seller_id
+      @item.destroy
+    else
+      redirect_to root_path
+    end
   end
 
 
   def buy
-    @images = @item.item_images.all
-    if user_signed_in?
-      if current_user.credit_card.present?
-        Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
-        @card = CreditCard.find_by(user_id: current_user.id)
-        customer = Payjp::Customer.retrieve(@card.customer_id)
-        @customer_card = customer.cards.retrieve(@card.card_id)
-        @card_brand = @customer_card.brand
-        case @card_brand
-        when "Visa"
-         @card_src = "visa.png"
-        when "JCB"
-         @card_src = "jcb.png"
-        when "MasterCard"
-         @card_src = "master.png"
-        when "American Express"
-         @card_src = "amex.png"
-        when "Diners Club"
-         @card_src = "diners.png"
-        when "Discover"
-         @card_src = "discover.png"
-        end
-        @exp_month = @customer_card.exp_month.to_s
-        @exp_year = @customer_card.exp_year.to_s.slice(2,3)
+    if user_signed_in? && current_user.credit_card.present?
+      Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+      @card = CreditCard.find_by(user_id: current_user.id)
+      customer = Payjp::Customer.retrieve(@card.customer_id)
+      @customer_card = customer.cards.retrieve(@card.card_id)
+      @card_brand = @customer_card.brand
+      case @card_brand
+      when "Visa"
+        @card_src = "visa.png"
+      when "JCB"
+        @card_src = "jcb.png"
+      when "MasterCard"
+        @card_src = "master.png"
+      when "American Express"
+        @card_src = "amex.png"
+      when "Diners Club"
+        @card_src = "diners.png"
+      when "Discover"
+        @card_src = "discover.png"
       end
+      @exp_month = @customer_card.exp_month.to_s
+      @exp_year = @customer_card.exp_year.to_s.slice(2,3)
     else
-      redirect_to user_session_path, alert: "ログインしてください"
+      redirect_to item_path(@item.id), alert: "クレジットカードを登録してください"
+      return false
     end
   end
   
   
   def pay
-    if @item.buyer_id.present?
-      redirect_to item_path(@item.id), aleart: "売り切れています"
-    else
-      @item.with_lock do
-        if current_user.credit_card.present?
-          @card = CreditCard.find_by(user_id: current_user.id)
-          Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
-          charge = Payjp::Charge.create(
-            amount: @item.price,
-            customer: Payjp::Customer.retrieve(@card.customer_id),
-            currency: 'jpy'
-          )
-        else
-          Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
-          Payjp::Charge.create(
-            amount: @item.price,
-            card: params['payjp-token'],
-            currency: 'jpy'
-          )
-        end
-       @item.update(buyer_id: current_user.id)
+    @item.with_lock do
+      if current_user.credit_card.present?
+        @card = CreditCard.find_by(user_id: current_user.id)
+        Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+        charge = Payjp::Charge.create(
+          amount: @item.price,
+          customer: Payjp::Customer.retrieve(@card.customer_id),
+          currency: 'jpy'
+        )
+      else
+        Payjp.api_key = Rails.application.credentials.payjp[:PAYJP_SECRET_KEY]
+        Payjp::Charge.create(
+          amount: @item.price,
+          card: params['payjp-token'],
+          currency: 'jpy'
+        )
       end
+      @item.update(buyer_id: current_user.id)
     end
   end
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id).merge(seller_id: current_user.id)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, item_images_attributes: [:id, :url, :_destroy]).merge(seller_id: current_user.id)
   end
 
   def brand_params
@@ -133,7 +138,16 @@ class ItemsController < ApplicationController
   
   def set_item
     @item = Item.find(params[:id])
-
   end
+  def set_item_buy
+    if current_user.id == @item.seller_id
+      redirect_to item_path(@item.id), alert: "出品した商品は購入できません"
+      return false
+    end
+    if @item.buyer_id.present?
+      redirect_to item_path(@item.id), alert: "この商品は売り切れています"
+      return false
+    end
+  end
+  
 end
-
