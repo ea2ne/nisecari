@@ -23,25 +23,45 @@
               必須
           .formfield__input--normal
             = f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"例:xxx@xxx.com"
-        .loginregist__form__field
-          .formfield__label--normal
-            = f.label :password, 'パスワード(英字＋数字)'
-            - if @minimum_password_length
-              %em
-                (7文字以上)
-            %span.important
-              必須
-          .formfield__input--normal
-            = f.password_field :password, autocomplete: "new-password"
-        .loginregist__form__field
-          .formfield__label--normal
-            = f.label :password_confirmation, 'パスワード(再入力)'
-            %span.important
-              必須
-          .formfield__input--normal
-            = f.password_field :password_confirmation, autocomplete: "new-password"
-        .loginregist__form__actions
-          = f.submit "次へ", class: 'ButtonNext', url: "profile_path"
+        - if @sns_id.present?
+          = hidden_field_tag :sns_auth, true
+          .loginregist__form__actions
+            = f.submit "次へ", class: 'ButtonNext', url: "profile_path"
+        - else
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            .loginregist__form__field
+              .formfield__label--normal
+                = f.label :password, 'パスワード(英字＋数字)'
+                - if @minimum_password_length
+                  %em
+                    (7文字以上)
+                %span.important
+                  必須
+              .formfield__input--normal
+                = f.password_field :password, autocomplete: "new-password"
+            .loginregist__form__field
+              .formfield__label--normal
+                = f.label :password_confirmation, 'パスワード(再入力)'
+                %span.important
+                  必須
+              .formfield__input--normal
+                = f.password_field :password_confirmation, autocomplete: "new-password"
+            .loginregist__form__actions
+              = f.submit "次へ", class: 'ButtonNext', url: "profile_path"
+            .loginregist__form__actions
+              = link_to user_facebook_omniauth_authorize_path, method: :post do
+                %button.ButtonFacebook
+                  %p.login-icon
+                    = icon('fab', 'facebook-square')
+                  %p.login-where
+                    Facebookで登録
+            .loginregist__form__actions
+              = link_to user_google_oauth2_omniauth_authorize_path, method: :post do
+                %button.ButtonGoogle
+                  %p.login-icon
+                    = icon('fab', 'google')
+                  %p.login-where
+                    Googleで登録
         .loginregist__form__login
           %p アカウントをお持ちの方
           = render "devise/shared/links"
