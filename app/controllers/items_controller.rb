@@ -9,7 +9,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item_image = @item.item_images.build
-    # @item.build_brand
     @category_parent_array = Category.where(ancestry: nil)
   end
   
@@ -22,10 +21,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    brand = Brand.new(brand_params)
-    brand.save
     @item = Item.new(item_params)
-    @item.brand_id = brand.id
     if @item.save
       redirect_to root_path
     else 
@@ -36,7 +32,6 @@ class ItemsController < ApplicationController
   
   def edit
     if user_signed_in? && current_user.id == @item.seller_id
-      @item.build_brand
       @category_parent_array = Category.where(ancestry: nil)
       @category_child_array = @item.category.parent.siblings
       @category_grandchild_array = @item.category.siblings
@@ -129,11 +124,7 @@ class ItemsController < ApplicationController
     
   private
   def item_params
-    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, item_images_attributes: [:id, :url, :_destroy]).merge(seller_id: current_user.id)
-  end
-
-  def brand_params
-    params.require(:item).permit(:brand_name)
+    params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :brand, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, item_images_attributes: [:id, :url, :_destroy]).merge(seller_id: current_user.id)
   end
   
   def set_item

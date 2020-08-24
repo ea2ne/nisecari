@@ -8,7 +8,6 @@ class Item < ApplicationRecord
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
-  belongs_to :brand, optional: true
   validates :item_introduction, length: {maximum: 1000}, presence: true
   validates :name, length: {maximum: 40}, presence: true
   validates :price, presence: true
