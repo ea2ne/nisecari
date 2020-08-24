@@ -8,6 +8,11 @@
       .mainimg
         - @item.item_images.first(1).each do |img|
           = image_tag "#{img.url}", size:"400x350"
+        - if @item.buyer_id.present?
+          .showbox
+            .showbox-sold
+              soldout
+        
       .mainsub
         - @item.item_images.first(10).each do |img|
           = image_tag "#{img.url}", size:"140x100", class:"subpict"
@@ -16,9 +21,6 @@
         = @item.price
       .pricecomment
         (税込)送料込み
-      - if @item.buyer_id.present?
-        .soldout
-          soldout
       .itemnamesub
         = @item.item_introduction
       .itemtable
@@ -31,16 +33,17 @@
             %th カテゴリー
             %td
               = link_to "#" do
-                = @parent.name
+                = @grandchild.name
               %br
               = link_to "#" do
                 = @child.name
               %br
               = link_to "#" do
-                = @grandchild.name
+                = @parent.name
           %tr
             %th ブランド
             %td
+              = @item.brand.brand_name
           %tr
             %th 商品の状態
             %td
@@ -64,14 +67,13 @@
             %li.buttonbox__delete
               = link_to "商品を削除", "/items/#{@item.id}", method: :delete
             %li.buttonbox__edit
-              = link_to "商品を編集", "#"
+              = link_to "商品を編集", edit_item_path(@item) 
             %li.buttonbox__report 不適切な商品の通報
           - else
             %li.buttonbox__favorite お気に入り 0
             %li.buttonbox__report 不適切な商品の通報
 
-      - if user_signed_in? && current_user.id == @item.seller_id
-      - else
+      - if user_signed_in? && current_user.id != @item.seller_id
         = link_to buy_item_path, class: "payment-btn" do
           購入画面に進む
 

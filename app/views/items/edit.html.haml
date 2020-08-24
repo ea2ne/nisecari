@@ -1,0 +1,164 @@
+= render "header"
+.sell
+  .sell__header
+    = link_to "" do
+      = image_tag "material/logo/logo.png", class: "sell__header__img"
+  .sell__main
+    .sell__main__content
+    = form_with model: @item, local: true do |f|
+      .sell__main__content__file
+        出品画像
+        %span.form-require
+          必須
+        %p.sell__main__content__file__text
+          最大10枚までアップロードできます 
+        .pic-up
+          %input{type: "file", class: "sell__main__content__file__up"}
+            = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
+          %pre.sell__main__content__file__box__inner
+            写真を投稿
+        .sell__main__content__file__box
+          .js
+            #image-box
+              #previews
+                - if @item.persisted?
+                  - @item.item_images.each_with_index do |image, i|
+                    = image_tag image.url.url, data: { index: i }, width: "100", height: '100'
+              = f.fields_for :item_images do |image|
+                .js-file_group{"data-index" => "#{image.index}"}
+                  = image.file_field :url, class: 'js-file'
+                  %br/
+                  %span.js-remove 削除
+                - if @item.persisted?
+                  = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+              - if @item.persisted?
+                .js-file_group{"data-index" => "#{@item.item_images.count}"}
+                  = file_field_tag :url, name: "item[item_images_attributes][#{@item.item_images.count}][url]", class: 'js-file'
+                  .js-remove 削除
+            = f.submit
+      .sell__main__content__form
+        %label
+          商品名
+          %span.form-require
+            必須
+          -if @item.errors.include?(:name)
+            %p{style: "color: red;"}= @item.errors.full_messages_for(:name).first
+          =f.text_field :name, class:"sell__main__content__form__input", placeholder: "40文字まで"
+        %label
+          商品の説明
+          %span.form-require
+            必須
+        -if @item.errors.include?(:item_introduction)
+          %p{style: "color: red;"}= @item.errors.full_messages_for(:item_introduction).first
+        = f.text_field :item_introduction, class:"sell__main__content__form__input", placeholder: "商品の説明（必須　1000文字以内）（色、素材、重さ、定価、注意点など）　例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
+      .sell__main__content__form
+        .sell__main__content__form__info
+          商品の詳細
+        .sell__main__content__form__box
+          .sell__main__content__form__box__group
+            = f.label 'カテゴリー', class: 'listing-default__label'
+            %span.form-require
+              必須
+            .sell__main__content__form__box__group__form
+              .category
+                .form_lab
+                  = f.collection_select :category_id, @category_parent_array, :id, :name,{ include_blank: "選択してください", selected:@item.category.parent.parent.id}, {class: 'serect_field', id: 'category_id'}
+                .category__child#children_wrapper
+                  = f.collection_select :category_id, @category_child_array, :id, :name,{selected:@item.category.parent.id},{class: 'serect_field', id: 'child__category'}
+                .category__child#grandchildren_wrapper
+                  = f.collection_select :category_id, @category_grandchild_array, :id, :name,{selected:@item.category.id},{class: 'serect_field', id: 'grandchild__category'}
+            %label 
+              ブランド
+              %span.form-require-gray
+                任意<br>
+              = f.text_field :brand_name, placeholder: "例）シャネル", value: "", class: "sell__main__content__form__input"
+            %label
+              商品の状態
+              %span.form-require
+                必須
+            .sell__main__content__form__box__group__select
+              -if @item.errors.include?(:item_condition)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:item_condition).first
+              = f.collection_select :item_condition_id, ItemCondition.all, :id, :condition, prompt: '---', class: "sell__main__content__form__box__group__select__category"
+      .sell__main__content__form
+        .sell__main__content__form__info
+          配送について
+          = link_to "", target: "_blank", class: "sell__main__content__form__info__icon" do
+            \?
+        .sell__main__content__form__box
+          .sell__main__content__form__box__group
+            %label
+              配送料の負担
+              %span.form-require
+                必須
+            .sell__main__content__form__box__group__select
+              -if @item.errors.include?(:postage_payer)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:postage_payer).first
+              = f.collection_select :postage_payer_id, PostagePayer.all, :id, :payer, prompt: '---', class: "sell__main__content__form__box__group__select__category"
+            %label
+              発送元の地域
+              %span.form-require
+                必須
+            .sell__main__content__form__box__group__select
+              -if @item.errors.include?(:prefecture)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:prefecture).first
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: '---', class: "sell__main__content__form__box__group__select__category"
+            %label
+              発送までの日数
+              %span.form-require
+                必須
+            .sell__main__content__form__box__group__select
+              -if @item.errors.include?(:preparation_day)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:preparation_day).first
+              = f.collection_select :preparation_day_id, PreparationDay.all, :id, :day, prompt: '---', class: "sell__main__content__form__box__group__select__category"
+      .sell__main__content__form
+        .sell__main__content__form__info
+          価格（300〜9,999,999）
+          = link_to "", target: "_blank", class: "sell__main__content__form__info__icon" do
+            \?
+        .sell__main__content__form__box
+          %ul.sell__main__content__form__box__price
+            %li.sell__main__content__form__box__price__entire
+              .sell__main__content__form__box__price__entire__top
+                販売価格
+                %span.form-require
+                  必須
+                -if @item.errors.include?(:price)
+                  %p{style: "color: red;"}= @item.errors.full_messages_for(:price).first
+              .sell__main__content__form__box__price__entire__right
+                ¥
+                =f.number_field :price, class:"sell__main__content__form__box__price__entire__right__input", placeholder: "0", id: "price-result"
+            %li.sell__main__content__form__box__price__fee
+              .sell__main__content__form__box__price__fee__left
+                販売手数料（10%）
+              .sell__main__content__form__box__price__fee__right
+                \￥
+            %li.sell__main__content__form__box__price__profit
+              .sell__main__content__form__box__price__profit__left
+                販売利益
+              .sell__main__content__form__box__price__profit__right
+                \￥
+        .sell__main__content__btn
+          = f.submit '更新する', class: "sell__main__content__btn--red"
+          %a
+            = link_to "もどる", root_path
+        .sell__main__content__explan
+          %p  
+            禁止されている
+            = link_to "", target: "_blank" do
+              行為
+            および
+            = link_to "", target: "_blank" do
+              出品物
+            を必ずご確認ください。
+            = link_to "", target: "_blank" do
+              偽ブランド品
+            や
+            = link_to "", target: "_blank" do
+              盗品物
+            などの販売は犯罪であり、法律に<br>より処罰される可能性があります。また、出品をもちまして
+            = link_to "", target: "_blank" do
+              加盟店規約
+            に同意したことになります。
+.main
+  = render "footer"
