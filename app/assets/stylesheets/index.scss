@@ -147,7 +147,7 @@
   .main-top{
     width: 100%;
     height: 560px;
-    background-image: url("/assets/main/main-top.png");
+    background-image: image-url("/assets/main/main-top.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -308,7 +308,7 @@
     }
   }
   .middle{
-    background-image: url("/assets//main/top-middle.jpg");
+    background-image: image-url("/assets//main/top-middle.jpg");
     background-position: bottom right;
     background-size: cover;
     height: 400px;
@@ -504,7 +504,7 @@
     }
   }
   .appBanner{
-    background-image: url("/assets/footer/appBanner.jpg");
+    background-image: image-url("/assets/footer/appBanner.jpg");
     padding: 100px 40px;
     position: relative;
     background-size: cover;
