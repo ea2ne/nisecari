@@ -1,30 +1,7 @@
 require 'rails_helper'
-
-RSpec.describe 'SnsCredential', type: :system do
-  context '未サインアップの場合' do
-    it 'ユーザーが増えること' do
-      visit root_path
-      expect{
-        click_link 'Sign in with GoogleOauth2'
-        sleep 1
-      }.to change(SnsCredential, :count).by(1)
+describe User do
+  describe '#create' do
+    it "プロバイダーが入っているか" do
+      user = build(:user)
+      expect(user).to be_valid
     end
-  end
-
-  context 'サインアップ済みの場合' do
-    before do
-      User.create!(
-      email: 'test@example.com',
-      password: 'test12'
-      )
-    end
-
-    it 'ユーザーは増えないこと' do
-      visit root_path
-      expect{
-        click_link 'Sign in with GoogleOauth2'
-        sleep 1
-      }.to_not change(SnsCredential, :count)
-    end
-  end
-end
