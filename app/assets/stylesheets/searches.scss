@@ -1,0 +1,92 @@
+.wrapper{
+  margin: 0;
+  .search-container{
+    margin: 40px auto 0;
+    width: 1020px;
+    position: relative;
+    padding: 0 0 40px;
+    .search-right{
+      float: right;
+      width: 700px;
+      .search-result-head{
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0 0 8px;
+        line-height: 1.4;
+      }
+      .search-result-head-text{
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0 0 0 4px;
+      }
+      .search-result-number{
+        font-size: 12px;
+        color: #888888;
+        margin: 16px 0;
+      }
+    }
+  }
+  .productLists{
+    width: 890px;
+    margin: 26px auto;
+    justify-content: space-around;
+    overflow: scroll;
+    display: initial;
+    .productList{
+      width: 220px;
+      display: inline-block;
+      float: left;
+      a{
+        background-color: #FFFFFF;
+        display: inline-block;
+        text-decoration: none;
+        .product-img{
+          width: 220px;
+          height: 150px;
+          position: relative;
+          overflow: hidden;
+          margin: 0;
+          z-index: auto;
+          img{
+            height: 150px;
+            width: 220px;
+          }
+          .itembox{
+            width: 0;
+            height: 0;
+            border-width: 120px 120px 0 0;
+            border-color: #ea352d transparent transparent transparent;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            border-style: solid;
+            .itembox-sold{
+              transform: rotate(-45deg);
+              font-size: 24px;
+              margin:-52px 2px;
+              color: #fff;
+              letter-spacing: 2px;
+              font-weight: 600;
+            }
+          }
+        }
+      }
+    }
+  }
+  .detail_search{
+    width: 280px;
+    margin: 0 40px 0 0;
+    .detail_search_sort{
+      position: static;
+      width: auto;
+      width: 200px;
+    }
+    .detail_search_form{
+      display: block;
+      padding: 16px;
+      background-color: #FFFFFF;
+    }
+  }
+}

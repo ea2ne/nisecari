@@ -3,8 +3,11 @@ class ItemsController < ApplicationController
 
   require "payjp"
   before_action :set_item, only: [:buy, :pay, :show, :edit, :update]
+
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
+    # @q = Item.ransack(params[:q])
+    # @items = @q.result(distinct: true)
   end
 
   def new
@@ -62,9 +65,6 @@ class ItemsController < ApplicationController
     @child = @grandchild.parent
     @parent = @child.parent
   end
-
-  
-
 
   def destroy
     @items = Item.find(params[:id])
@@ -130,7 +130,25 @@ class ItemsController < ApplicationController
       end
     end
   end
-    
+  
+  def search
+    if params[:q].present?
+      @search = Item.ransack(search_params)
+      @q = Item.ransack(params[:q])
+      @items = @search.result
+    else
+
+      params[:q] = { sorts: 'id desc' }
+      @search = Item.ransack()
+      @items = Item.all
+    end
+    render "/searches/index"
+  end
+
+  def search_params
+    params.require(:q).permit(:sorts, :name_cont, :price_lteq, :price_gteq, :item_condition_id)
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id).merge(seller_id: current_user.id)
@@ -148,4 +166,3 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 end
-

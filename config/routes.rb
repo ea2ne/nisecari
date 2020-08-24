@@ -15,9 +15,20 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'items#index'
   resources :items, excect: :show
+
+  resources :searches,only:[:index]
+  
+  resources :items, only: :show do
+  end
+  root 'items#index'
+
+
   resources :items do
+    collection do
+      match 'search' => 'items#search', via: [:get, :post]
+    end
+  
     member do
       get 'buy'
       post 'pay'
@@ -25,6 +36,4 @@ Rails.application.routes.draw do
   end
   resources :users, only: :show
   resources :credit_cards, only: [:new, :create, :show, :destroy]
-
-  # resources :items, only: [:index, :show, :new, :edit, :destroy]
 end
