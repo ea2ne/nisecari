@@ -4,7 +4,7 @@
       %h1.icon
         = link_to image_tag(image_path('header/logo.png'), class: "img"), root_path 
       .search-box
-        = form_tag(searches_path,method: :get) do
+        = form_tag(search_items_path,method: :get) do
           = text_field_tag :search, "",placeholder:"何かお探しですか？"
           %button{type: "submit"}
             .searchicon

@@ -128,7 +128,6 @@ class ItemsController < ApplicationController
       @q = Item.ransack(params[:q])
       @items = @search.result
     else
-
       params[:q] = { sorts: 'id desc' }
       @search = Item.ransack()
       @items = Item.all

@@ -504,28 +504,27 @@
       }
     }
   }
-
-   
-=======
-  .appBanner{
-    background-image: image-url("footer/appBanner.jpg");
-    padding: 100px 40px;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    .inner{
-      color: #FFFFFF;
-      text-align: center;
-      .inner-title{
-        text-shadow: 0 0 5px rgba(0,0,0,0.4);
-        font-size: 24px;
-        font-weight: bold;
-        line-height: 1.4;
-      }
-     .inner-text{
-      font-size: 35px;
+}
+ 
+.appBanner{
+  background-image: image-url("footer/appBanner.jpg");
+  padding: 100px 40px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  .inner{
+    color: #FFFFFF;
+    text-align: center;
+    .inner-title{
       text-shadow: 0 0 5px rgba(0,0,0,0.4);
-    　}
+      font-size: 24px;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    .inner-text{
+    font-size: 35px;
+    text-shadow: 0 0 5px rgba(0,0,0,0.4);
+    }
     .inner-icon{
       width: 100%;
       display: flex;
@@ -533,6 +532,7 @@
       margin: 20px auto 0;
       .inner-icon a{
         margin-right: 10px;
+      }
       .linkIcon-appleBtn{
         width: 180px;
       }
