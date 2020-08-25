@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
     @items = Item.includes(:user)
     @items = Item.all.order(created_at: :desc)
     @items = Item.all.order(updated_at: :desc)
+    @q = Item.ransack(params[:q])
+    @items = @search.result
   end
 
   def new
@@ -148,7 +150,7 @@ class ItemsController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit(:sorts, :name_cont, :price_lteq, :price_gteq, :item_condition_id)
+    params.require(:q).permit(:sorts, :name_cont, :price_lteq, :price_gteq, :item_condition_id_in)
   end
 
   private

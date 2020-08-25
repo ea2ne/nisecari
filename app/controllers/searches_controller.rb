@@ -2,10 +2,13 @@ class SearchesController < ApplicationController
   before_action :set_ransack
 
   def index
-    @items = Item.search(params[:search]).limit(132)
+    @items = Item.search(params[:q][:name_cont]).limit(132).order(created_at: :desc)
     @search = params[:search]
-    @items = Item.all.order(created_at: :desc)
-    @items = Item.all.order(updated_at: :desc)
+  end
+
+  def detail_search
+    @search_item = Item.ransack(params[:q]) 
+    @items = @search_item.result.page(params[:page])
   end
 
   def set_ransack
