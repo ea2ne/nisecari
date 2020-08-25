@@ -1,11 +1,11 @@
 class Item < ApplicationRecord
 
   has_many :item_images, dependent: :destroy
+  has_many :comments
   belongs_to :category
   belongs_to :user, optional:true
   has_many :favorites, dependent: :destroy
   has_many :favorites, through: :favorites, source: :user
-
   
   def self.search(search)
     return Item.all unless search
@@ -14,8 +14,6 @@ class Item < ApplicationRecord
 
   validates :item_images, presence: {message: 'を1枚以上、10枚以下で添付してください'}
   validates :category, :item_condition, :postage_payer, :prefecture, :preparation_day, presence: {message: 'を選択してください'}
-  
-
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true

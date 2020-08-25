@@ -43,7 +43,6 @@
           %tr
             %th ブランド
             %td
-              = @item.brand
           %tr
             %th 商品の状態
             %td
@@ -78,18 +77,25 @@
       - if user_signed_in? && current_user.id != @item.seller_id
         = link_to buy_item_path, class: "payment-btn" do
           購入画面に進む
-
-    %form{action: "example.cgi", method: "post", class: "itemform"}
-      %p.commentbox
-        %textarea{cols: "15", rows: "5", class: "comment"}
-          :preserve
-      %p.formcomment
-        相手のことを考え丁寧なコメントを心がけましょう。
-        %br
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %p.buttonbox
-        %button{type: "submit", class: "commentbutton"}
-          コメントする
+      .comment-flame
+        .commentbox
+          = form_with(model: [@item, @comment], local: true, id: "new_comment") do |f|
+            = f.text_area :text, cols: "15", rows: "5", class: "comment"
+            %p.formcomment
+              相手のことを考え丁寧なコメントを心がけましょう。
+              %br
+              不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            .buttonbox
+              = f.submit "コメントする", class: "commentbutton"
+        - if @comments.present?
+          .comment-area
+            - @comments.each do |comment|
+              .comment-field
+                .comment-user
+                  = comment.user.nickname
+                .comment-text
+                  = comment.text
+          
     .moreitem
       .beforenext
         .itembefore
