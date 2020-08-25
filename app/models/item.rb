@@ -12,7 +12,7 @@ class Item < ApplicationRecord
     Item.where(['name LIKE ?', "%#{search}%"])
   end
 
-  validates :item_images, presence: {message: 'を1枚以上、10枚以下で添付してください'}
+  validates :item_images, presence: {message: 'を1枚以上、5枚以下で添付してください'}
   validates :category, :item_condition, :postage_payer, :prefecture, :preparation_day, presence: {message: 'を選択してください'}
 
   belongs_to :seller, class_name: "User"
@@ -22,7 +22,7 @@ class Item < ApplicationRecord
   validates :price, presence: true
   validates :item_condition_id, :postage_payer, :prefecture, :preparation_day, presence: true
   accepts_nested_attributes_for :item_images, allow_destroy: true
-  validates :item_images, length: { minimum: 1, maximum: 10 }, presence: true
+  validates :item_images, length: { minimum: 1, maximum: 5 }, presence: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to_active_hash :item_condition

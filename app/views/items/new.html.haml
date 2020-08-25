@@ -12,7 +12,7 @@
         -if @item.errors.include?(:item_images)
           %p{style: "color: red;"}= @item.errors.full_messages_for(:item_images).first
         %p.sell__main__content__file__text
-          最大10枚までアップロードできます 
+          最大5枚までアップロードできます 
         .pic-up
           %input{type: "file", class: "sell__main__content__file__up"}
             = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
