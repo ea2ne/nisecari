@@ -24,9 +24,14 @@ $(function (){
     }) 
     .done(function(data){
       let html = buildHTML(data);
+      if(data.text !== ""){
       $('.comment-field').append(html);
       $('.comment').val('');
       $('.commentbutton').prop('disabled', false);
+      }else{
+        alert("メッセージを入力してください")
+        $('.commentbutton').prop('disabled', false);
+      }
     })
     .fail(function(){
       alert('error');
