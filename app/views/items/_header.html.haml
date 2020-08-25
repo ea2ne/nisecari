@@ -4,9 +4,8 @@
       %h1.icon
         = link_to image_tag(image_path('header/logo.png'), class: "img"), root_path 
       .search-box
-        %form{"accept-charset": "UTF-8", action: "#", method: "get"}
-          %input{name: "utf8", type: "hidden", value: ""}/
-          %input#searchInput.search-box-fotm{name: "key", placeholder: "キーワードから探す"}/
+        = form_tag(searches_path,method: :get) do
+          = text_field_tag :search, "",placeholder:"何かお探しですか？"
           %button{type: "submit"}
             .searchicon
               = image_tag(image_path('header/icon-search.png'), class: 'img')

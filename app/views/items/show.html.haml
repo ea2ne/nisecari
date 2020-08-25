@@ -33,13 +33,13 @@
             %th カテゴリー
             %td 
               = link_to "#" do
-                = @grandchild.name
+                = @parent.name
               %br
               = link_to "#" do
                 = @child.name
               %br
               = link_to "#" do
-                = @parent.name
+                = @grandchild.name
           %tr
             %th ブランド
             %td
@@ -62,14 +62,16 @@
       .itembutton
         %ul.buttonbox
           - if user_signed_in? && current_user.id == @item.seller_id
-            %li.buttonbox__favorite お気に入り 0
+            .buttonbox__like
+              = render partial: 'favorites/favorite', locals: { item: @item}
             %li.buttonbox__delete
               = link_to "商品を削除", "/items/#{@item.id}", method: :delete
             %li.buttonbox__edit
               = link_to "商品を編集", edit_item_path(@item) 
             %li.buttonbox__report 不適切な商品の通報
-          - else
-            %li.buttonbox__favorite お気に入り 0
+          - elsif user_signed_in?
+            .buttonbox__like
+              = render partial: 'favorites/favorite', locals: { item: @item}
             %li.buttonbox__report 不適切な商品の通報
 
       - if user_signed_in? && current_user.id != @item.seller_id
@@ -107,22 +109,24 @@
         をもっと見る
       .simileritem
         - @grandchild.items.each do |item|
-          = link_to "#" do
-            .similer_pict_box
-              .similerpict
-                - item.item_images.first(1).each do |img|
-                  = image_tag "#{img.url}", size:"400x350"
-              .similerbox
-                .similername
-                  = item.name
-                .similertext
-                  %ul
-                    %li 
-                      = item.price
-                      円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                %p (税込)
+          - if @item == item
+          - else
+            = link_to "#" do
+              .similer_pict_box
+                .similerpict
+                  - item.item_images.first(1).each do |img|
+                    = image_tag "#{img.url}", size:"400x350"
+                .similerbox
+                  .similername
+                    = item.name
+                  .similertext
+                    %ul
+                      %li 
+                        = item.price
+                        円
+                      %li
+                        %i.fa.fa-star.likeIcon
+                        1
+                  %p (税込)
   .main
     = render "footer"

@@ -69,6 +69,11 @@
             = f.text_field :house_number, autofocus: true, autocomplete: "house_number", placeholder:"例：1丁目11"
         .loginregist__form__field
           .formfield__label--normal
+            = f.label :roomnumber, 'マンション名、ビル名、部屋番号等'
+          .formfield__input--normal
+            = f.text_field :roomnumber, autofocus: true, autocomplete: "roomnumber"
+        .loginregist__form__field
+          .formfield__label--normal
             = f.label :phone_number, '電話番号'
           .formfield__input--normal
             = f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:"例：000-0000-0000"
