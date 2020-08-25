@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
     @items = Item.includes(:user)
     @items = Item.all.order(created_at: :desc)
     @items = Item.all.order(updated_at: :desc)
+    @q = Item.ransack(params[:q])
+    @items = @search.result
   end
 
   def new
@@ -48,8 +50,7 @@ class ItemsController < ApplicationController
     @category_parent_array = Category.where(ancestry: nil)
     @category_child_array = @item.category.parent.siblings
     @category_grandchild_array = @item.category.siblings
-    if 
-        @item.update(item_params)
+    if @item.update(item_params)
         redirect_to root_path
     else
       render :edit, alert: "更新できませんでした"
@@ -148,7 +149,7 @@ class ItemsController < ApplicationController
   end
 
   def search_params
-    params.require(:q).permit(:sorts, :name_cont, :price_lteq, :price_gteq, :item_condition_id)
+    params.require(:q).permit(:sorts, :name_cont, :price_lteq, :price_gteq, :item_condition_id_in)
   end
 
   private
