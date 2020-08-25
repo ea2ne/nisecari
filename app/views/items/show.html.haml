@@ -87,14 +87,14 @@
               不快な言葉遣いなどは利用制限や退会処分となることがあります。
             .buttonbox
               = f.submit "コメントする", class: "commentbutton"
-        - if @comments.present?
-          .comment-area
-            - @comments.each do |comment|
-              .comment-field
-                .comment-user
-                  = comment.user.nickname
-                .comment-text
-                  = comment.text
+        .comment-area
+          ＜コメント一覧＞
+          - @comments.each do |comment|
+            .comment-field
+              .comment-user
+                = comment.user.nickname
+              .comment-text
+                = comment.text
           
     .moreitem
       .beforenext

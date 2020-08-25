@@ -13,7 +13,7 @@ $(function (){
   $('#new_comment').on('submit', function(e){
     e.preventDefault();
     let formData = new FormData(this);
-    let url = $(this).attr('action')
+    let url = $(this).attr('action');
     $.ajax ({
       url: url,
       type: "POST",
@@ -24,17 +24,17 @@ $(function (){
     }) 
     .done(function(data){
       let html = buildHTML(data);
-      if(data.text !== ""){
+      if (data.text !== "") {
       $('.comment-field').append(html);
       $('.comment').val('');
       $('.commentbutton').prop('disabled', false);
-      }else{
-        alert("メッセージを入力してください")
+      }else {
         $('.commentbutton').prop('disabled', false);
+        alert("メッセージを入力してください")
       }
     })
     .fail(function(){
       alert('error');
-    })
+    });
   })
 });
