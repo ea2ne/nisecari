@@ -5,14 +5,17 @@
       %section.items-box-container
         -if @search.present?
           %h2.search-result-head
-            -@search
             %span.search-result-head-text
               商品の検索結果
           .search-result-number
             ="1-#{@items.count}件表示"
         -else
           %h2.search-result-nil
-            新着商品
+            検索結果
+          .search-result-number
+            ="1-#{@items.count}件表示"
+        .items-box-content
+        
       .productLists
         - @items.each do |item|
           .productList
@@ -63,27 +66,27 @@
                 = 'すべて'
             .detail_search__group--checkbox
               %label
-                = f.check_box :item_condition_id, {},1, nil
+                = f.check_box :item_condition_id_in, {},0, nil
                 = '新品、未使用'
             .detail_search__group--checkbox
               %label
-                = f.check_box :item_condition_id, {},2, nil
+                = f.check_box :item_condition_id_in, {},1, nil
                 = '未使用に近い'
             .detail_search__group--checkbox
               %label
-                = f.check_box :item_condition_id, {},3, nil
+                = f.check_box :item_condition_id_in, {},2, nil
                 = '目立った傷や汚れなし'
             .detail_search__group--checkbox
               %label
-                = f.check_box :item_condition_id, {},4, nil
+                = f.check_box :item_condition_id_in, {},3, nil
                 = 'やや傷や汚れあり'
             .detail_search__group--checkbox
               %label
-                = f.check_box :item_condition_id, {},5, nil
+                = f.check_box :item_condition_id_in, {},4, nil
                 = '傷や汚れあり'
             .detail_search__group--checkbox
               %label
-                = f.check_box :item_condition_id, {},6, nil
+                = f.check_box :item_condition_id_in, {},5, nil
                 = '全体的に状態が悪い'
           .detail_search__btns
             .detail_search__btn--grey
