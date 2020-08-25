@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to :category
   belongs_to :user, optional:true
   has_many :favorites, dependent: :destroy
-  has_many :favorites, through: :favorites, source: :user
+  has_many :user_favorites, through: :favorites, source: :user
   
   def self.search(search)
     return Item.all unless search
