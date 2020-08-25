@@ -5,6 +5,15 @@ class Item < ApplicationRecord
   belongs_to :user, optional:true
   has_many :favorites, dependent: :destroy
   has_many :favorites, through: :favorites, source: :user
+
+  
+  def self.search(search)
+    return Item.all unless search
+    Item.where(['name LIKE ?', "%#{search}%"])
+  end
+    
+
+
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true
   validates :item_introduction, length: {maximum: 1000}, presence: true

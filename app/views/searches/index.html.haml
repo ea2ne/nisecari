@@ -1,0 +1,39 @@
+= render "/items/header"
+.search-wrapper
+  .search-container
+    .search-right
+      %section.items-box-container
+        -if @search.present?
+          %h2.search-result-head
+            -@search
+            %span.search-result-head-text
+              商品の検索結果
+          .search-result-number
+            ="1-#{@items.count}件表示"
+        -else
+          %h2.search-result-nil
+            新着商品
+      .productLists
+        - @items.each do |item|
+          .productList
+            = link_to item_path(item), class: "a" do
+              %figure.product-img
+                - item.item_images.first(1).each do |img|
+                  = image_tag "#{img.url}", class: 'img'
+                - if item.buyer_id.present?
+                  .itembox
+                    .itembox-sold
+                      soldout
+              .productList-body
+                %h3 #{item.name}
+                .details
+                  %ul
+                    %li #{item.price}円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                      1
+                  %p （税込）
+                  
+.items-box-content
+= render "/items/aside"
+= render "/items/footer"
