@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   end
   resources :items do
     resources :comments, only: :create
+    resources :favorites, only: [:index, :create, :destroy]
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
@@ -27,8 +28,4 @@ Rails.application.routes.draw do
   resources :searches,only:[:index]
   resources :users, only: :show
   resources :credit_cards, only: [:new, :create, :show, :destroy]
-
-  resources :items do
-    resources :favorites, only: [:index, :create, :destroy]
-  end
 end
