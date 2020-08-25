@@ -45,8 +45,14 @@
               %li.category-item
                 = link_to "その他", "#", class: "item"
           
-        %li.listleft-item-second
+        %li.listleft-item-second 
           = link_to "ブランド", "#", class: "brand"
+          
+      .listCenter
+        = render "layouts/breadcrumbs"
+        -# - breadcrumb :mypage
+        -# = breadcrumbs separator: " &rsaquo; "
+
       .listsRight
         %ul.link-lists
           - if user_signed_in?

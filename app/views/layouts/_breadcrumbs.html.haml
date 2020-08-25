@@ -1,0 +1,12 @@
+.breadcrumbs
+  - if controller_name == "items" and action_name == "show"
+    - breadcrumb :show
+  -# - elsif controller_name == "items" and action_name == "index"
+    -# - breadcrumb :index
+  - if controller_name == "users" and action_name == "show"
+    - breadcrumb :mypage
+  - if controller_name == "items" and action_name == "edit"
+    - breadcrumb :edit
+  - if controller_name == "items" and action_name == "buy"
+    - breadcrumb :buy
+  = breadcrumbs separator: " &rsaquo; ", class: "breadcrumbs-list"
