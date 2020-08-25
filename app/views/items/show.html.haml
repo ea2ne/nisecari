@@ -63,14 +63,16 @@
       .itembutton
         %ul.buttonbox
           - if user_signed_in? && current_user.id == @item.seller_id
-            %li.buttonbox__favorite お気に入り 0
+            .buttonbox__like
+              = render partial: 'favorites/favorite', locals: { item: @item}
             %li.buttonbox__delete
               = link_to "商品を削除", "/items/#{@item.id}", method: :delete
             %li.buttonbox__edit
               = link_to "商品を編集", edit_item_path(@item) 
             %li.buttonbox__report 不適切な商品の通報
-          - else
-            %li.buttonbox__favorite お気に入り 0
+          - elsif user_signed_in?
+            .buttonbox__like
+              = render partial: 'favorites/favorite', locals: { item: @item}
             %li.buttonbox__report 不適切な商品の通報
 
       - if user_signed_in? && current_user.id != @item.seller_id

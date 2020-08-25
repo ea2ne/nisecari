@@ -1,6 +1,6 @@
 .sell
   .sell__header
-    = link_to "" do
+    = link_to root_path do
       = image_tag "material/logo/logo.png", class: "sell__header__img"
   .sell__main
     .sell__main__content
@@ -9,8 +9,8 @@
         出品画像
         %span.form-require
           必須
-        -# -if @item.errors.include?(:item_image)
-        -#   %p{style: "color: red;"}= @item.errors.full_messages_for(:item_image).first
+        -if @item.errors.include?(:item_images)
+          %p{style: "color: red;"}= @item.errors.full_messages_for(:item_images).first
         %p.sell__main__content__file__text
           最大10枚までアップロードできます 
         .pic-up
@@ -61,6 +61,8 @@
             %span.form-require
               必須
             .sell__main__content__form__box__group__form
+              -if @item.errors.include?(:category)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:category).first
               .category
                 .form_lab
                   =f.collection_select :category_id, @category_parent_array, :id, :name,{ include_blank: "選択してください"}, {class: 'sell__main__content__form__box__group__select__category--select', id: 'category_id'}
@@ -74,9 +76,9 @@
               %span.form-require
                 必須
             .sell__main__content__form__box__group__select
-              -if @item.errors.include?(:item_condition)
-                %p{style: "color: red;"}= @item.errors.full_messages_for(:item_condition).first
-              = f.collection_select :item_condition_id, ItemCondition.all, :id, :condition, prompt: '---', class: "sell__main__content__form__box__group__select__category"
+              -if @item.errors.include?(:item_condition_id)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:item_condition_id).first
+              = f.collection_select :item_condition_id, ItemCondition.all, :id, :condition, prompt: '選択してください', class: "sell__main__content__form__box__group__select__category"
       .sell__main__content__form
         .sell__main__content__form__info
           配送について
@@ -91,7 +93,7 @@
             .sell__main__content__form__box__group__select
               -if @item.errors.include?(:postage_payer)
                 %p{style: "color: red;"}= @item.errors.full_messages_for(:postage_payer).first
-              = f.collection_select :postage_payer_id, PostagePayer.all, :id, :payer, prompt: '---', class: "sell__main__content__form__box__group__select__category"
+              = f.collection_select :postage_payer_id, PostagePayer.all, :id, :payer, prompt: '選択してください', class: "sell__main__content__form__box__group__select__category"
             %label
               発送元の地域
               %span.form-require
@@ -99,7 +101,7 @@
             .sell__main__content__form__box__group__select
               -if @item.errors.include?(:prefecture)
                 %p{style: "color: red;"}= @item.errors.full_messages_for(:prefecture).first
-              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: '---', class: "sell__main__content__form__box__group__select__category"
+              = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: '選択してください', class: "sell__main__content__form__box__group__select__category"
             %label
               発送までの日数
               %span.form-require
@@ -107,7 +109,7 @@
             .sell__main__content__form__box__group__select
               -if @item.errors.include?(:preparation_day)
                 %p{style: "color: red;"}= @item.errors.full_messages_for(:preparation_day).first
-              = f.collection_select :preparation_day_id, PreparationDay.all, :id, :day, prompt: '---', class: "sell__main__content__form__box__group__select__category"
+              = f.collection_select :preparation_day_id, PreparationDay.all, :id, :day, prompt: '選択してください', class: "sell__main__content__form__box__group__select__category"
       .sell__main__content__form
         .sell__main__content__form__info
           価格（300〜9,999,999）
