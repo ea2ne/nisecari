@@ -5,6 +5,11 @@ class Item < ApplicationRecord
   belongs_to :user, optional:true
 
   
+  def self.search(search)
+    return Item.all unless search
+    Item.where(['name LIKE ?', "%#{search}%"])
+  end
+    
 
   belongs_to :seller, class_name: "User"
   belongs_to :buyer, class_name: "User", optional: true

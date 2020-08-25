@@ -13,12 +13,15 @@ Rails.application.routes.draw do
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
+      match 'search' => 'items#search', via: [:get, :post]
     end
+
     member do
       get 'buy'
       post 'pay'
     end
   end
+  resources :searches,only:[:index]
   resources :users, only: :show
   resources :credit_cards, only: [:new, :create, :show, :destroy]
 end

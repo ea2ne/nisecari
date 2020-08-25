@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   require "payjp"
   before_action :set_item, only: [:buy, :pay, :show, :edit, :update, :destroy]
   before_action :set_item_buy, only: [:buy, :pay]
+
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
   end
@@ -60,7 +61,6 @@ class ItemsController < ApplicationController
     @parent = @child.parent
   end
 
-  
   def destroy
     if user_signed_in? && current_user.id == @item.seller_id
       @item.destroy
@@ -121,7 +121,24 @@ class ItemsController < ApplicationController
       @item.update(buyer_id: current_user.id)
     end
   end
-    
+  
+  def search
+    if params[:q].present?
+      @search = Item.ransack(search_params)
+      @q = Item.ransack(params[:q])
+      @items = @search.result
+    else
+      params[:q] = { sorts: 'id desc' }
+      @search = Item.ransack()
+      @items = Item.all
+    end
+    render "/searches/index"
+  end
+
+  def search_params
+    params.require(:q).permit(:sorts, :name_cont, :price_lteq, :price_gteq, :item_condition_id)
+  end
+
   private
   def item_params
     params.require(:item).permit(:name, :price, :item_introduction, :item_condition_id, :brand, :postage_payer_id, :preparation_day_id, :prefecture_id, :category_id, item_images_attributes: [:id, :url, :_destroy]).merge(seller_id: current_user.id)
@@ -130,6 +147,7 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
   def set_item_buy
     if current_user.id == @item.seller_id
       redirect_to item_path(@item.id), alert: "出品した商品は購入できません"
@@ -140,5 +158,5 @@ class ItemsController < ApplicationController
       return false
     end
   end
-  
+
 end
