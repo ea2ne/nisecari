@@ -23,7 +23,6 @@ Rails.application.routes.draw do
     end
   end
     
-  end
   resources :searches,only:[:index]
   resources :users, only: :show
   resources :credit_cards, only: [:new, :create, :show, :destroy]
@@ -31,6 +30,4 @@ Rails.application.routes.draw do
   resources :items do
     resources :favorites, only: [:index, :create, :destroy]
   end
-
-  # resources :items, only: [:index, :show, :new, :edit, :destroy]
 end
