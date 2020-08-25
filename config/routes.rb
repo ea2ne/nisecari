@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post 'sending_destination', to: 'users/registrations#create_sending_destination'
   end
   resources :items do
+    resources :comments, only: :create
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }

@@ -50,6 +50,8 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
     @seller = @item.seller.nickname
     @condition = @item.item_condition.condition
     @postage_payer = @item.postage_payer.payer
