@@ -33,13 +33,13 @@
             %th カテゴリー
             %td 
               = link_to "#" do
-                = @grandchild.name
+                = @parent.name
               %br
               = link_to "#" do
                 = @child.name
               %br
               = link_to "#" do
-                = @parent.name
+                = @grandchild.name
           %tr
             %th ブランド
             %td
@@ -103,22 +103,24 @@
         をもっと見る
       .simileritem
         - @grandchild.items.each do |item|
-          = link_to "#" do
-            .similer_pict_box
-              .similerpict
-                - item.item_images.first(1).each do |img|
-                  = image_tag "#{img.url}", size:"400x350"
-              .similerbox
-                .similername
-                  = item.name
-                .similertext
-                  %ul
-                    %li 
-                      = item.price
-                      円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                %p (税込)
+          - if @item == item
+          - else
+            = link_to "#" do
+              .similer_pict_box
+                .similerpict
+                  - item.item_images.first(1).each do |img|
+                    = image_tag "#{img.url}", size:"400x350"
+                .similerbox
+                  .similername
+                    = item.name
+                  .similertext
+                    %ul
+                      %li 
+                        = item.price
+                        円
+                      %li
+                        %i.fa.fa-star.likeIcon
+                        1
+                  %p (税込)
   .main
     = render "footer"
