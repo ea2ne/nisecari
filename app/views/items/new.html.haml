@@ -9,8 +9,8 @@
         出品画像
         %span.form-require
           必須
-        -if @item.errors.include?(:item_image)
-          %p{style: "color: red;"}= @item.errors.full_messages_for(:item_image).first
+        -if @item.errors.include?(:item_images)
+          %p{style: "color: red;"}= @item.errors.full_messages_for(:item_images).first
         %p.sell__main__content__file__text
           最大10枚までアップロードできます 
         .pic-up
@@ -61,6 +61,8 @@
             %span.form-require
               必須
             .sell__main__content__form__box__group__form
+              -if @item.errors.include?(:category)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:category).first
               .category
                 .form_lab
                   =f.collection_select :category_id, @category_parent_array, :id, :name,{ include_blank: "選択してください"}, {class: 'sell__main__content__form__box__group__select__category--select', id: 'category_id'}
@@ -74,8 +76,8 @@
               %span.form-require
                 必須
             .sell__main__content__form__box__group__select
-              -if @item.errors.include?(:item_condition)
-                %p{style: "color: red;"}= @item.errors.full_messages_for(:item_condition).first
+              -if @item.errors.include?(:item_condition_id)
+                %p{style: "color: red;"}= @item.errors.full_messages_for(:item_condition_id).first
               = f.collection_select :item_condition_id, ItemCondition.all, :id, :condition, prompt: '選択してください', class: "sell__main__content__form__box__group__select__category"
       .sell__main__content__form
         .sell__main__content__form__info

@@ -70,9 +70,9 @@
             %li.buttonbox__edit
               = link_to "商品を編集", edit_item_path(@item) 
             %li.buttonbox__report 不適切な商品の通報
-          - else
+          - elsif user_signed_in?
             .buttonbox__like
-            = render partial: 'favorites/favorite', locals: { item: @item}
+              = render partial: 'favorites/favorite', locals: { item: @item}
             %li.buttonbox__report 不適切な商品の通報
 
       - if user_signed_in? && current_user.id != @item.seller_id

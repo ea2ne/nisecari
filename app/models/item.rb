@@ -10,7 +10,6 @@ class Item < ApplicationRecord
   validates :item_introduction, length: {maximum: 1000}, presence: true
   validates :name, length: {maximum: 40}, presence: true
   validates :price, presence: true
-  accepts_nested_attributes_for :brand
   validates :item_condition_id, :postage_payer, :prefecture, :preparation_day, presence: true
   accepts_nested_attributes_for :item_images, allow_destroy: true
   validates :item_images, length: { minimum: 1, maximum: 10 }, presence: true

@@ -1,0 +1,27 @@
+= render "items/header"
+.favowrapper
+  - if @favorites.present?
+    .productLists
+      - @favorites.each do |favorite|
+        .productList
+          = link_to item_path(favorite.item.id) do
+            %figure.product-img
+              = image_tag favorite.item.item_images[0].url.url
+              - if favorite.item.buyer_id.present?
+                .itembox
+                  .itembox-sold
+                    soldout
+              .productList-body
+                %h3 #{favorite.item.name}
+                .details
+                  %ul
+                    %li #{favorite.item.price}円
+                    %li
+                      %i.fa.fa-star.likeIcon
+                        = Favorite.where(item_id: favorite.item.id).count
+                  %p （税込）
+  - else 
+    %h1
+      お気に入りに追加した商品はありません
+.main
+  = render "items/footer"    
