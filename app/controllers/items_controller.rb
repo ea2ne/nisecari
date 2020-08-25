@@ -48,11 +48,11 @@ class ItemsController < ApplicationController
     @category_parent_array = Category.where(ancestry: nil)
     @category_child_array = @item.category.parent.siblings
     @category_grandchild_array = @item.category.siblings
-    if user_signed_in? && current_user.id == @item.seller_id
+    if 
         @item.update(item_params)
         redirect_to root_path
     else
-      render "/items/edit", alert: "更新できませんでした"
+      render :edit, alert: "更新できませんでした"
     end
   end
 
