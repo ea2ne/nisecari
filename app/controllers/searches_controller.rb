@@ -4,6 +4,8 @@ class SearchesController < ApplicationController
   def index
     @items = Item.search(params[:q][:name_cont]).limit(132).order(created_at: :desc)
     @search = params[:search]
+    @search = Item.ransack(params[:q])
+    @items = @search.result
   end
 
   def detail_search
