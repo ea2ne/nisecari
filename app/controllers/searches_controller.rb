@@ -4,6 +4,8 @@ class SearchesController < ApplicationController
   def index
     @items = Item.search(params[:search]).limit(132)
     @search = params[:search]
+    @items = Item.all.order(created_at: :desc)
+    @items = Item.all.order(updated_at: :desc)
   end
 
   def set_ransack
