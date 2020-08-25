@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   factory :user,aliases: [:seller] do
     nickname                      {"abe"}
     email                         {"kkk@email.com"}
