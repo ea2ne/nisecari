@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :set_item_buy, only: [:buy, :pay]
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
-    @items = Item.all.includes(:user)
+    @items = Item.includes(:user)
   end
 
   def new
@@ -74,7 +74,7 @@ class ItemsController < ApplicationController
   end
 
   def favorites
-    @item = current_user.favorite_items.includes(:user)
+    @items = current_user.favorite_items.includes(:user)
   end
 
 
