@@ -56,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def sending_destination_params
-    params.require(:sending_destination).permit(:destination_first_name, :destination_family_name, :destination_first_name_kana, :destination_family_name_kana, :post_code, :prefecture_code, :city, :house_number, :phone_number)
+    params.require(:sending_destination).permit(:destination_first_name, :destination_family_name, :destination_first_name_kana, :destination_family_name_kana, :post_code, :prefecture_code, :city, :house_number, :phone_number, :roomnumber)
   end
 
   # GET /resource/edit

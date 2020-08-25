@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_021057) do
+ActiveRecord::Schema.define(version: 2020_08_25_053706) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -80,14 +80,15 @@ ActiveRecord::Schema.define(version: 2020_08_21_021057) do
     t.string "destination_family_name", null: false
     t.string "destination_first_name_kana", null: false
     t.string "destination_family_name_kana", null: false
-    t.integer "post_code", null: false
+    t.string "post_code", null: false
     t.integer "prefecture_code", null: false
     t.string "city", null: false
     t.string "house_number", null: false
-    t.integer "phone_number"
+    t.string "phone_number"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "roomnumber"
     t.index ["user_id"], name: "index_sending_destinations_on_user_id"
   end
 
