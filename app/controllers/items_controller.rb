@@ -6,6 +6,8 @@ class ItemsController < ApplicationController
   def index
     @items = Item.includes(:item_images).order('created_at DESC')
     @items = Item.includes(:user)
+    @items = Item.all.order(created_at: :desc)
+    @items = Item.all.order(updated_at: :desc)
   end
 
   def new
