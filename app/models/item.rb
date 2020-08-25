@@ -11,7 +11,10 @@ class Item < ApplicationRecord
     return Item.all unless search
     Item.where(['name LIKE ?', "%#{search}%"])
   end
-    
+
+  validates :item_images, presence: {message: 'を1枚以上、10枚以下で添付してください'}
+  validates :category, :item_condition, :postage_payer, :prefecture, :preparation_day, presence: {message: 'を選択してください'}
+  
 
 
   belongs_to :seller, class_name: "User"
