@@ -223,10 +223,13 @@
       overflow: scroll;
       .comment-field {
         width: 100%;
-        padding: 10px;
         white-space: pre-line;
+        .comment-user{
+          height: 30px;
+        }
         .comment-text {
           width: 100%;
+          padding-bottom: 20px;
           border-bottom: 2px solid rgb(172, 169, 169);
         }
       }

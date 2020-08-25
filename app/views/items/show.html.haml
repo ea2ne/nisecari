@@ -88,14 +88,14 @@
             .buttonbox
               = f.submit "コメントする", class: "commentbutton"
         .comment-area
-          ＜コメント一覧＞
+          ＜コメント一覧＞          
           - @comments.each do |comment|
             .comment-field
               .comment-user
                 = comment.user.nickname
               .comment-text
                 = comment.text
-          
+            
     .moreitem
       .beforenext
         .itembefore
