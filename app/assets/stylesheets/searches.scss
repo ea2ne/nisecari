@@ -9,6 +9,8 @@
     .search-right{
       float: right;
       width: 700px;
+      height: 400px;
+      overflow-y: scroll;
       .search-result-head{
         font-size: 22px;
         font-weight: 600;
@@ -31,7 +33,6 @@
     width: 890px;
     margin: 26px auto;
     justify-content: space-around;
-    overflow: scroll;
     display: initial;
     .productList{
       width: 220px;
@@ -70,6 +71,35 @@
               color: #fff;
               letter-spacing: 2px;
               font-weight: 600;
+            }
+          }
+        }
+        .productList-body{
+          background-color: white;
+          color: #333;
+          padding: 16px;
+          .name{
+            overflow: hidden;
+            line-height: 1.5;
+            font-size: 16px;
+            text-align: left;
+          }
+          .details{
+            font-size: 16px;
+            ul{
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              .fa{
+                display: inline-block;
+                font-size: initial;
+                text-rendering: auto;
+                -webkit-font-smoothing: antialiased;
+              }
+            }
+            p{
+              font-size: 10px;
+              text-align: left;
             }
           }
         }
