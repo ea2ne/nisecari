@@ -33,11 +33,11 @@ $(function () {
       img.setAttribute('url', blobUrl);
     } else {
       // 10枚の投稿制限
-      if ($(".image-index").length < 10) {
+      if ($(".image-index").length < 4) {
         $('#previews').append(buildImg(targetIndex, blobUrl));
         $('.js-file_group').append(buildFileField(fileIndex[0]));
       } else {
-        alert("投稿できる画像は10枚までです。消したい画像をクリックしてください。");
+        alert("投稿できる画像は5枚までです。消したい画像をクリックしてください。");
       }
 
       fileIndex.shift();
