@@ -107,7 +107,7 @@
                       %li #{item.price}円
                       %li
                         %i.fa.fa-star.likeIcon
-                        1
+                          = Favorite.where(item_id: item.id).count
                     %p （税込）
     
     %section.pickupContainer
@@ -195,4 +195,5 @@
                       1
                   %p （税込）
 .main
-  = render "footer"    
+= render "aside"
+= render "footer"    

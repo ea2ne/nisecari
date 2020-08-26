@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_030440) do
+ActiveRecord::Schema.define(version: 2020_08_25_053706) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "ancestry"
+  end
+
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.text "text", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "credit_cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -24,6 +35,16 @@ ActiveRecord::Schema.define(version: 2020_08_17_030440) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_credit_cards_on_user_id"
+  end
+
+  create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_favorites_on_item_id"
+    t.index ["user_id", "item_id"], name: "index_favorites_on_user_id_and_item_id", unique: true
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "item_images", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -48,7 +69,9 @@ ActiveRecord::Schema.define(version: 2020_08_17_030440) do
     t.text "item_introduction", null: false
     t.string "brand"
     t.bigint "category_id"
+    t.bigint "user_id"
     t.index ["category_id"], name: "index_items_on_category_id"
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,14 +93,15 @@ ActiveRecord::Schema.define(version: 2020_08_17_030440) do
     t.string "destination_family_name", null: false
     t.string "destination_first_name_kana", null: false
     t.string "destination_family_name_kana", null: false
-    t.integer "post_code", null: false
+    t.string "post_code", null: false
     t.integer "prefecture_code", null: false
     t.string "city", null: false
     t.string "house_number", null: false
-    t.integer "phone_number"
+    t.string "phone_number"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "roomnumber"
     t.index ["user_id"], name: "index_sending_destinations_on_user_id"
   end
 
@@ -94,9 +118,14 @@ ActiveRecord::Schema.define(version: 2020_08_17_030440) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "users"
   add_foreign_key "credit_cards", "users"
+  add_foreign_key "favorites", "items"
+  add_foreign_key "favorites", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "categories"
+  add_foreign_key "items", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "sending_destinations", "users"
 end

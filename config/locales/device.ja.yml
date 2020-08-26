@@ -1,6 +1,28 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
 ja:
+  activerecord:
+    attributes:
+      user:
+        nickname: 'ニックネーム'
+        password: 'パスワード'
+        password_confirmation: 'パスワード(再入力)'
+      profile:
+        first_name: '名前'
+        first_name_kana: 'ふりがな'
+        family_name: '名字'
+        family_name_kana: 'ふりがな'
+        birth_day: '誕生日'
+        introduction: '自己紹介'
+      sending_destination:
+        destination_first_name: '名前'
+        destination_first_name_kana: 'ふりがな'
+        destination_family_name: '名字'
+        destination_family_name_kana: 'ふりがな'
+        post_code: '郵便番号'
+        prefecture_code: '都道府県'
+        city: '市区町村'
+        house_number: '番地'
   devise:
     confirmations:
       confirmed: 'アカウントを登録しました。'

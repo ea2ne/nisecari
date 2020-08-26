@@ -59,6 +59,13 @@
       .loginregist__form__field {
         margin-bottom: 20px;
 
+        .loginregist__error {
+          p {
+            font-size: 12px;
+            margin-top: 5px;
+          }
+        }
+
         .formfield__input--normal {
           input {
             padding: 0 0 0 5px;
@@ -105,21 +112,33 @@
         display: flex;
         justify-content: start;
         margin-bottom: 20px;
-        .formfield__input--short {
-          input {
-            padding: 0 0 0 5px;
-            width: 100px;
-            height: 35px;
-            margin-right: 10px;
-            margin-bottom: 10px;
+
+        .formbox {
+          margin-right: 10px;
+
+          .loginregist__error {
+            p {
+              font-size: 12px;
+              margin-top: 5px;
+            }
           }
-        }
-        .formfield__label--short {
-          font-size: 12px;
-          margin-bottom: 10px;
-          i {
+
+          .formfield__input--short {
+            input {
+              padding: 0 0 0 5px;
+              width: 100px;
+              height: 35px;
+              margin-right: 10px;
+              margin-bottom: 10px;
+            }
+          }
+          .formfield__label--short {
             font-size: 12px;
-            text-decoration: none;
+            margin-bottom: 10px;
+            i {
+              font-size: 12px;
+              text-decoration: none;
+            }
           }
         }
       }

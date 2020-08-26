@@ -4,14 +4,13 @@
       %h1.icon
         = link_to image_tag(image_path('header/logo.png'), class: "img"), root_path 
       .search-box
-        %form{"accept-charset": "UTF-8", action: "#", method: "get"}
-          %input{name: "utf8", type: "hidden", value: ""}/
-          %input#searchInput.search-box-fotm{name: "key", placeholder: "キーワードから探す"}/
+        = search_form_for @search,url: searches_path do |f|
+          = f.search_field :name_cont,class:'search',placeholder: '何かお探しですか？'
           %button{type: "submit"}
             .searchicon
               = image_tag(image_path('header/icon-search.png'), class: 'img')
+
       %ul.resultlists
-    
     .list-bar
       %ul.listsLeft
         %li.listleft-item-first

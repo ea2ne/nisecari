@@ -147,6 +147,8 @@ GEM
     fog-xml (0.1.3)
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
+    font-awesome-sass (5.13.0)
+      sassc (>= 1.11)
     formatador (0.2.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -216,6 +218,8 @@ GEM
     orm_adapter (0.5.0)
     payjp (0.0.7)
       rest-client (~> 2.0)
+    polyamorous (2.3.2)
+      activerecord (>= 5.2.1)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -263,6 +267,11 @@ GEM
       thor (>= 0.20.3, < 2.0)
     raindrops (0.19.1)
     rake (13.0.1)
+    ransack (2.3.2)
+      activerecord (>= 5.2.1)
+      activesupport (>= 5.2.1)
+      i18n
+      polyamorous (= 2.3.2)
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
@@ -309,6 +318,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     seed-fu (2.3.9)
       activerecord (>= 3.1)
       activesupport (>= 3.1)
@@ -336,9 +347,6 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    turbolinks (5.2.1)
-      turbolinks-source (~> 5.2)
-    turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -387,6 +395,7 @@ DEPENDENCIES
   faker
   fog-aws
   gretel
+  font-awesome-sass
   haml-rails
   jbuilder (~> 2.7)
   jp_prefecture
@@ -400,13 +409,13 @@ DEPENDENCIES
   rails (~> 6.0.0)
   rails-controller-testing
   rails-i18n
+  ransack
   rspec-rails (~> 4.0.0.beta2)
   sass-rails (~> 5)
   seed-fu
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  turbolinks (~> 5)
   tzinfo-data
   unicorn
   web-console (>= 3.3.0)

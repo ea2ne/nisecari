@@ -8,7 +8,6 @@
           %p 送付先住所登録
     .loginregist__form
       = form_for(@sending_destination, url: sending_destination_path, method: :post) do |f|
-        = render "devise/shared/error_messages", resource: @sending_destination
         .formtitle
           送付先氏名(フルネーム)
           %span.important
@@ -19,11 +18,17 @@
               = f.label :destination_family_name, '名字'
             .formfield__input--short
               = f.text_field :destination_family_name, autofocus: true, autocomplete: "destination_family_name", placeholder:"例：山田"
+              .loginregist__error
+                -if @sending_destination.errors.include?(:destination_family_name)
+                  %p{style: "color: red;"}= @sending_destination.errors.full_messages_for(:destination_family_name).first
           .formbox
             .formfield__label--short
               = f.label :destination_first_name, '名前'
             .formfield__input--short
               = f.text_field :destination_first_name, autofocus: true, autocomplete: "destination_first_name", placeholder:"例：太郎"
+              .loginregist__error
+                -if @sending_destination.errors.include?(:destination_first_name)
+                  %p{style: "color: red;"}= @sending_destination.errors.full_messages_for(:destination_first_name).first
         .formtitle
           送付先氏名(ふりがな)
           %span.important
@@ -34,11 +39,17 @@
               = f.label :destination_family_name_kana, '姓(ふりがな)'
             .formfield__input--short
               = f.text_field :destination_family_name_kana, autocomplete: "destination_family_name_kana", placeholder:"例：やまだ"
+              .loginregist__error
+                -if @sending_destination.errors.include?(:destination_family_name_kana)
+                  %p{style: "color: red;"}= @sending_destination.errors.full_messages_for(:destination_family_name_kana).first
           .formbox
             .formfield__label--short
               = f.label :destination_first_name_kana, '名(ふりがな)'
             .formfield__input--short
               = f.text_field :destination_first_name_kana, autocomplete: "destination_first_name_kana", placeholder:"例：たろう"
+              .loginregist__error
+                -if @sending_destination.errors.include?(:destination_first_name_kana)
+                  %p{style: "color: red;"}= @sending_destination.errors.full_messages_for(:destination_first_name_kana).first
         .loginregist__form__field
           .formfield__label--normal
             = f.label :post_code, '郵便番号'
@@ -46,6 +57,9 @@
               必須
           .formfield__input--normal
             = f.text_field :post_code, autofocus: true, autocomplete: "post_code", placeholder:"例：111-1111"
+            .loginregist__error
+              -if @sending_destination.errors.include?(:post_code)
+                %p{style: "color: red;"}= @sending_destination.errors.full_messages_for(:post_code).first
         .loginregist__form__field
           .formfield__label--normal
             = f.label :prefecture_code, '都道府県'
@@ -53,6 +67,9 @@
               必須
           .formfield__input--normal
             = f.collection_select :prefecture_code, Prefecture.all, :id, :name,{include_blank: "---"}
+            .loginregist__error
+              -if @sending_destination.errors.include?(:prefecture_code)
+                %p{style: "color: red;"}= @sending_destination.errors.full_messages_for(:prefecture_code).first
         .loginregist__form__field
           .formfield__label--normal
             = f.label :city, '市区町村'
@@ -60,6 +77,9 @@
               必須
           .formfield__input--normal
             = f.text_field :city, autofocus: true, autocomplete: "city", placeholder:"例：××町"
+            .loginregist__error
+              -if @sending_destination.errors.include?(:city)
+                %p{style: "color: red;"}= @sending_destination.errors.full_messages_for(:city).first
         .loginregist__form__field
           .formfield__label--normal
             = f.label :house_number, '番地'
@@ -67,6 +87,14 @@
               必須
           .formfield__input--normal
             = f.text_field :house_number, autofocus: true, autocomplete: "house_number", placeholder:"例：1丁目11"
+            .loginregist__error
+              -if @sending_destination.errors.include?(:house_number)
+                %p{style: "color: red;"}= @sending_destination.errors.full_messages_for(:house_number).first
+        .loginregist__form__field
+          .formfield__label--normal
+            = f.label :roomnumber, 'マンション名、ビル名、部屋番号等'
+          .formfield__input--normal
+            = f.text_field :roomnumber, autofocus: true, autocomplete: "roomnumber"
         .loginregist__form__field
           .formfield__label--normal
             = f.label :phone_number, '電話番号'

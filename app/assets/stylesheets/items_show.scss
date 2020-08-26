@@ -173,9 +173,9 @@
       }
     }
   }
-  .itemform {
+  .comment-flame {
     margin: 0 auto;
-    width: 700px;
+    width: 100%;
     padding: 20px 0;
     background-color: white;
 
@@ -213,6 +213,24 @@
           content: "\f075";
           font-family: FontAwesome;
           margin-right: .5em;
+        }
+      }
+    }
+    .comment-area {
+      height: 200px;
+      width: 90%;
+      margin: 0 auto;
+      overflow: scroll;
+      .comment-field {
+        width: 100%;
+        white-space: pre-line;
+        .comment-user{
+          height: 30px;
+        }
+        .comment-text {
+          width: 100%;
+          padding-bottom: 20px;
+          border-bottom: 2px solid rgb(172, 169, 169);
         }
       }
     }

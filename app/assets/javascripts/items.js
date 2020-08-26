@@ -35,12 +35,12 @@ $(function () {
       img.setAttribute('url', blobUrl);
     } else {
       // 10枚の投稿制限
-      console.log("test3")
-      if ($(".image-index").length < 10) {
+
+      if ($(".image-index").length < 4) {
         $('#previews').append(buildImg(targetIndex, blobUrl));
         $('.js-file_group').append(buildFileField(fileIndex[0]));
       } else {
-        alert("投稿できる画像は10枚までです。消したい画像をクリックしてください。");
+        alert("投稿できる画像は5枚までです。消したい画像をクリックしてください。");
       }
 
       fileIndex.shift();
@@ -52,7 +52,7 @@ $(function () {
   $('.js').on('click', 'img', function() {
     const targetIndex = $(this).data('index')
     const hiddenCheck = $(`input[data-index="${targetIndex}"].hidden-destroy`);
-    if (hiddenCheck) hiddenCheck.prop('checked', true);
+    if (hiddenCheck) hiddenCheck.prop('value', 1);
     $(this).remove();
     if ($('.image-index').length == 0) $('js').append(buildFileField(fileIndex[0]));
       $(`img[data-index="${targetIndex}"]`).remove();

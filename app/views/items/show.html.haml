@@ -33,13 +33,13 @@
             %th カテゴリー
             %td 
               = link_to "#" do
-                = @grandchild.name
+                = @parent.name
               %br
               = link_to "#" do
                 = @child.name
               %br
               = link_to "#" do
-                = @parent.name
+                = @grandchild.name
           %tr
             %th ブランド
             %td
@@ -63,31 +63,40 @@
       .itembutton
         %ul.buttonbox
           - if user_signed_in? && current_user.id == @item.seller_id
-            %li.buttonbox__favorite お気に入り 0
+            .buttonbox__like
+              = render partial: 'favorites/favorite', locals: { item: @item}
             %li.buttonbox__delete
-              = link_to "商品を削除", "/items/#{@item.id}", method: :delete
+              = link_to "商品を削除", item_path(@item), method: :delete
             %li.buttonbox__edit
               = link_to "商品を編集", edit_item_path(@item) 
             %li.buttonbox__report 不適切な商品の通報
-          - else
-            %li.buttonbox__favorite お気に入り 0
+          - elsif user_signed_in?
+            .buttonbox__like
+              = render partial: 'favorites/favorite', locals: { item: @item}
             %li.buttonbox__report 不適切な商品の通報
 
       - if user_signed_in? && current_user.id != @item.seller_id
         = link_to buy_item_path, class: "payment-btn" do
           購入画面に進む
-
-    %form{action: "example.cgi", method: "post", class: "itemform"}
-      %p.commentbox
-        %textarea{cols: "15", rows: "5", class: "comment"}
-          :preserve
-      %p.formcomment
-        相手のことを考え丁寧なコメントを心がけましょう。
-        %br
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      %p.buttonbox
-        %button{type: "submit", class: "commentbutton"}
-          コメントする
+      .comment-flame
+        .commentbox
+          = form_with(model: [@item, @comment], local: true, id: "new_comment") do |f|
+            = f.text_area :text, cols: "15", rows: "5", class: "comment"
+            %p.formcomment
+              相手のことを考え丁寧なコメントを心がけましょう。
+              %br
+              不快な言葉遣いなどは利用制限や退会処分となることがあります。
+            .buttonbox
+              = f.submit "コメントする", class: "commentbutton"
+        .comment-area
+          ＜コメント一覧＞      
+          - @comments.each do |comment|
+            .comment-field
+              .comment-user
+                = comment.user.nickname
+              .comment-text
+                = comment.text
+            
     .moreitem
       .beforenext
         .itembefore
@@ -101,22 +110,24 @@
         をもっと見る
       .simileritem
         - @grandchild.items.each do |item|
-          = link_to "#" do
-            .similer_pict_box
-              .similerpict
-                - item.item_images.first(1).each do |img|
-                  = image_tag "#{img.url}", size:"400x350"
-              .similerbox
-                .similername
-                  = item.name
-                .similertext
-                  %ul
-                    %li 
-                      = item.price
-                      円
-                    %li
-                      %i.fa.fa-star.likeIcon
-                      1
-                %p (税込)
+          - if @item == item
+          - else
+            = link_to "#" do
+              .similer_pict_box
+                .similerpict
+                  - item.item_images.first(1).each do |img|
+                    = image_tag "#{img.url}", size:"400x350"
+                .similerbox
+                  .similername
+                    = item.name
+                  .similertext
+                    %ul
+                      %li 
+                        = item.price
+                        円
+                      %li
+                        %i.fa.fa-star.likeIcon
+                        1
+                  %p (税込)
   .main
     = render "footer"
