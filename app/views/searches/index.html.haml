@@ -45,12 +45,10 @@
             %h3 詳細検索
           .detail_search__group
             .detail_search__group--label
-              -# = fa_icon "search"
               %p キーワードを追加する
             = f.search_field :name_cont, placeholder: "例）値下げ"
           .detail_search__group
             .detail_search__group--label
-              -# = fa_icon "search"
               %p 価格
             .detail_search__group--forms
               = f.search_field :price_gteq, placeholder: "¥ Min"
@@ -58,7 +56,6 @@
               = f.search_field :price_lteq, placeholder: "¥ Max"
           .detail_search__group
             .detail_search__group--label
-              -# = fa_icon "search"
               %p 商品の状態
             .detail_search__group--checkbox
               %label
