@@ -84,18 +84,28 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|introduction|text|null: false|
+|item_introduction|text|null: false|
 |price|integer|null: false|
-|trading_status|enum|null: false|
-|deal_closed_date|timestamp|
+|brand|string|
+|item_condition_id|integer|null: false|
+|postage_payer_id|integer|null: false|
+|preparation_day_id|integer|null: false|
+|prefecture_id|integer|null: false|
 |category_id|references|foreign_key: true|
-|brand_id|references|foreign_key: true|
+|user_id|references|foreign_key: true|
 ### Association
 - has_many :item_images, dependent: :destroy
+- has_many :favorites, dependent: :destroy
+- has_many :comments, dependent: :destroy
+- has_many :user_favorites, through: :favorites, source: :user
 - belongs_to :category
-- belongs_to :brand
+- belongs_to :user, optional: true
 - belongs_to :seller, class_name: "User"
-- belongs_to :buyer, class_name: ""User
+- belongs_to :buyer, class_name: "User”, optional: true
+- belongs_to_active_hash :item_condition
+- belongs_to_active_hash :postage_payer
+- belongs_to_active_hash :preparation_day
+- belongs_to_active_hash :prefecture
 
 ## item_imagesテーブル
 |Column|Type|Options|
@@ -113,10 +123,3 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - has_ancestry
-
-## brandsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-### Association
-- has_many :items
