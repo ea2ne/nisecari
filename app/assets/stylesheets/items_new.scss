@@ -437,3 +437,141 @@ select {
   cursor: pointer;
   margin: 0 0 40px;
 }
+// 出品機能のデザイン
+* {
+  box-sizing: border-box;
+}
+// 商品出品画面用のmixin
+@mixin sell-style($color) {
+  font-size: 14px;
+  padding: 40px;
+  background-color: $color;
+}
+// 赤枠白字のフォント
+.hissu {
+  color: white;
+  background: red;
+  font-size: 12px;
+  margin-left: 7px;
+  border-radius: 2px;
+  padding: 1px 3px;
+}
+// グレー枠白字のフォント
+.ninni {
+  color: white;
+  background: lightgray;
+  font-size: 12px;
+  margin-left: 7px;
+  border-radius: 2px;
+  padding: 1px 3px;
+}
+​
+img {
+  margin-right: 2px;
+}
+​
+.Form__icon {
+  font-size: 25px;
+}
+.js-file_group {
+  display: block;
+}
+​
+.js-file {
+  position: absolute;
+}
+.js-remove {
+  position: relative;
+  left: 90px;
+  bottom:25px;
+}
+​
+​
+.sellmain {
+​
+  .sellheader {
+    height: 200px;
+    background-color: #3CCACE;
+  }
+​
+  .sell {
+    width: 50%;
+    background-color: lightgray;
+    margin: 0 auto;
+​
+    .form__input {
+      width: 100%;
+      height: 48px;
+      margin:3px 0 18px;
+      padding: 0 10px;
+    }
+​
+    .select_field {
+      width: 100%;
+      height: 48px;
+      margin:3px 0 18px;
+      padding: 0 10px;
+    }
+​
+    .form__textarea {
+      width: 100%;
+      height: 170px;
+      padding: 0 10px;
+      margin:3px 0 18px;
+    }
+      &__image {
+        @include sell-style(#ffffff)
+      }
+      &__item {
+        @include sell-style(#ffffff)
+      }
+      &__details {
+        @include sell-style(#ffffff)
+      }
+      &__delivery {
+        @include sell-style(#ffffff)
+      }
+      &__price {
+        @include sell-style(#ffffff)
+      }
+      .form__input__price {
+        text-align: end;
+        width: 60%;
+        height: 48px;
+        margin:3px 0 18px;
+        margin-right: auto;
+      }
+      &__btn {
+        @include sell-style(#ffffff);
+        width: 100%;
+        display: block;
+        text-align: center;
+        padding: 20px 0;
+        .sell-btn-blue {
+          width: 70%;
+          height: 40px;
+          margin-left: auto;
+          margin-right: auto;
+          background: #3CCACE;
+          color: #ffffff;
+        }
+        .back-btn {
+          margin-top: 20px;
+          display: block;
+        }
+      }
+  }
+​
+  .sellfooter {
+    height: 200px;
+    background-color: #3CCACE;
+  }
+}
+
+
+
+
+
+
+
+

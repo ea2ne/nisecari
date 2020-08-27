@@ -11,30 +11,24 @@
           %p{style: "color: red;"}= @item.errors.full_messages_for(:item_images).first
         %p.sell__main__content__file__text
           最大5枚までアップロードできます 
-        .pic-up
-          %input{type: "file", class: "sell__main__content__file__up"}
-            = image_tag "material/logo/icon_camera.png", class: "sell__main__content__file__up__data"
-          %pre.sell__main__content__file__box__inner
-            写真を投稿
-        .sell__main__content__file__box
-          .js
-            #image-box
-              #previews
-                - if @item.persisted?
-                  - @item.item_images.each_with_index do |image, i|
-                    = image_tag image.url.url, data: { index: i }, width: "100", height: '100'
-              = f.fields_for :item_images do |image|
-                .js-file_group{"data-index" => "#{image.index}"}
-                  = image.file_field :url, class: 'js-file'
-                  %br/
-                  %span.js-remove 削除
-                - if @item.persisted?
-                  = image.hidden_field :_destroy, data:{ index: image.index }, class: 'hidden-destroy', value: 0
+          #image-box
+            #previews
               - if @item.persisted?
-                .js-file_group{"data-index" => "#{@item.item_images.count}"}
-                  = file_field_tag :url, name: "item[item_images_attributes][#{@item.item_images.count}][url]", class: 'js-file'
-                  .js-remove 削除
-            = f.submit
+                - @item.item_images.each_with_index do |image, i|
+                  = image_tag image.url.url, data: { index: i }, id: "prv_#{i}", width: "100", height: '100'
+            = f.fields_for :item_images do |image|
+              %label.js-file_group{"data-index": "#{image.index}"}
+                = icon('far', 'image', class: 'Form__icon')
+                = image.file_field :url, class: 'js-file', style: "visibility: hidden"
+              %span.js-remove 削除
+              - if @item.persisted?
+                = image.check_box :_destroy, data:{ index: image.index }, class: 'hidden-destroy'
+            - if @item.persisted?
+              %label.js-file_group{"data-index" => "#{@item.item_images.count}"}
+                = icon('far', 'image', class: 'Form__icon')
+                = file_field_tag :url, name: "item[item_images_attributes][#{@item.item_images.count}][url]", class: 'js-file', style: "visibility: hidden"
+              %span.js-remove 削除
+
       .sell__main__content__form
         %label
           商品名
