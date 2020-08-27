@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_053706) do
     t.string "ancestry"
   end
 
+
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"

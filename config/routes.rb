@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'items#index'
+  get 'mypages/index'
   get 'favorites/create'
   get 'favorites/destroy'
   devise_for :users, controllers: {

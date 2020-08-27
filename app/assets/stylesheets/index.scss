@@ -58,13 +58,16 @@
     }
     .list-bar{
       font-size: 14px;
+      width: 100%;
       display: flex;
+      justify-content: space-between;
       margin-bottom: 10px;
       text-decoration: none;
       .listsLeft{
+        width: 30%;
         display: flex;
         .listleft-item-first{
-          padding: 0;
+          padding: 3px 0 0 0;
           .category{
             background-image: image-url('header/icon_category.png');
             color: #333333;
@@ -87,7 +90,7 @@
           }
         }
         .listleft-item-second{
-          display: flex;
+          // display: flex;
           line-height: 38px;
           padding: 0 0 0 16px;
           .brand{
@@ -102,9 +105,20 @@
           }
         }
       }
+      .listCenter {
+        height: 50px;
+        width: 30%;
+        margin: 0 0 0 16px;
+        line-height: 32px;
+        color: #333333;
+            a {
+              color:#333333;
+            }
+          }
       .listsRight{
-        margin-left: auto;
         display: flex;
+        justify-content: flex-end;
+        width: 40%;
         a {
           text-decoration: none;
           color: black;
@@ -501,6 +515,20 @@
       }
     }
   }
+  .appBanner{
+    background-image: image-url("footer/appBanner.jpg");
+    padding: 100px 40px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    .inner{
+      color: #FFFFFF;
+      text-align: center;
+      .inner-title{
+        text-shadow: 0 0 5px rgba(0,0,0,0.4);
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 1.4;
 }
  
 .appBanner{
