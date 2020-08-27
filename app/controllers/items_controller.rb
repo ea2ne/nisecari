@@ -37,7 +37,9 @@ class ItemsController < ApplicationController
   end
   
   def edit
-    if user_signed_in? && current_user.id == @item.seller_id
+    if @item.buyer_id.present?
+      redirect_to root_path
+    elsif user_signed_in? && current_user.id == @item.seller_id
       @category_parent_array = Category.where(ancestry: nil)
       @category_child_array = @item.category.parent.siblings
       @category_grandchild_array = @item.category.siblings
@@ -51,7 +53,7 @@ class ItemsController < ApplicationController
     @category_child_array = @item.category.parent.siblings
     @category_grandchild_array = @item.category.siblings
     if @item.update(item_params)
-        redirect_to root_path
+      redirect_to root_path
     else
       render :edit, alert: "更新できませんでした"
     end
