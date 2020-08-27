@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2020_08_25_053706) do
     t.string "ancestry"
   end
 
-
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "item_id"
@@ -69,9 +68,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_053706) do
     t.text "item_introduction", null: false
     t.string "brand"
     t.bigint "category_id"
-    t.bigint "user_id"
     t.index ["category_id"], name: "index_items_on_category_id"
-    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -93,11 +90,11 @@ ActiveRecord::Schema.define(version: 2020_08_25_053706) do
     t.string "destination_family_name", null: false
     t.string "destination_first_name_kana", null: false
     t.string "destination_family_name_kana", null: false
-    t.string "post_code", null: false
+    t.integer "post_code", null: false
     t.integer "prefecture_code", null: false
     t.string "city", null: false
     t.string "house_number", null: false
-    t.string "phone_number"
+    t.integer "phone_number"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -125,7 +122,6 @@ ActiveRecord::Schema.define(version: 2020_08_25_053706) do
   add_foreign_key "favorites", "users"
   add_foreign_key "item_images", "items"
   add_foreign_key "items", "categories"
-  add_foreign_key "items", "users"
   add_foreign_key "profiles", "users"
   add_foreign_key "sending_destinations", "users"
 end

@@ -26,15 +26,26 @@ Things you may want to cover:
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|nickname|string|null: false|
-|email|string|null: false|
-|password|string|null: false, unique: true, index: true|
+|nickname|string|null: false, default: ""|
+|email|string|null: false, default: ""|
+|reset_password_token|string||
+|reset_password_sent_at|datetime||
+|remember_created_at|datetime||
 ### Association
 - has_one :profile, dependent: :destroy
-- has_one :credit_card, dependent: destroy
-- has_one :sending_destination,  dependent: :destroy
-- has_many_seller_items, foreign_key:"seller_id", class_name: "items"
 - has_many_buyer_items, foreign_key:"buyer_id", class_name:"items"
+- has_one :sending_destination, dependent: :destroy
+- has_one :credit_card, dependent: :destroy
+- has_many :seller_items, foreign_key: "seller_id", class_name: "items"
+- has_many :buyer_items, foreign_key: "buyer_id", class_name: "items"
+- devise :validatable, password_length: 7..128
+- has_many :buyed_items, foreign_key: "buyer_id", class_name: "Item"
+- has_many :selling_items, -> { where("buyer_id is NULL")}, foreign_key: "seller_id", class_name: "Item"
+- has_many :sold_items, -> { where("buyer_id is not NULL")}, foreign_key: "seller_id", class_name: "Item"
+- has_many :comments
+- has_many :items, dependent: :destroy
+- has_many :favorites, dependent: :destroy
+- has_many :item_favorites, through: :favorites,source: :item
 
 ## profilesテーブル
 |Column|Type|Options|
@@ -63,11 +74,12 @@ Things you may want to cover:
 |prefecture_code|integer|null: false|
 |city|string|null: false|
 |house_number|string|null: false|
-|phone_number|integer|null: false|
+|phone_number|integer||
 |user_id|references|null: false, foreign_key: true|
+|roomnumber|string||
 ### Association
-- belongs_to :user
-- Gem jp_prefectureを使用して都道府県コードを取得
+- belongs_to :user, optional: true
+- belongs_to_active_hash :prefecture
 
 ## credit_cards(Pay.jp)テーブル
 |Column|Type|Options|
@@ -84,18 +96,28 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|introduction|text|null: false|
+|item_introduction|text|null: false|
 |price|integer|null: false|
-|trading_status|enum|null: false|
-|deal_closed_date|timestamp|
+|brand|string|
+|item_condition_id|integer|null: false|
+|postage_payer_id|integer|null: false|
+|preparation_day_id|integer|null: false|
+|prefecture_id|integer|null: false|
 |category_id|references|foreign_key: true|
-|brand_id|references|foreign_key: true|
+|user_id|references|foreign_key: true|
 ### Association
 - has_many :item_images, dependent: :destroy
+- has_many :favorites, dependent: :destroy
+- has_many :comments, dependent: :destroy
+- has_many :user_favorites, through: :favorites, source: :user
 - belongs_to :category
-- belongs_to :brand
+- belongs_to :user, optional: true
 - belongs_to :seller, class_name: "User"
-- belongs_to :buyer, class_name: ""User
+- belongs_to :buyer, class_name: "User”, optional: true
+- belongs_to_active_hash :item_condition
+- belongs_to_active_hash :postage_payer
+- belongs_to_active_hash :preparation_day
+- belongs_to_active_hash :prefecture
 
 ## item_imagesテーブル
 |Column|Type|Options|
@@ -113,10 +135,3 @@ Things you may want to cover:
 ### Association
 - has_many :items
 - has_ancestry
-
-## brandsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|name|string|null: false|
-### Association
-- has_many :items

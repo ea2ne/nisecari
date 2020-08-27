@@ -1,5 +1,4 @@
 $(function () {
-  console.log("test1")
   const buildFileField = (index)=> {
     const html = `<div data-index="${index}" class="js-file_group">
                     <input class="js-file" type="file"
@@ -23,8 +22,6 @@ $(function () {
   $(".pic-up").on('click', function() {
     const file_field = $(".js-file:last"); // 一番最後のfile_field（新規でアップロードする箇所）を取得
     file_field.trigger("click"); // file_fieldをクリックさせる。
-    console.log("test2")
-
   });
 
   $(document).on('change', '.js-file', function(e) {
@@ -35,7 +32,6 @@ $(function () {
       img.setAttribute('url', blobUrl);
     } else {
       // 10枚の投稿制限
-
       if ($(".image-index").length < 4) {
         $('#previews').append(buildImg(targetIndex, blobUrl));
         $('.js-file_group').append(buildFileField(fileIndex[0]));

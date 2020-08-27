@@ -394,8 +394,8 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fog-aws
-  gretel
   font-awesome-sass
+  gretel
   haml-rails
   jbuilder (~> 2.7)
   jp_prefecture

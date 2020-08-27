@@ -48,6 +48,8 @@ class ItemsController < ApplicationController
 
   def update
     @category_parent_array = Category.where(ancestry: nil)
+    @category_child_array = @item.category.parent.siblings
+    @category_grandchild_array = @item.category.siblings
     if @item.update(item_params)
       redirect_to root_path
     @category_child_array = @item.category.parent.siblings
@@ -79,6 +81,10 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
 
+  end
+
+  def favorites
+    @items = current_user.favorite_items.includes(:user)
   end
 
   def favorites
