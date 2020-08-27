@@ -33,7 +33,6 @@ Things you may want to cover:
 |remember_created_at|datetime||
 ### Association
 - has_one :profile, dependent: :destroy
-- has_many_buyer_items, foreign_key:"buyer_id", class_name:"items"
 - has_one :sending_destination, dependent: :destroy
 - has_one :credit_card, dependent: :destroy
 - has_many :seller_items, foreign_key: "seller_id", class_name: "items"
