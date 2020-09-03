@@ -1,28 +1,40 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
+# nisecari
+- フリマアプリのクローンサイトです
+- TECH::CAMP 80短期集中コースEチームで作成
+- 作成期間 2020/8/04~2020/8/28
+![2020-8-28](https://i.gyazo.com/3fe8a52593cb8d1c9c3ee4f654aab66f.jpg)
+# 主な使用言語
+- ruby
+- ruby on rails
+- Haml
+- scss
+- jquery
+- aws
+# 機能紹介
+- 新規会員登録・ログインをすると商品の購入、出品ができます
+- 新規会員登録、ログインがお済みでない方も商品の一覧、詳細を閲覧可能です
+- 決済方法はご自身のクレジットカードを登録して購入できます
+- ヘッダーの検索フォームから、商品の検索も可能です
+# サイトURL紹介
+- ユーザー名:o80e
+- パスワード:o80e
+- IPアドレス:18.181.134.233
+# インストール方法
+1. このリポジトリを複製
+  $ git clone https://github.com/ea2ne/nisecari.git
+1. インストールしたリポジトリに移動
+  $ cd nisecari
+1. gemをアプリケーションに適用
+  $ bundle install
+1. DBの作成＆反映
+  $ rails db:create
+  $ rails db:migrate
+1. カテゴリー一覧の反映
+  $ rails db:seed
+1. アプリケーションの起動
+  $ rails s
+  http://localhost:3000
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
